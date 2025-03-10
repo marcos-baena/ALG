@@ -60,23 +60,23 @@
 
 \begin{document}
 \begin{titlepage}
-\centering
+	\centering
 
-\includegraphics[width=0.3\textwidth]{logo_ugr.png} % Ajusta el tamaño según necesites (0.3\textwidth es solo un ejemplo)
-\vspace{1cm} % Ajusta el espacio según lo necesites
+	\includegraphics[width=0.3\textwidth]{logo_ugr.png} % Ajusta el tamaño según necesites (0.3\textwidth es solo un ejemplo)
+	\vspace{1cm} % Ajusta el espacio según lo necesites
 
-{\bfseries\LARGE Universidad de Granada \par}
-\vspace{1cm}
-{\scshape\Large Facultad de Ingeniería Informática y telecomunicaciones \par}
-\vspace{3cm}
-{\scshape\Huge Práctica 1: Eficiencia de algoritmos \par}
-\vspace{3cm}
-{\itshape\Large Doble Grado Ingeniería Informática y Matemáticas \par}
-\vfill
-{\Large Autores: \par}
-{\Large Adolfo Martínez Olmedo, Pablo Delgado Galera, Marcos Baena Solar \par}
-\vfill
-{\Large Marzo 2025 \par}
+	{\bfseries\LARGE Universidad de Granada \par}
+	\vspace{1cm}
+	{\scshape\Large Facultad de Ingeniería Informática y telecomunicaciones \par}
+	\vspace{3cm}
+	{\scshape\Huge Práctica 1: Eficiencia de algoritmos \par}
+	\vspace{3cm}
+	{\itshape\Large Doble Grado Ingeniería Informática y Matemáticas \par}
+	\vfill
+	{\Large Autores: \par}
+	{\Large Adolfo Martínez Olmedo, Pablo Delgado Galera, Marcos Baena Solar \par}
+	\vfill
+	{\Large Marzo 2025 \par}
 \end{titlepage}
 
 \tableofcontents
@@ -85,79 +85,79 @@
 
 % Sections
 \section{Introducción}
-    Comenzemos estableciendo las características de cada uno de nuetros
-    ordenadores, ya que tienen prestaciones diferentes
-   
-    \begin{table}[h!]
-        \centering
-        \makebox[\textwidth]{%
-            \scalebox{0.6}{%
-                \begin{tabular}{|c|c|c|c|c|c|c|c|}
-                \hline
-                \textbf{} & \textbf{CPU} & \textbf{RAM} & \textbf{Caché L1d} & \textbf{Caché L1i} & \textbf{Caché L2} & \textbf{Caché L3} & \textbf{SO} \\ \hline
-                Adolfo Martínez & AMD Ryzen 7 4800HS & 16GB & 256 KiB & 256 KiB & 4 MiB & 8 MiB & Ubuntu 22.04.4 \\ \hline
-                Marcos Baena   & AMD 3020e with Radeon Graphics & 5,7Gi & 64 KiB (2 instances) & 128 KiB (2 instances) & 1 MiB (2 instances) & 4 MiB (1 instance) & Ubuntu 24.04.1 LTS \\ \hline
-                Pablo Delgado  & 11th Gen Intel(R) Core(TM) i7-11800H & 15 Gi & 384 KiB (8 instances) & 256 KiB (8 instances) & 10 MiB (8 instances) & 24 MiB (1 instance) & Ubuntu 24.04.1 \\ \hline
-                \end{tabular}
-            }
-        }
-        \caption{Características de los ordenadores}
-        \label{tab:caracteristicas}
-    \end{table}
-    
-    En esta práctica vamos a discutir la eficiencia de los algoritmos
-    desde tres puntos de vista distintos:
+Comenzemos estableciendo las características de cada uno de nuetros
+ordenadores, ya que tienen prestaciones diferentes
 
-    \begin{itemize}
-        \item \textbf{Punto 1:} Descripción del primer punto.
-        \item \textbf{Punto 2:} Descripción del segundo punto.
-        \item \textbf{Punto 3:} Descripción del tercer punto.
-    \end{itemize}
+\begin{table}[h!]
+	\centering
+	\makebox[\textwidth]{%
+		\scalebox{0.6}{%
+			\begin{tabular}{|c|c|c|c|c|c|c|c|}
+				\hline
+				\textbf{}       & \textbf{CPU}                         & \textbf{RAM} & \textbf{Caché L1d}    & \textbf{Caché L1i}    & \textbf{Caché L2}    & \textbf{Caché L3}   & \textbf{SO}        \\ \hline
+				Adolfo Martínez & AMD Ryzen 7 4800HS                   & 16GB         & 256 KiB               & 256 KiB               & 4 MiB                & 8 MiB               & Ubuntu 22.04.4     \\ \hline
+				Marcos Baena    & AMD 3020e with Radeon Graphics       & 5,7Gi        & 64 KiB (2 instances)  & 128 KiB (2 instances) & 1 MiB (2 instances)  & 4 MiB (1 instance)  & Ubuntu 24.04.1 LTS \\ \hline
+				Pablo Delgado   & 11th Gen Intel(R) Core(TM) i7-11800H & 15 Gi        & 384 KiB (8 instances) & 256 KiB (8 instances) & 10 MiB (8 instances) & 24 MiB (1 instance) & Ubuntu 24.04.1     \\ \hline
+			\end{tabular}
+		}
+	}
+	\caption{Características de los ordenadores}
+	\label{tab:caracteristicas}
+\end{table}
 
-    \subsection{Análisis de la eficiencia teórica}
-    En el análisis de la eficiencia teórica estudiaremos el tiempo de ejecución del algoritmo
-    mediante funciones en notación \textit{Big-O}, que representarán el peor caso posible.
-    En este análisis, no usaremos medidas reales de computación, sino que calcularemos funciones 
-    mediante técnicas vistas en Estructuras de Datos y Algorítmica.
-    \subsection{Análisis de la eficiencia empírica}
-    Para el análisis de la eficiencia empírica ejecutaremos los algoritmos implementados en C++ en cada 
-    una de nuestras máquinas y mediermos el tiempo de ejecución mediante la 
-    clase <chrono>. Cada miembro del equipo ejecutará cada algoritmo 10 veces con todos los tamaños especificados,
-    para luego hacer una media y obtener resultados más fiables.
-    \subsection{Análisis de la eficiencia híbrida}
-    En el análisis de la eficiencia hibrída, tomammos los resultados de los integrantes del grupo y hallamos
-    la constante $\kappa$. En la representación de los resultados usaremos la herramienta gnuplot.
+En esta práctica vamos a discutir la eficiencia de los algoritmos
+desde tres puntos de vista distintos:
 
-    Para poder completar esta parte del estudio de la eficiencia usaremos los resultados del análisis teórico, para
-    poder conocer la forma de la función a la que queremos ajustar los datos. Por ejemplo para representar en gnuplot $O(n^{3})$:
+\begin{itemize}
+	\item \textbf{Punto 1:} Descripción del primer punto.
+	\item \textbf{Punto 2:} Descripción del segundo punto.
+	\item \textbf{Punto 3:} Descripción del tercer punto.
+\end{itemize}
 
-    \begin{lstlisting}[language=C, caption={Ejemplo de $O(n^{2})$}]
+\subsection{Análisis de la eficiencia teórica}
+En el análisis de la eficiencia teórica estudiaremos el tiempo de ejecución del algoritmo
+mediante funciones en notación \textit{Big-O}, que representarán el peor caso posible.
+En este análisis, no usaremos medidas reales de computación, sino que calcularemos funciones
+mediante técnicas vistas en Estructuras de Datos y Algorítmica.
+\subsection{Análisis de la eficiencia empírica}
+Para el análisis de la eficiencia empírica ejecutaremos los algoritmos implementados en C++ en cada
+una de nuestras máquinas y mediermos el tiempo de ejecución mediante la
+clase <chrono>. Cada miembro del equipo ejecutará cada algoritmo 10 veces con todos los tamaños especificados,
+para luego hacer una media y obtener resultados más fiables.
+\subsection{Análisis de la eficiencia híbrida}
+En el análisis de la eficiencia hibrída, tomammos los resultados de los integrantes del grupo y hallamos
+la constante $\kappa$. En la representación de los resultados usaremos la herramienta gnuplot.
+
+Para poder completar esta parte del estudio de la eficiencia usaremos los resultados del análisis teórico, para
+poder conocer la forma de la función a la que queremos ajustar los datos. Por ejemplo para representar en gnuplot $O(n^{3})$:
+
+\begin{lstlisting}[language=C, caption={Ejemplo de $O(n^{2})$}]
        gnuplot> f(x) = a0*x*x+a1*x*x+a2
         \end{lstlisting}
-    
-    Después de esto debemos hacer la regresión usando el método de mínimos, cuyo funcionamiento conoces gracias a la asignatura EDIP:
 
-    \begin{lstlisting}[language=C, caption={Uso de gnuplot para l regresión}]
+Después de esto debemos hacer la regresión usando el método de mínimos, cuyo funcionamiento conoces gracias a la asignatura EDIP:
+
+\begin{lstlisting}[language=C, caption={Uso de gnuplot para l regresión}]
         gnuplot> fit f(x) 'result.dat' via a0,a1,a2
          \end{lstlisting}
 
-    En este caso result.dat es nuestro fichero de datos.
-    Nos centraremos en la parte que pone \textit{Final set of Parameters}, que nos muestra los coeficientes de la fórmula de regresión 
-    junto con la bondad del ajuste realizado.
-    
-    Finalmente, hacemos el plot de los puntos y la curva de ajuste para ver como de buena es el cálculo de la eficiencia híbrida. Usaremos el 
-    siguiente comando:
+En este caso result.dat es nuestro fichero de datos.
+Nos centraremos en la parte que pone \textit{Final set of Parameters}, que nos muestra los coeficientes de la fórmula de regresión
+junto con la bondad del ajuste realizado.
 
-    \begin{lstlisting}[language=C, caption={Representación de la regresión}]
+Finalmente, hacemos el plot de los puntos y la curva de ajuste para ver como de buena es el cálculo de la eficiencia híbrida. Usaremos el
+siguiente comando:
+
+\begin{lstlisting}[language=C, caption={Representación de la regresión}]
         gnuplot> plot 'result.dat', f(x) title 'Curva de ajuste'
          \end{lstlisting}
 
-        
+
 
 
 \section{Desarrollo}
 Una vez que hemos discutido las maneras de estudiar la eficiencia, veamos los problemas
-que vamos a analizar: La \textbf{Ordenación de vectores}, 
+que vamos a analizar: La \textbf{Ordenación de vectores},
 los \textbf{Números de Catalan}, y las \textbf{Torres de Hanoi.}
 
 \subsection{Ordenación de vectores}
@@ -186,4 +186,4 @@ En conclusión, somos sudorosos.
 
 
 
-\end{document} 
+\end{document}
