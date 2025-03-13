@@ -1,0 +1,266 @@
+
+
+*******************************************************************************
+Thu Mar 13 17:52:43 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 40
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.51e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  15 4.1958941875e+07  -2.30e-08  2.51e-04    1.854702e-08   1.801628e-01  -1.513716e+03
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 4.19589e+07
+rel. change during last iteration : -2.30306e-13
+
+degrees of freedom    (FIT_NDF)                        : 37
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1064.91
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.13403e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.8547e-08       +/- 2.263e-09    (12.2%)
+a1              = 0.180163         +/- 0.002286     (1.269%)
+a2              = -1513.72         +/- 482.8        (31.9%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.967  1.000 
+a2              0.728 -0.855  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:00:55 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 40
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.51e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  15 4.1958941875e+07  -2.30e-08  2.51e-04    1.854702e-08   1.801628e-01  -1.513716e+03
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 4.19589e+07
+rel. change during last iteration : -2.30306e-13
+
+degrees of freedom    (FIT_NDF)                        : 37
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1064.91
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.13403e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.8547e-08       +/- 2.263e-09    (12.2%)
+a1              = 0.180163         +/- 0.002286     (1.269%)
+a2              = -1513.72         +/- 482.8        (31.9%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.967  1.000 
+a2              0.728 -0.855  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:01:58 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 40
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.51e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  15 4.1958941875e+07  -2.30e-08  2.51e-04    1.854702e-08   1.801628e-01  -1.513716e+03
+
+After 15 iterations the fit converged.
+final sum of squares of residuals : 4.19589e+07
+rel. change during last iteration : -2.30306e-13
+
+degrees of freedom    (FIT_NDF)                        : 37
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1064.91
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.13403e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.8547e-08       +/- 2.263e-09    (12.2%)
+a1              = 0.180163         +/- 0.002286     (1.269%)
+a2              = -1513.72         +/- 482.8        (31.9%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.967  1.000 
+a2              0.728 -0.855  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:03:09 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 41
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.48e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.3859554495e+07  -5.80e-01  2.48e-03    1.942753e-08   1.791184e-01  -1.255593e+03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 4.38596e+07
+rel. change during last iteration : -5.80401e-06
+
+degrees of freedom    (FIT_NDF)                        : 38
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1074.34
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.1542e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.94275e-08      +/- 2.177e-09    (11.21%)
+a1              = 0.179118         +/- 0.002158     (1.205%)
+a2              = -1255.59         +/- 443.6        (35.33%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.965  1.000 
+a2              0.695 -0.832  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:04:09 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 41
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.48e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.3861616444e+07  -5.80e-01  2.48e-03    1.942800e-08   1.791179e-01  -1.255454e+03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 4.38616e+07
+rel. change during last iteration : -5.80247e-06
+
+degrees of freedom    (FIT_NDF)                        : 38
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1074.36
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.15425e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.9428e-08       +/- 2.177e-09    (11.21%)
+a1              = 0.179118         +/- 0.002158     (1.205%)
+a2              = -1255.45         +/- 443.7        (35.34%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.965  1.000 
+a2              0.695 -0.832  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:05:32 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 41
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.48e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.3861616444e+07  -5.80e-01  2.48e-03    1.942800e-08   1.791179e-01  -1.255454e+03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 4.38616e+07
+rel. change during last iteration : -5.80247e-06
+
+degrees of freedom    (FIT_NDF)                        : 38
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1074.36
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.15425e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.9428e-08       +/- 2.177e-09    (11.21%)
+a1              = 0.179118         +/- 0.002158     (1.205%)
+a2              = -1255.45         +/- 443.7        (35.34%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.965  1.000 
+a2              0.695 -0.832  1.000 
+
+
+*******************************************************************************
+Thu Mar 13 18:22:13 2025
+
+
+FIT:    data read from "medias.dat"
+        format = z
+        #datapoints = 41
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a0*x*x+a1*x+a2
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a0            a1            a2           
+   0 7.5464503250e+24   0.00e+00  2.48e+11    1.000000e+00   1.000000e+00   1.000000e+00
+  14 4.3861616444e+07  -5.80e-01  2.48e-03    1.942800e-08   1.791179e-01  -1.255454e+03
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 4.38616e+07
+rel. change during last iteration : -5.80247e-06
+
+degrees of freedom    (FIT_NDF)                        : 38
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1074.36
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.15425e+06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a0              = 1.9428e-08       +/- 2.177e-09    (11.21%)
+a1              = 0.179118         +/- 0.002158     (1.205%)
+a2              = -1255.45         +/- 443.7        (35.34%)
+
+correlation matrix of the fit parameters:
+                a0     a1     a2     
+a0              1.000 
+a1             -0.965  1.000 
+a2              0.695 -0.832  1.000 
