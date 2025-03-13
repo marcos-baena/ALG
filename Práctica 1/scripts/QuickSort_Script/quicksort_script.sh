@@ -52,15 +52,15 @@ for run in {1..10}; do
     # Usar una semilla distinta cada vez
     SEED=$((BASE_SEED + run))
 
-    echo ">>> Corrida $run - Ejecutando $PROGRAM con semilla $SEED, guardando en $OUTPUT"
+    echo ">>> Iteración $run - Ejecutando $PROGRAM con semilla $SEED, guardando en $OUTPUT"
 
     # Ejecutar el programa
     $PROGRAM "$OUTPUT" "$SEED" "${sizes[@]}"
 
-    echo ">>> Terminada corrida $run"
+    echo ">>> Iteración terminada $run"
 done
 
-echo ">>> Todas las corridas han terminado."
+echo ">>> Todas las iteraciones han terminado."
 
 # ==========================
 # Calcular la media de los tiempos en medias.dat

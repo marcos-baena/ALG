@@ -20,15 +20,15 @@ modo="$1"
 case "$modo" in
     RE)
         PROGRAM="./HanoiRecursivo"
-        FOLDER="HanoiRecursivoData"
+        FOLDER="HanoiRecursivoDATA"
         ;;
     IT)
         PROGRAM="./HanoiIterativo"
-        FOLDER="HanoiIterativoData"
+        FOLDER="HanoiIterativoDATA"
         ;;
     SP)
         PROGRAM="./HanoiIterativoSP"
-        FOLDER="HanoiIterativoSPData"
+        FOLDER="HanoiIterativoSPDATA"
         ;;
     *)
         echo "Modo no reconocido: $modo"
@@ -43,9 +43,9 @@ esac
 
 BASE_SEED=47
 
-# Tamaños de los casos: de 5 a 50, en incrementos de 5
+# Tamaños de los casos: de 1 a 25, en incrementos de 1
 sizes=()
-for (( i=5; i<=30; i+=3 )); do
+for (( i=1; i<=25; i+=1 )); do
     sizes+=($i)
 done
 

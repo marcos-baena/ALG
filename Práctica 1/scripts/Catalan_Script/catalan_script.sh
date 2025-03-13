@@ -20,7 +20,7 @@ modo="$1"
 case "$modo" in
     RE)
         PROGRAM="./NumerosCatalanRecursivo"
-        FOLDER="CatalanRecurisoDATA"
+        FOLDER="CatalanRecursivoDATA"
         ;;
     BC)
         PROGRAM="./NumerosCatalanBC"
@@ -43,9 +43,9 @@ esac
 
 BASE_SEED=71
 
-# Tamaños de los casos: de 1 a 20, en incrementos de 2
+# Tamaños de los casos: de 1 a 30, en incrementos de 1
 sizes=()
-for (( i=1; i<=20; i+=2 )); do
+for (( i=1; i<=10000; i+=100 )); do
     sizes+=($i)
 done
 
