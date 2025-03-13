@@ -4,13 +4,25 @@
 \contentsline {subsection}{\numberline {1.2}Análisis de la eficiencia empírica}{2}{subsection.1.2}%
 \contentsline {subsection}{\numberline {1.3}Análisis de la eficiencia híbrida}{2}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Desarrollo}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Ordenación de vectores}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Los números de Catalan}{4}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Versión recursiva}{4}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Versión iterativa (programación dinámica)}{4}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Versión iterativa directa usado el coeficiente binomial}{4}{subsubsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.3}Las Torres de Hanoi}{4}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Versión recursiva}{4}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Versión iterativa usando una pila}{4}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Versión iterativa sin usar la pila}{4}{subsubsection.2.3.3}%
-\contentsline {section}{\numberline {3}Conclusión}{4}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Ordenación de vectores}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}QuickSort}{3}{subsubsection.2.1.1}%
+\contentsline {paragraph}{Eficiencia teórica}{3}{section*.2}%
+\contentsline {paragraph}{Eficiencia práctica}{5}{section*.3}%
+\contentsline {subsection}{\numberline {2.2}Los números de Catalan}{5}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Versión recursiva}{5}{subsubsection.2.2.1}%
+\contentsline {paragraph}{Eficiencia práctica}{5}{section*.4}%
+\contentsline {subsubsection}{\numberline {2.2.2}Versión iterativa (programación dinámica)}{5}{subsubsection.2.2.2}%
+\contentsline {paragraph}{Eficiencia práctica}{5}{section*.5}%
+\contentsline {subsubsection}{\numberline {2.2.3}Versión iterativa directa usado el coeficiente binomial}{5}{subsubsection.2.2.3}%
+\contentsline {paragraph}{Eficiencia práctica}{5}{section*.6}%
+\contentsline {subsection}{\numberline {2.3}Las Torres de Hanoi}{6}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Versión recursiva}{6}{subsubsection.2.3.1}%
+\contentsline {paragraph}{Eficiencia teórica}{6}{section*.7}%
+\contentsline {paragraph}{Eficiencia práctica}{6}{section*.8}%
+\contentsline {subsubsection}{\numberline {2.3.2}Versión iterativa usando una pila}{7}{subsubsection.2.3.2}%
+\contentsline {paragraph}{Eficiencia teórica}{7}{section*.9}%
+\contentsline {paragraph}{Eficiencia práctica}{8}{section*.10}%
+\contentsline {subsubsection}{\numberline {2.3.3}Versión iterativa sin usar la pila}{8}{subsubsection.2.3.3}%
+\contentsline {paragraph}{Eficiencia teórica}{8}{section*.11}%
+\contentsline {paragraph}{Eficiencia práctica}{9}{section*.12}%
+\contentsline {section}{\numberline {3}Conclusión}{9}{section.3}%

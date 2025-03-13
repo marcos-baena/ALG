@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt]{article} % Puedes cambiar 'article' por otro tipo de documento
 
+
 % Idioma español y codificación
 \usepackage[spanish]{babel} % Traduce palabras como "Contenido", "Capítulo", etc.
 \usepackage[utf8]{inputenc} % Permite escribir caracteres en español (á, é, ñ, etc.)
@@ -137,12 +138,12 @@ poder conocer la forma de la función a la que queremos ajustar los datos. Por e
 
 Después de esto debemos hacer la regresión usando el método de mínimos, cuyo funcionamiento conoces gracias a la asignatura EDIP:
 
-\begin{lstlisting}[language=C, caption={Uso de gnuplot para l regresión}]
+\begin{lstlisting}[language=C, caption={Uso de gnuplot para la regresión}]
         gnuplot> fit f(x) 'result.dat' via a0,a1,a2
          \end{lstlisting}
 
 En este caso result.dat es nuestro fichero de datos.
-Nos centraremos en la parte que pone \textit{Final set of Parameters}, que nos muestra los coeficientes de la fórmula de regresión
+Nos centraremos en \textit{Final set of Parameters}, que nos muestra los coeficientes de la fórmula de regresión
 junto con la bondad del ajuste realizado.
 
 Finalmente, hacemos el plot de los puntos y la curva de ajuste para ver como de buena es el cálculo de la eficiencia híbrida. Usaremos el
@@ -161,24 +162,268 @@ que vamos a analizar: La \textbf{Ordenación de vectores},
 los \textbf{Números de Catalan}, y las \textbf{Torres de Hanoi.}
 
 \subsection{Ordenación de vectores}
+\subsubsection{QuickSort}
+\paragraph{Eficiencia teórica}
 
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C++, caption={Código de QuickSort}]
+int partition(vector<int> &vec, int low, int high) {
+	int pivot = vec[high];
+	int i = low - 1;
+
+	for (int j = low; j < high; j++) {
+		if (vec[j] <= pivot) {
+			i++;
+			swap(vec[i], vec[j]);
+		}
+	}
+	swap(vec[i + 1], vec[high]);
+	return i + 1;
+}
+
+void QuickSort(vector<int> &vec, int low, int high) {
+	if (low < high) {
+		int pi = partition(vec, low, high);
+		QuickSort(vec, low, pi - 1);
+		QuickSort(vec, pi + 1, high);
+	}
+}
+\end{lstlisting}
+
+
+Tras analizar el código hemos llegado a la siguiente fórmula de recurrencia:
+
+\begin{equation*}
+	T(n) = 2\cdot T(n/2) + n
+\end{equation*}
+
+Concluimos que en las dos llamadas recursivas de QuickSort
+se utiliza \textit{pi} que es el resultado de hacer la partición por la mitad del vector. En cuanto
+al término independiente este se corresponde al bucle de la función auxiliar \textit{partition}, que en
+el peor de los casos recorre el vector totalmente.
+
+Procedemos a resolver la fórmula de recurrencia utilizando el cambio de variable $n=2^h$:
+
+\begin{equation*}
+	T(2^{h}) - 2\cdot T(2^{h-1}) = 2^{h}
+\end{equation*}
+
+El resultado de la parte homogénea es el siguiente:
+
+\begin{align*}
+	x - 2 = 0 \\
+	x = 2
+\end{align*}
+\newpage
+El resultado de la parte independiente es:
+
+\begin{align*}
+	p(h) = 1 \\
+	b = 2    \\
+	d = 0    \\
+\end{align*}
+
+Por tanto la solución es $(x-2)^2$, con multiplicidad 2,y deshaciendo el
+cambio de variable y expresando la ecuación con coeficientes llegamos finalmente
+a:
+
+\begin{equation*}
+	c_{1}\cdot 2^{\log _{2}(n)} + c_{2}\cdot \log_{2}(n)\cdot 2^{\log_{2}(n)}
+\end{equation*}
+
+De donde se deduce que QuickSort tiene una eficiencia de $O(n\cdot \log(n))$
+\\ 
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
 
 
 \subsection{Los números de Catalan}
 
 \subsubsection{Versión recursiva}
 
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
+
 \subsubsection{Versión iterativa (programación dinámica)}
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
 
 \subsubsection{Versión iterativa directa usado el coeficiente binomial}
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
 
 \subsection{Las Torres de Hanoi}
 
 \subsubsection{Versión recursiva}
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Hanoi}]
+void Hanoi(int n, char from_rod, char to_rod,
+            char aux_rod)
+{
+    if (n == 0) {
+        return;
+    }
+    Hanoi(n - 1, from_rod, aux_rod, to_rod);
+    cout << "Move disk " << n << " from rod " << from_rod
+         << " to rod " << to_rod << endl;
+    Hanoi(n - 1, aux_rod, to_rod, from_rod);
+}
+\end{lstlisting}
+
+Tras analizar el código hemos llegado a la siguiente fórmula de recurrencia:
+
+\[
+H(n)=
+\begin{cases}
+0,  & \text{si } n = 0,\\[6pt]
+2\cdot H(n-1), & \text{si } n > 0
+\end{cases}
+\]
+
+Concluimos que en las dos llamadas recursivas de \textit{Hanoi}
+se utiliza \textit{n - 1}, de donde sale $2\cdot H(n-1)$, y el caso base 
+0 ocurre cuando hay 0 discos.
+
+Procedemos a resolver la ecuación:
+
+\begin{align*}
+	x - 2 = 0 \\
+	x = 2
+\end{align*}
+
+Por tanto la solución es $(x -2)$, con multiplicidad 1, y expresando la 
+ecuación con coeficientes llegamos finalmente a:
+
+\begin{equation*}
+	c_{1}\cdot 2^{n}
+\end{equation*}
+
+De donde se deduce que Hanoi tiene una eficiencia de \textit{O}$(2^{n})$
+
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
 
 \subsubsection{Versión iterativa usando una pila}
 
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Hanoi Iterativo con pila}]
+	void moveDisk(int a, int b)
+	{
+		if (!stacks[a].empty() && (stacks[b].empty() || stacks[a].top() < stacks[b].top()))
+		{
+			stacks[b].push(stacks[a].top());
+			stacks[a].pop();
+		}
+	}
+	 
+	void Hanoi(int n)
+	{
+	 
+		int src = 0, aux = 1, dest = 2;
+		for (int i = n; i > 0; i--)
+			stacks[src].push(i);
+	 
+		int totalMoves = (1 << n) - 1;
+		if (n % 2 == 0)
+			swap(aux, dest);
+	 
+		for (int i = 1; i <= totalMoves; i++)
+		{
+			if (i % 3 == 0)
+				moveDisk(aux, dest);
+			else if (i % 3 == 1)
+				moveDisk(src, dest);
+			else
+				moveDisk(src, aux);
+		}
+	}
+\end{lstlisting}
+
+Tras analizar el código vemos que:
+
+El primer bucle claramente tiene una eficiencia de \textit{O}(n) ya que vemos que comienza con $i=n$ (el número de discos)
+y va decrementando hasta llegar a 0.\\
+
+El segundo bucle recorre desde $i=1$ hasta llegar a la variable totalMoves que se obtiene con la función 
+$(1 \ll n) - 1$ que equivale a $2^n - 1$ por tanto el segundo bucle tiene una eficiencia de \textit{O}($2^n$).\\
+
+Por tanto, por la regla del máximo, al no estar los bucles anidados obtenemos que la eficiencia total de la función es \textit{O}($2^n$).\\
+
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
+
 \subsubsection{Versión iterativa sin usar la pila}
+
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Hanoi Iterativo sin pila}]
+	void moveDisksBetweenTwoPoles(struct Stack *src, struct Stack *dest, char s, char d) {
+		int pole1TopDisk = pop(src);
+		int pole2TopDisk = pop(dest);
+	
+		if (pole1TopDisk == INT_MIN) {
+			push(src, pole2TopDisk);
+		} else if (pole2TopDisk == INT_MIN) {
+			push(dest, pole1TopDisk);
+		} else if (pole1TopDisk > pole2TopDisk) {
+			push(src, pole1TopDisk);
+			push(src, pole2TopDisk);
+		} else {
+			push(dest, pole2TopDisk);
+			push(dest, pole1TopDisk);
+		}
+	}
+	
+	void tohIterative(int num_of_disks, struct Stack *src, struct Stack *aux, struct Stack *dest) {
+		char s = 'S', d = 'D', a = 'A';
+		if (num_of_disks % 2 == 0) swap(d, a);
+	
+		int total_num_of_moves = pow(2, num_of_disks) - 1;
+		for (int i = num_of_disks; i >= 1; i--) push(src, i);
+	
+		for (int i = 1; i <= total_num_of_moves; i++) {
+			if (i % 3 == 1) moveDisksBetweenTwoPoles(src, dest, s, d);
+			else if (i % 3 == 2) moveDisksBetweenTwoPoles(src, aux, s, a);
+			else moveDisksBetweenTwoPoles(aux, dest, a, d);
+		}
+	}
+\end{lstlisting}
+
+Tras analizar el código vemos que:
+
+El primer bucle claramente tiene una eficiencia de \textit{O}(n) ya que vemos que comienza con $i=n$ (el número de discos)
+y va decrementando hasta llegar a 1.\\
+
+El segundo bucle recorre desde $i=1$ hasta llegar a la variable total\_num\_of\_moves que se obtiene con la función 
+pow(2, num\_of\_disks) - 1 que equivale a $2^n - 1$ por tanto el segundo bucle tiene una eficiencia de \textit{O}($2^n$).\\
+
+Por tanto, por la regla del máximo, al no estar los bucles anidados obtenemos que la eficiencia total de la función es \textit{O}($2^n$).\\
+
+\paragraph{Eficiencia práctica}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
 
 \section{Conclusión}
 En conclusión, somos sudorosos.
