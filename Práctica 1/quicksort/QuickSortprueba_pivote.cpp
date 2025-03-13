@@ -59,8 +59,9 @@ int main(int argc, char *argv[]) {
 }
 
 int partition(vector<int> &vec, int low, int high) {
-  int medio = (high+low)/2;
-    int pivot = vec[];
+    int mid = low + (high - low) / 2;
+    swap(vec[mid], vec[high]); // Mueve el pivote al final
+    int pivot = vec[high];  
     int i = low - 1;
 
     for (int j = low; j < high; j++) {
