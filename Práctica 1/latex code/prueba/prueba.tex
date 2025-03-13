@@ -1,5 +1,8 @@
 \documentclass[a4paper,12pt]{article} % Puedes cambiar 'article' por otro tipo de documento
 
+\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry} %Para poner los márgenes
+
+\usepackage{float} %Para hacer que la megatabla no se vaya volando a la última página y forzar que se quede usando [H]
 
 % Idioma español y codificación
 \usepackage[spanish]{babel} % Traduce palabras como "Contenido", "Capítulo", etc.
@@ -57,6 +60,12 @@
     commentstyle=\color{green},    % Color de los comentarios
     stringstyle=\color{red}        % Color de las cadenas
 }
+
+\usepackage{caption}
+\captionsetup[table]{labelformat=empty} %Para que no salgan numeradas las tablas
+\captionsetup[lstlisting]{labelformat=empty} %Para que no salgan numeradas los fragmentos de código
+
+\setlength{\parindent}{0,75cm} %Para que la sangría no sea tan grande
 
 
 \begin{document}
@@ -133,7 +142,7 @@ Para poder completar esta parte del estudio de la eficiencia usaremos los result
 poder conocer la forma de la función a la que queremos ajustar los datos. Por ejemplo para representar en gnuplot $O(n^{3})$:
 
 \begin{lstlisting}[language=C, caption={Ejemplo de $O(n^{2})$}]
-       gnuplot> f(x) = a0*x*x+a1*x*x+a2
+       gnuplot> f(x) = a0*x*x+a1*x+a2
         \end{lstlisting}
 
 Después de esto debemos hacer la regresión usando el método de mínimos, cuyo funcionamiento conoces gracias a la asignatura EDIP:
@@ -163,7 +172,7 @@ los \textbf{Números de Catalan}, y las \textbf{Torres de Hanoi.}
 
 \subsection{Ordenación de vectores}
 \subsubsection{QuickSort}
-\paragraph{Eficiencia teórica}
+\paragraph{Eficiencia teórica (caso promedio)}
 
 A continuación se presenta el código que hemos usado para hacer el análisis:
 
@@ -215,7 +224,7 @@ El resultado de la parte homogénea es el siguiente:
 	x - 2 = 0 \\
 	x = 2
 \end{align*}
-\newpage
+
 El resultado de la parte independiente es:
 
 \begin{align*}
@@ -234,12 +243,80 @@ a:
 
 De donde se deduce que QuickSort tiene una eficiencia de $O(n\cdot \log(n))$
 \\ 
-\paragraph{Eficiencia práctica}
+\paragraph{Eficiencia práctica (caso promedio)}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
-sobre tamaños empezando desde 100 hasta 1.000.000 con saltos de 31.000:
+sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
+
+\paragraph{Eficiencia teórica (peor caso)}
 
 
+\paragraph{Eficiencia práctica (peor caso)}
+
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort} 
+sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Tam.caso} & \textbf{Tiempo (us)} & \textbf{$K=$ Tiempo/$f(n)$} & \textbf{Tiempo teórico estimado = $K\cdot f(n)$} \\
+	\hline
+	1000   & 135    & 0,000135    & 4,081703271  \\
+	26000  & 3923   & 5,80325E-06 & 2759,231411  \\
+	51000  & 7972   & 3,06498E-06 & 10616,51021  \\
+	76000  & 12281  & 2,12621E-06 & 23575,9181   \\
+	101000 & 16285  & 1,59641E-06 & 41637,45507  \\
+	126000 & 21136  & 1,33132E-06 & 64801,12114  \\
+	151000 & 25810  & 1,13197E-06 & 93066,91629  \\
+	176000 & 30765  & 9,93188E-07 & 126434,8405  \\
+	201000 & 34579  & 8,55895E-07 & 164904,8939  \\
+	226000 & 39644  & 7,76177E-07 & 208477,0763  \\
+	251000 & 44586  & 7,07703E-07 & 257151,3878  \\
+	276000 & 48868  & 6,41514E-07 & 310927,8284  \\
+	301000 & 53481  & 5,90291E-07 & 369806,3981  \\
+	326000 & 58561  & 5,51028E-07 & 433787,0969  \\
+	351000 & 63962  & 5,19168E-07 & 502869,9247  \\
+	376000 & 69415  & 4,90996E-07 & 577054,8817  \\
+	401000 & 73753  & 4,5866E-07  & 656341,9677  \\
+	426000 & 78161  & 4,30696E-07 & 740731,1829  \\
+	451000 & 83203  & 4,09059E-07 & 830222,5271  \\
+	476000 & 89583  & 3,95377E-07 & 924816,0004  \\
+	501000 & 93698  & 3,73297E-07 & 1024511,603  \\
+	526000 & 98931  & 3,5757E-07  & 1129309,334  \\
+	551000 & 104380 & 3,43807E-07 & 1239209,195  \\
+	576000 & 109009 & 3,28562E-07 & 1354211,185  \\
+	601000 & 113194 & 3,13382E-07 & 1474315,303  \\
+	626000 & 118932 & 3,03494E-07 & 1599521,551  \\
+	651000 & 123600 & 2,91646E-07 & 1729829,928  \\
+	676000 & 127280 & 2,78527E-07 & 1865240,434  \\
+	701000 & 134006 & 2,72702E-07 & 2005753,069  \\
+	726000 & 138300 & 2,62391E-07 & 2151367,833  \\
+	751000 & 146089 & 2,59023E-07 & 2302084,727  \\
+	776000 & 147986 & 2,45752E-07 & 2457903,749  \\
+	801000 & 156995 & 2,44693E-07 & 2618824,901  \\
+	826000 & 158179 & 2,3184E-07  & 2784848,181  \\
+	851000 & 165306 & 2,2826E-07  & 2955973,591  \\
+	876000 & 173671 & 2,26318E-07 & 3132201,13   \\
+	901000 & 176034 & 2,16844E-07 & 3313530,797  \\
+	926000 & 180388 & 2,10371E-07 & 3499962,594  \\
+	951000 & 186721 & 2,06458E-07 & 3691496,52   \\
+	976000 & 189852 & 1,99304E-07 & 3888132,575  \\
+	\hline
+	\end{tabular}%
+	}
+	\caption{Resultados de tiempos y estimaciones}
+	\label{tab:resultados}
+	\end{table}
+
+	Los resultados de graficar los resultados haciendo la curva de ajuste con \textit{f(x) = $x^{2}$} son:
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=\linewidth]{graficaquicksortpeorcaso.jpeg}
+		\caption{Ajuste por regresión de \textit{QuickSort}}
+	  \end{figure}
+	  
 \subsection{Los números de Catalan}
 
 \subsubsection{Versión recursiva}
