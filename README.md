@@ -1,1 +1,1 @@
-Repositorio de las prácticas de la asignatura Algorítmica
+Repositorio de las prácticas de la asignatura *Algorítmica*
