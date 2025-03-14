@@ -45,7 +45,7 @@ BASE_SEED=$(( $(date +%s) )) # Semilla pseudo-aleatoria cada vez
 
 # Tamaños de los casos: de 1 a 25, en incrementos de 1
 sizes=()
-for (( i=1; i<=25; i+=1 )); do
+for (( i=5; i<=27; i+=1 )); do
     sizes+=($i)
 done
 

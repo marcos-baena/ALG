@@ -15,7 +15,7 @@ BASE_SEED=$(( $(date +%s) ))
 
 # Tamaños de casos desde 1000 hasta 100000 en pasos de 25000
 sizes=()
-for (( i=1000; i<=1000000; i+=2500 )); do
+for (( i=1000; i<=1000000; i+=25000 )); do
     sizes+=($i)
 done
 
