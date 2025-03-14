@@ -66,6 +66,17 @@ EOF
 
 gnuplot << EOF
 set terminal png size 800,600
+set output "${OUT_FOLDER}/CatalanRecursivo_LOGSCALE.png"
+set title "Tiempo de ejecucion - Catalan Recursivo"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
+plot "CatalanRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo"
+EOF
+
+gnuplot << EOF
+set terminal png size 800,600
 set output "${OUT_FOLDER}/CatalanBinomial.png"
 set title "Tiempo de ejecucion - Catalan Binomial"
 set xlabel "Tamano del caso"
@@ -95,6 +106,20 @@ set title "Comparativa Tiempo de Ejecucion - Catalan"
 set xlabel "Tamano del caso"
 set ylabel "Tiempo (microsegundos)"
 set grid
+plot \
+    "CatalanRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo", \
+    "CatalanBinomialDATA/medias.dat" using 1:2 with linespoints title "Binomial", \
+    "CatalanPDDATA/medias.dat" using 1:2 with linespoints title "PD"
+EOF
+
+gnuplot << EOF
+set terminal png size 800,600
+set output "${OUT_FOLDER}/ComparativaCatalan_LOGSCALE.png"
+set title "Comparativa Tiempo de Ejecucion - Catalan"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
 plot \
     "CatalanRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo", \
     "CatalanBinomialDATA/medias.dat" using 1:2 with linespoints title "Binomial", \

@@ -84,6 +84,39 @@ set grid
 plot "HanoiIterativoSPDATA/medias.dat" using 1:2 with linespoints title "Iterativo SP"
 EOF
 
+gnuplot << EOF
+set terminal png size 800,600
+set output "${OUT_FOLDER}/HanoiRecursivo_LOG_SCALE.png"
+set title "Tiempo de ejecucion - Hanoi Recursivo"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
+plot "HanoiRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo"
+EOF
+
+gnuplot << EOF
+set terminal png size 800,600
+set output "${OUT_FOLDER}/HanoiIterativo_LOG_SCALE.png"
+set title "Tiempo de ejecucion - Hanoi Iterativo"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
+plot "HanoiIterativoDATA/medias.dat" using 1:2 with linespoints title "Iterativo"
+EOF
+
+gnuplot << EOF
+set terminal png size 800,600
+set output "${OUT_FOLDER}/HanoiIterativoSP_LOG_SCALE.png"
+set title "Tiempo de ejecucion - Hanoi Iterativo SP"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
+plot "HanoiIterativoSPDATA/medias.dat" using 1:2 with linespoints title "Iterativo SP"
+EOF
+
 # ================================
 # Graficar comparativa en una sola gráfica
 # ================================
@@ -95,6 +128,20 @@ set title "Comparativa Tiempo de Ejecucion - Hanoi"
 set xlabel "Tamano del caso"
 set ylabel "Tiempo (microsegundos)"
 set grid
+plot \
+    "HanoiRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo", \
+    "HanoiIterativoDATA/medias.dat" using 1:2 with linespoints title "Iterativo", \
+    "HanoiIterativoSPDATA/medias.dat" using 1:2 with linespoints title "Iterativo SP"
+EOF
+
+gnuplot << EOF
+set terminal png size 800,600
+set output "${OUT_FOLDER}/ComparativaHanoi_LOGSCALE.png"
+set title "Comparativa Tiempo de Ejecucion - Hanoi"
+set xlabel "Tamano del caso"
+set ylabel "Tiempo (microsegundos)"
+set grid
+set logscale y
 plot \
     "HanoiRecursivoDATA/medias.dat" using 1:2 with linespoints title "Recursivo", \
     "HanoiIterativoDATA/medias.dat" using 1:2 with linespoints title "Iterativo", \
