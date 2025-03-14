@@ -1,5 +1,3 @@
-
-
 #include <cstdlib> // Para usar srand y rand
 #include <chrono>
 #include <iostream>
