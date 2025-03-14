@@ -41,7 +41,7 @@ esac
 # Variables base
 # ======================
 
-BASE_SEED=47
+BASE_SEED=$(( $(date +%s) )) # Semilla pseudo-aleatoria cada vez
 
 # Tamaños de los casos: de 1 a 25, en incrementos de 1
 sizes=()

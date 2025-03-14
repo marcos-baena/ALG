@@ -10,8 +10,8 @@ PROGRAM="./QuickSort"
 # Nombre de la carpeta de resultados
 FOLDER="QuickSortDATA"
 
-# Semilla aleatoria base
-BASE_SEED=57
+# Semilla pseudo-aleatoria cada vez
+BASE_SEED=$(( $(date +%s) )) 
 
 # Tamaños de casos desde 1000 hasta 100000 en pasos de 25000
 sizes=()

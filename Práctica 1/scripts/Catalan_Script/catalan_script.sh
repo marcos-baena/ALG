@@ -41,11 +41,11 @@ esac
 # Variables base
 # ======================
 
-BASE_SEED=71
+BASE_SEED=$(( $(date +%s) )) # Semilla pseudo-aleatoria cada vez
 
 # Tamaños de los casos: de 1 a 30, en incrementos de 1
 sizes=()
-for (( i=1; i<=10000; i+=100 )); do
+for (( i=1; i<=30; i+=2 )); do
     sizes+=($i)
 done
 

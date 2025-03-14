@@ -25,7 +25,7 @@ PID_RE=$!
 $SCRIPT IT &    # Iterativa en segundo plano
 PID_IT=$!
 
-$SCRIPT SP &    # IterativaSP en segundo plano
+$SCRIPT SP &    # Sin Pila en segundo plano
 PID_SP=$!
 
 # Esperamos a que terminen las 3 ejecuciones
@@ -102,5 +102,5 @@ plot \
 EOF
 
 echo ">>> Graficas generadas en la carpeta ${OUT_FOLDER}/"
-echo ">>> Proceso finalizado!"
+echo ">>> Todo terminado."
 
