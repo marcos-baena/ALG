@@ -427,6 +427,62 @@ Ahora veremos la comparación de QuickSort frente a MergeSort:
 
 \subsubsection{Versión recursiva}
 
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Catalan recursivo}]
+
+unsigned long int catalan(unsigned int n)
+{
+// Base case
+if (n <= 1)
+	return 1;
+
+// catalan(n) is sum of
+// catalan(i)*catalan(n-i-1)
+unsigned long int res = 0;
+for (int i = 0; i < n; i++)
+	res += catalan(i) * catalan(n - i - 1);
+
+return res;
+}
+	\end{lstlisting}
+
+Para conseguir la eficiencia de este algoritmo, lo primero que tenemos que observar es que
+\[
+T(n) = \sum_{i=0}^{n-1} T(i) \cdot T(n-1-i),
+\]
+sabiendo esto es fácil ver que
+\[
+T(n) = 2 \cdot \sum_{i=0}^{n-1} T(i),
+\]
+ya que se recorre el bucle dos veces: una creciendo y otra decreciendo, variando desde 0 hasta \(n-1\).
+
+Para resolver esta recurrencia planteamos una función auxiliar
+\[
+S(n) = \sum_{i=0}^{n} T(i),
+\]
+y observamos que
+\[
+T(n) = S(n) - S(n-1),
+\]
+ya que se anulan todos los términos entre sí, quedando solo \(T(n)\). Sustituyendo, tenemos que
+\[
+2 \cdot \sum_{i=0}^{n-1} T(i) = S(n) - S(n-1) \Longleftrightarrow 2S(n-1) = S(n) - S(n-1) \Longleftrightarrow S(n) - 3S(n-1) = 0.
+\]
+
+Resolviendo esta simple recurrencia, tenemos que la ecuación homogénea es
+\[
+S(n) = c_{0} \cdot 3^{n},
+\]
+dando así que
+\[
+T(n) = c_{0} \cdot 3^{n} - c_{0} \cdot 3^{n-1} \Longleftrightarrow T(n) = 3^{n-1} \cdot c_{0} \cdot 2,
+\]
+y, por tanto, la eficiencia del algoritmo es \textit{O}(\(3^{n}\)).
+
+
 \paragraph{Eficiencia práctica}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{Catalan Recursivo}
@@ -435,38 +491,39 @@ sobre tamaños empezando con 2 elementos hasta 21 con saltos de 1:
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|c|c|c|c|}
-			\hline
-			\textbf{Tam.caso}                                  & \textbf{Tiempo (us)} & \textbf{K = Tiempo/f(n)} & \textbf{Tiempo teórico estimado = K \(\times\) f(n)} \\
-			\hline
-			2                                                  & 0                    & 0                        & 3.093061924                                          \\
-			3                                                  & 0                    & 0                        & 6.186123848                                          \\
-			4                                                  & 0                    & 0                        & 12.3722477                                           \\
-			5                                                  & 0                    & 0                        & 24.74449539                                          \\
-			6                                                  & 1                    & 0.015625                 & 49.48899078                                          \\
-			7                                                  & 3                    & 0.0234375                & 98.97798157                                          \\
-			8                                                  & 11                   & 0.04296875               & 197.9559631                                          \\
-			9                                                  & 31                   & 0.060546875              & 395.9119263                                          \\
-			10                                                 & 96                   & 0.09375                  & 791.8238525                                          \\
-			11                                                 & 299                  & 0.145996094              & 1583.647705                                          \\
-			12                                                 & 806                  & 0.196777344              & 3167.29541                                           \\
-			13                                                 & 1904                 & 0.232421875              & 6334.59082                                           \\
-			14                                                 & 5147                 & 0.314147949              & 12669.18164                                          \\
-			15                                                 & 14977                & 0.457061768              & 25338.36328                                          \\
-			16                                                 & 44252                & 0.675231934              & 50676.72656                                          \\
-			17                                                 & 131750               & 1.005172729              & 101353.4531                                          \\
-			18                                                 & 393200               & 1.499938965              & 202706.9063                                          \\
-			19                                                 & 1181008              & 2.252593994              & 405413.8125                                          \\
-			20                                                 & 3545546              & 3.381296158              & 810827.625                                           \\
-			21                                                 & 10629085             & 5.068342686              & 1621655.25                                           \\
-			\hline
-			\multicolumn{2}{l}{\textbf{Media artimética de K}} & \textbf{0.773265481}                                                                                   \\
-			\hline
-		\end{tabular}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Tam.caso} & \textbf{Tiempo (us)} & \textbf{K = Tiempo/f(n)} & \textbf{Tiempo teórico estimado = $K \cdot f(n)$} \\
+		\hline
+		2  & 0        & 0            & 0.00911324    \\
+		3  & 0        & 0            & 0.027339719   \\
+		4  & 0        & 0            & 0.082019157   \\
+		5  & 0        & 0            & 0.246057471   \\
+		6  & 1        & 0.001371742  & 0.738172413   \\
+		7  & 3        & 0.001371742  & 2.214517238   \\
+		8  & 11       & 0.001676574  & 6.643551714   \\
+		9  & 31       & 0.001574963  & 19.93065514   \\
+		10 & 96       & 0.001625768  & 59.79196543   \\
+		11 & 299      & 0.001687864  & 179.3758963   \\
+		12 & 806      & 0.001516631  & 538.1276889   \\
+		13 & 1904     & 0.001194237  & 1614.383067   \\
+		14 & 5147     & 0.00107611   & 4843.1492     \\
+		15 & 14977    & 0.001043773  & 14529.4476    \\
+		16 & 44252    & 0.001027999  & 43588.3428    \\
+		17 & 131750   & 0.001020209  & 130765.0284   \\
+		18 & 393200   & 0.001014918  & 392295.0852   \\
+		19 & 1181008  & 0.001016129  & 1176885.256   \\
+		20 & 3545546  & 0.001016853  & 3530655.767   \\
+		21 & 10629085 & 0.001016131  & 10591967.3    \\
+		\hline
+		\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0.001012582}  \\
+		\hline
+	\end{tabular}%
 	}
 	\caption{Resultados de tiempos y estimaciones de Catalan Recursivo.}
 	\label{tab:tiempos}
 \end{table}
+
 
 
 \begin{figure}[H]
@@ -476,6 +533,41 @@ sobre tamaños empezando con 2 elementos hasta 21 con saltos de 1:
 \end{figure}
 
 \subsubsection{Versión iterativa (programación dinámica)}
+
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Catalan iterativo (programación dinámica)}]
+
+unsigned long int catalanDP(unsigned int n)
+{
+// Table to store results of subproblems
+unsigned long int catalan[n + 1];
+
+// Initialize first two values in table
+catalan[0] = catalan[1] = 1;
+
+// Fill entries in catalan[] using recursive formula
+for (int i = 2; i <= n; i++) {
+	catalan[i] = 0;
+	for (int j = 0; j < i; j++)
+		catalan[i] += catalan[j] * catalan[i - j - 1];
+}
+
+// Return last entry
+return catalan[n];
+}	
+	\end{lstlisting}
+
+	Tras analizar el código, vemos que la eficiencia depende de los dos bucles anidados, donde el 
+	segundo depende del primero. Veamos la eficiencia, sabiendo que \(n\) es el número de Catalan a calcular:
+	\[
+	\sum_{i=2}^{n} \sum_{j=0}^{i-1} 1 = \sum_{i=2}^{n} i = \frac{n(n+1)}{2}.
+	\]
+	
+	Dentro del segundo bucle \texttt{for}, usamos un 1, ya que todas las operaciones dentro del segundo 
+	bucle son \(\textit{O}(1)\). Por tanto, la eficiencia de este algoritmo es \(\textit{O}(n^2)\).
 \paragraph{Eficiencia práctica}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{Catalan Iterativo PD}
@@ -533,6 +625,52 @@ sobre tamaños empezando desde 20 hasta 10.000 con saltos de 350:
 \end{figure}
 
 \subsubsection{Versión iterativa directa usado el coeficiente binomial}
+
+\paragraph{Eficiencia teórica}
+
+A continuación se presenta el código que hemos usado para hacer el análisis:
+
+\begin{lstlisting}[language=C, caption={Código de Catalan con coeficiente binomial}]
+
+unsigned long int binomialCoeff(unsigned int n,
+							unsigned int k)
+{
+unsigned long int res = 1;
+
+// Since C(n, k) = C(n, n-k)
+if (k > n - k)
+	k = n - k;
+
+// Calculate value of [n*(n-1)*---*(n-k+1)] /
+// [k*(k-1)*---*1]
+for (int i = 0; i < k; ++i) {
+	res *= (n - i);
+	res /= (i + 1);
+}
+
+return res;
+}
+ 
+// A Binomial coefficient based function to find nth catalan
+// number in O(n) time
+unsigned long int catalan(unsigned int n)
+{
+    // Calculate value of 2nCn
+    unsigned long int c = binomialCoeff(2 * n, n);
+ 
+    // return 2nCn/(n+1)
+    return c / (n + 1);
+}
+	\end{lstlisting}
+
+
+	Al ver el código, vemos claramente que la eficiencia de este algoritmo depende de la función \textit{binomialCoeff}, 
+	la cual depende únicamente del bucle \texttt{for}. Este bucle recorre todos los valores desde 0 hasta \(k-1\). 
+	Al llamar a esta función se le pasan dos valores: \(n\) (que siempre se llama con \(2n\)) y \(k\) (que se llama con \(n\)). 
+	Aclaramos que, en este caso, \(n\) siempre será mayor que \(k\); por tanto, no importará la condición puesta. 
+	Por todo lo dicho, vemos que el bucle nos determina una eficiencia total de \(\textit{O}(n)\).
+
+
 \paragraph{Eficiencia práctica}
 
 
