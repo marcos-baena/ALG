@@ -97,13 +97,13 @@
 
 % Sections
 \section{Introducción}
-Comenzemos estableciendo las características del ordenador que hemos usado para la 
+Comenzemos estableciendo las características del ordenador que hemos usado para la
 ejecución de los progrmas y la medición de tiempos de ejecución.
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{lstopo.png} 
-    \label{fig:lstopo}
+	\centering
+	\includegraphics[width=0.8\textwidth]{lstopo.png}
+	\label{fig:lstopo}
 \end{figure}
 
 
@@ -229,7 +229,7 @@ a:
 De donde se deduce que QuickSort tiene una eficiencia de $O(n\cdot \log(n))$
 \\
 
-\paragraph{Eficiencia práctica (peor caso)}
+\paragraph{Eficiencia práctica:}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort}
 sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
@@ -238,50 +238,50 @@ sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|c|c|c|c|}
 			\hline
-			\textbf{Tam.caso} & \textbf{Tiempo (us)} & \textbf{$K$ (nuevo)} & \textbf{Tiempo teórico estimado (nuevo)} \\
+			\textbf{Tam.caso}                                  & \textbf{Tiempo (us)} & \textbf{$K$ (nuevo)} & \textbf{Tiempo teórico estimado (nuevo)} \\
 			\hline
-			1000   & 135   & 0,01354635   & 99,35709574  \\
-			26000  & 3923  & 0,010287898  & 3801,710723  \\
-			51000  & 7972  & 0,009995628  & 7951,418511  \\
-			76000  & 12281 & 0,009966386  & 12285,23441  \\
-			101000 & 16285 & 0,00969909   & 16739,56621  \\
-			126000 & 21136 & 0,009900572  & 21283,83619  \\
-			151000 & 25810 & 0,009935205  & 25899,92812  \\
-			176000 & 30765 & 0,010031505  & 30575,82905  \\
-			201000 & 34579 & 0,009765365  & 35302,98061  \\
-			226000 & 39644 & 0,009862605  & 40074,97275  \\
-			251000 & 44586 & 0,009903006  & 44886,82354  \\
-			276000 & 48868 & 0,009796113  & 49734,54906  \\
-			301000 & 53481 & 0,009762833  & 54614,8904   \\
-			326000 & 58561 & 0,00980834   & 59525,13206  \\
-			351000 & 63962 & 0,009892341  & 64462,97638  \\
-			376000 & 69415 & 0,009968177  & 69426,45388  \\
-			401000 & 73753 & 0,009881282  & 74413,85763  \\
-			426000 & 78161 & 0,00981132   & 79423,69396  \\
-			451000 & 83203 & 0,009822066  & 84454,64485  \\
-			476000 & 89583 & 0,00997845   & 89505,53863  \\
-			501000 & 93698 & 0,009877337  & 94575,32688  \\
-			526000 & 98931 & 0,00989659   & 99663,06596  \\
-			551000 & 104380& 0,009932909  & 104767,902   \\
-			576000 & 109009& 0,009889978  & 109889,0588  \\
-			601000 & 113194& 0,009811049  & 115025,8276  \\
-			626000 & 118932& 0,009866492  & 120177,5584  \\
-			651000 & 123600& 0,009831132  & 125343,6535  \\
-			676000 & 127280& 0,009722068  & 130523,5609  \\
-			701000 & 134006& 0,009844148  & 135716,7696  \\
-			726000 & 138300& 0,009784267  & 140922,8051  \\
-			751000 & 146089& 0,009966259  & 146141,2254  \\
-			776000 & 147986& 0,009746834  & 151371,6182  \\
-			801000 & 156995& 0,009994102  & 156613,5976  \\
-			826000 & 158179& 0,00974268   & 161866,8017  \\
-			851000 & 165306& 0,009860962  & 167130,8909  \\
-			876000 & 173671& 0,010043     & 172405,5452  \\
-			901000 & 176034& 0,009876882  & 177690,4631  \\
-			926000 & 180388& 0,009828307  & 182985,3596  \\
-			951000 & 186721& 0,009886746  & 188289,9653  \\
-			976000 & 189852& 0,009776608  & 193604,0249  \\
+			1000                                               & 135                  & 0,01354635           & 99,35709574                              \\
+			26000                                              & 3923                 & 0,010287898          & 3801,710723                              \\
+			51000                                              & 7972                 & 0,009995628          & 7951,418511                              \\
+			76000                                              & 12281                & 0,009966386          & 12285,23441                              \\
+			101000                                             & 16285                & 0,00969909           & 16739,56621                              \\
+			126000                                             & 21136                & 0,009900572          & 21283,83619                              \\
+			151000                                             & 25810                & 0,009935205          & 25899,92812                              \\
+			176000                                             & 30765                & 0,010031505          & 30575,82905                              \\
+			201000                                             & 34579                & 0,009765365          & 35302,98061                              \\
+			226000                                             & 39644                & 0,009862605          & 40074,97275                              \\
+			251000                                             & 44586                & 0,009903006          & 44886,82354                              \\
+			276000                                             & 48868                & 0,009796113          & 49734,54906                              \\
+			301000                                             & 53481                & 0,009762833          & 54614,8904                               \\
+			326000                                             & 58561                & 0,00980834           & 59525,13206                              \\
+			351000                                             & 63962                & 0,009892341          & 64462,97638                              \\
+			376000                                             & 69415                & 0,009968177          & 69426,45388                              \\
+			401000                                             & 73753                & 0,009881282          & 74413,85763                              \\
+			426000                                             & 78161                & 0,00981132           & 79423,69396                              \\
+			451000                                             & 83203                & 0,009822066          & 84454,64485                              \\
+			476000                                             & 89583                & 0,00997845           & 89505,53863                              \\
+			501000                                             & 93698                & 0,009877337          & 94575,32688                              \\
+			526000                                             & 98931                & 0,00989659           & 99663,06596                              \\
+			551000                                             & 104380               & 0,009932909          & 104767,902                               \\
+			576000                                             & 109009               & 0,009889978          & 109889,0588                              \\
+			601000                                             & 113194               & 0,009811049          & 115025,8276                              \\
+			626000                                             & 118932               & 0,009866492          & 120177,5584                              \\
+			651000                                             & 123600               & 0,009831132          & 125343,6535                              \\
+			676000                                             & 127280               & 0,009722068          & 130523,5609                              \\
+			701000                                             & 134006               & 0,009844148          & 135716,7696                              \\
+			726000                                             & 138300               & 0,009784267          & 140922,8051                              \\
+			751000                                             & 146089               & 0,009966259          & 146141,2254                              \\
+			776000                                             & 147986               & 0,009746834          & 151371,6182                              \\
+			801000                                             & 156995               & 0,009994102          & 156613,5976                              \\
+			826000                                             & 158179               & 0,00974268           & 161866,8017                              \\
+			851000                                             & 165306               & 0,009860962          & 167130,8909                              \\
+			876000                                             & 173671               & 0,010043             & 172405,5452                              \\
+			901000                                             & 176034               & 0,009876882          & 177690,4631                              \\
+			926000                                             & 180388               & 0,009828307          & 182985,3596                              \\
+			951000                                             & 186721               & 0,009886746          & 188289,9653                              \\
+			976000                                             & 189852               & 0,009776608          & 193604,0249                              \\
 			\hline
-			\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0,009969822}                                                                                     \\
+			\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0,009969822}                                                                   \\
 			\hline
 		\end{tabular}%
 	}
@@ -290,7 +290,7 @@ sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
 \end{table}
 
 
-Los resultados de graficar los resultados haciendo la curva de ajuste con \textit{f(x) = $x^{2}$} son:
+Tras graficar los resultados haciendo la curva de ajuste obtenemos:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{Graficas/Quicksort.png}
@@ -347,20 +347,20 @@ sobre tamaños empezando desde 10.000 hasta 100.000 con saltos de 1.000:
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|c|c|c|c|}
 			\hline
-			\textbf{Tam. Caso}                        & \textbf{Tiempo (us)} & \textbf{$K=$ Tiempo/$f(n)$} & \textbf{Tiempo teórico estimado = $K\cdot f(n)$} \\
+			\textbf{Tam. Caso}                      & \textbf{Tiempo (us)} & \textbf{$K=$ Tiempo/$f(n)$} & \textbf{Tiempo teórico estimado = $K\cdot f(n)$} \\
 			\hline
-			10000                                     & 2220                 & 0.0555                      & 1054.6881                                        \\
-			20000                                     & 1972                 & 0.0229247                   & 2268.1228                                        \\
-			30000                                     & 3198                 & 0.0238099                   & 3541.4752                                        \\
-			40000                                     & 4262                 & 0.0231527                   & 4853.7383                                        \\
-			50000                                     & 5419                 & 0.0230646                   & 6194.9352                                        \\
-			60000                                     & 6580                 & 0.0229517                   & 7559.1895                                        \\
-			70000                                     & 7864                 & 0.0231869                   & 8942.6188                                        \\
-			80000                                     & 9009                 & 0.0229677                   & 10342.4622                                       \\
-			90000                                     & 10265                & 0.0230218                   & 11756.6574                                       \\
-			100000                                    & 11546                & 0.023092                    & 13183.6024                                       \\
+			10000                                   & 2220                 & 0.0555                      & 1054.6881                                        \\
+			20000                                   & 1972                 & 0.0229247                   & 2268.1228                                        \\
+			30000                                   & 3198                 & 0.0238099                   & 3541.4752                                        \\
+			40000                                   & 4262                 & 0.0231527                   & 4853.7383                                        \\
+			50000                                   & 5419                 & 0.0230646                   & 6194.9352                                        \\
+			60000                                   & 6580                 & 0.0229517                   & 7559.1895                                        \\
+			70000                                   & 7864                 & 0.0231869                   & 8942.6188                                        \\
+			80000                                   & 9009                 & 0.0229677                   & 10342.4622                                       \\
+			90000                                   & 10265                & 0.0230218                   & 11756.6574                                       \\
+			100000                                  & 11546                & 0.023092                    & 13183.6024                                       \\
 			\hline
-			\multicolumn{2}{l}{\textbf{K promedio}} & \textbf{0.0263672}                                                                                \\
+			\multicolumn{2}{l}{\textbf{K promedio}} & \textbf{0.0263672}                                                                                    \\
 			\hline
 		\end{tabular}%
 	}
@@ -387,7 +387,7 @@ A continuación se presenta la comparación del algoritmo QuickSort con BubbleSo
 
 Gracias al estudio de la eficiencia teórica ya aprendimos que el algoritmo QuickSort es más eficiente que
 BubbleSort y ahora podemos ver esta mejora de eficiencia de manera gráfica, sin embargo observamos que para
-casos de tamaños pequeños, la gŕafica de BubbleSort se encuentra por debajo que la de QuickSort, esto es debido
+casos de tamaños muy pequeños, la gŕafica de BubbleSort se encuentra por debajo que la de QuickSort, esto es debido
 a que para dichos casos $O(n^2)$ está por debajo de $O(n\cdot \log (n))$.
 
 Ahora veremos la comparación de QuickSort frente a MergeSort:
@@ -427,34 +427,34 @@ return res;
 
 Para conseguir la eficiencia de este algoritmo, lo primero que tenemos que observar es que
 \[
-T(n) = \sum_{i=0}^{n-1} T(i) \cdot T(n-1-i),
+	T(n) = \sum_{i=0}^{n-1} T(i) \cdot T(n-1-i),
 \]
 sabiendo esto es fácil ver que
 \[
-T(n) = 2 \cdot \sum_{i=0}^{n-1} T(i),
+	T(n) = 2 \cdot \sum_{i=0}^{n-1} T(i),
 \]
 ya que se recorre el bucle dos veces: una creciendo y otra decreciendo, variando desde 0 hasta \(n-1\).
 
 Para resolver esta recurrencia planteamos una función auxiliar
 \[
-S(n) = \sum_{i=0}^{n} T(i),
+	S(n) = \sum_{i=0}^{n} T(i),
 \]
 y observamos que
 \[
-T(n) = S(n) - S(n-1),
+	T(n) = S(n) - S(n-1),
 \]
 ya que se anulan todos los términos entre sí, quedando solo \(T(n)\). Sustituyendo, tenemos que
 \[
-2 \cdot \sum_{i=0}^{n-1} T(i) = S(n) - S(n-1) \Longleftrightarrow 2S(n-1) = S(n) - S(n-1) \Longleftrightarrow S(n) - 3S(n-1) = 0.
+	2 \cdot \sum_{i=0}^{n-1} T(i) = S(n) - S(n-1) \Longleftrightarrow 2S(n-1) = S(n) - S(n-1) \Longleftrightarrow S(n) - 3S(n-1) = 0.
 \]
 
 Resolviendo esta simple recurrencia, tenemos que la ecuación homogénea es
 \[
-S(n) = c_{0} \cdot 3^{n},
+	S(n) = c_{0} \cdot 3^{n},
 \]
 dando así que
 \[
-T(n) = c_{0} \cdot 3^{n} - c_{0} \cdot 3^{n-1} \Longleftrightarrow T(n) = 3^{n-1} \cdot c_{0} \cdot 2,
+	T(n) = c_{0} \cdot 3^{n} - c_{0} \cdot 3^{n-1} \Longleftrightarrow T(n) = 3^{n-1} \cdot c_{0} \cdot 2,
 \]
 y, por tanto, la eficiencia del algoritmo es \textit{O}(\(3^{n}\)).
 
@@ -467,34 +467,34 @@ sobre tamaños empezando con 2 elementos hasta 21 con saltos de 1:
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{%
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		\textbf{Tam.caso} & \textbf{Tiempo (us)} & \textbf{K = Tiempo/f(n)} & \textbf{Tiempo teórico estimado = $K \cdot f(n)$} \\
-		\hline
-		2  & 0        & 0            & 0.00911324    \\
-		3  & 0        & 0            & 0.027339719   \\
-		4  & 0        & 0            & 0.082019157   \\
-		5  & 0        & 0            & 0.246057471   \\
-		6  & 1        & 0.001371742  & 0.738172413   \\
-		7  & 3        & 0.001371742  & 2.214517238   \\
-		8  & 11       & 0.001676574  & 6.643551714   \\
-		9  & 31       & 0.001574963  & 19.93065514   \\
-		10 & 96       & 0.001625768  & 59.79196543   \\
-		11 & 299      & 0.001687864  & 179.3758963   \\
-		12 & 806      & 0.001516631  & 538.1276889   \\
-		13 & 1904     & 0.001194237  & 1614.383067   \\
-		14 & 5147     & 0.00107611   & 4843.1492     \\
-		15 & 14977    & 0.001043773  & 14529.4476    \\
-		16 & 44252    & 0.001027999  & 43588.3428    \\
-		17 & 131750   & 0.001020209  & 130765.0284   \\
-		18 & 393200   & 0.001014918  & 392295.0852   \\
-		19 & 1181008  & 0.001016129  & 1176885.256   \\
-		20 & 3545546  & 0.001016853  & 3530655.767   \\
-		21 & 10629085 & 0.001016131  & 10591967.3    \\
-		\hline
-		\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0.001012582}  \\
-		\hline
-	\end{tabular}%
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\textbf{Tam.caso}                                  & \textbf{Tiempo (us)} & \textbf{K = Tiempo/f(n)} & \textbf{Tiempo teórico estimado = $K \cdot f(n)$} \\
+			\hline
+			2                                                  & 0                    & 0                        & 0.00911324                                        \\
+			3                                                  & 0                    & 0                        & 0.027339719                                       \\
+			4                                                  & 0                    & 0                        & 0.082019157                                       \\
+			5                                                  & 0                    & 0                        & 0.246057471                                       \\
+			6                                                  & 1                    & 0.001371742              & 0.738172413                                       \\
+			7                                                  & 3                    & 0.001371742              & 2.214517238                                       \\
+			8                                                  & 11                   & 0.001676574              & 6.643551714                                       \\
+			9                                                  & 31                   & 0.001574963              & 19.93065514                                       \\
+			10                                                 & 96                   & 0.001625768              & 59.79196543                                       \\
+			11                                                 & 299                  & 0.001687864              & 179.3758963                                       \\
+			12                                                 & 806                  & 0.001516631              & 538.1276889                                       \\
+			13                                                 & 1904                 & 0.001194237              & 1614.383067                                       \\
+			14                                                 & 5147                 & 0.00107611               & 4843.1492                                         \\
+			15                                                 & 14977                & 0.001043773              & 14529.4476                                        \\
+			16                                                 & 44252                & 0.001027999              & 43588.3428                                        \\
+			17                                                 & 131750               & 0.001020209              & 130765.0284                                       \\
+			18                                                 & 393200               & 0.001014918              & 392295.0852                                       \\
+			19                                                 & 1181008              & 0.001016129              & 1176885.256                                       \\
+			20                                                 & 3545546              & 0.001016853              & 3530655.767                                       \\
+			21                                                 & 10629085             & 0.001016131              & 10591967.3                                        \\
+			\hline
+			\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0.001012582}                                                                                \\
+			\hline
+		\end{tabular}%
 	}
 	\caption{Resultados de tiempos y estimaciones de Catalan Recursivo.}
 	\label{tab:tiempos}
@@ -536,14 +536,14 @@ return catalan[n];
 }	
 	\end{lstlisting}
 
-	Tras analizar el código, vemos que la eficiencia depende de los dos bucles anidados, donde el 
-	segundo depende del primero. Veamos la eficiencia, sabiendo que \(n\) es el número de Catalan a calcular:
-	\[
+Tras analizar el código, vemos que la eficiencia depende de los dos bucles anidados, donde el
+segundo depende del primero. Veamos la eficiencia, sabiendo que \(n\) es el número de Catalan a calcular:
+\[
 	\sum_{i=2}^{n} \sum_{j=0}^{i-1} 1 = \sum_{i=2}^{n} i = \frac{n(n+1)}{2}.
-	\]
-	
-	Dentro del segundo bucle \texttt{for}, usamos un 1, ya que todas las operaciones dentro del segundo 
-	bucle son \(\textit{O}(1)\). Por tanto, la eficiencia de este algoritmo es \(\textit{O}(n^2)\).
+\]
+
+Dentro del segundo bucle \texttt{for}, usamos un 1, ya que todas las operaciones dentro del segundo
+bucle son \(\textit{O}(1)\). Por tanto, la eficiencia de este algoritmo es \(\textit{O}(n^2)\).
 \paragraph{Eficiencia práctica}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{Catalan Iterativo PD}
@@ -640,11 +640,11 @@ unsigned long int catalan(unsigned int n)
 	\end{lstlisting}
 
 
-	Al ver el código, vemos claramente que la eficiencia de este algoritmo depende de la función \textit{binomialCoeff}, 
-	la cual depende únicamente del bucle \texttt{for}. Este bucle recorre todos los valores desde 0 hasta \(k-1\). 
-	Al llamar a esta función se le pasan dos valores: \(n\) (que siempre se llama con \(2n\)) y \(k\) (que se llama con \(n\)). 
-	Aclaramos que, en este caso, \(n\) siempre será mayor que \(k\); por tanto, no importará la condición puesta. 
-	Por todo lo dicho, vemos que el bucle nos determina una eficiencia total de \(\textit{O}(n)\).
+Al ver el código, vemos claramente que la eficiencia de este algoritmo depende de la función \textit{binomialCoeff},
+la cual depende únicamente del bucle \texttt{for}. Este bucle recorre todos los valores desde 0 hasta \(k-1\).
+Al llamar a esta función se le pasan dos valores: \(n\) (que siempre se llama con \(2n\)) y \(k\) (que se llama con \(n\)).
+Aclaramos que, en este caso, \(n\) siempre será mayor que \(k\); por tanto, no importará la condición puesta.
+Por todo lo dicho, vemos que el bucle nos determina una eficiencia total de \(\textit{O}(n)\).
 
 
 \paragraph{Eficiencia práctica}
@@ -705,7 +705,13 @@ sobre tamaños empezando con 20 hasta 10.000 con saltos de 350:
 	\caption{Ajuste por regresión de \textit{Catalan Iterativo usando el Coeficiente Binomial}.}
 \end{figure}
 
+Como hemos visto de manera teórica y empírica, el algoritmo \textit{Catalan Recursivo} es
+muchísimo menos eficiente que los otros dos. Tanto es así, que obtener un resultado con n > 30 usándolo
+es practicamente imposible usando nuestros ordenadores.
+Al ser tanto más eficientes los otros dos, para casos muy pequeños, de entre 0 y 25, parecen casi instanáneos.
+
 \paragraph{Comparación}
+
 
 A continuación se presenta la comparación de los tres algoritmos de Catalan:
 
@@ -1046,9 +1052,19 @@ También la comparativa en escala logarítmica:
 \end{figure}
 
 \section{Conclusión}
-En conclusión, somos sudorosos.
+En conclusión, tras realizar un estudio exhaustivo tanto desde un punto de vista teórico como empírico, 
+hemos visto cómo influye el diseño algorítmico en la eficiencia de los programas informáticos.
 
+Al analizar algoritmos de ordenación, observamos que QuickSort y MergeSort presentan una eficiencia 
+significativamente superior a BubbleSort, especialmente cuando aumentamos el tamaño del conjunto de datos, 
+lo que resulta en programas ejecutándose órdenes de magnitud más rápido. 
 
+En cuanto a los números de Catalan, la implementación recursiva mostró ser extremadamente ineficiente debido a su
+complejidad exponencial, haciendo impracticable su uso para valores elevados. Las versiones iterativas, especialmente
+la que usa coeficientes binomiales, destacaron por su rendimiento notablemente superior, demostrando así la importancia 
+de técnicas avanzadas como la programación dinámica y la simplificación directa del cálculo.
 
-
+Finalmente, al estudiar las Torres de Hanoi, constatamos que aunque todas las soluciones analizadas presentan una 
+complejidad exponencial, las implementaciones iterativas mostraron ser ligeramente más rápidas en términos prácticos, ofreciendo 
+pequeñas ventajas frente a la clásica solución recursiva.
 \end{document}
