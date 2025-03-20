@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1742300521.06931 "/home/pablo-delgado-galera/uni/segundo/segundo_cuatri/ALG/ALG/Práctica 1/latex code/prueba/prueba.tex" "prueba.pdf" "prueba" 1742300523.39053 0
+["pdflatex"] 1742458283.0999 "/home/pablo-delgado-galera/uni/segundo/segundo_cuatri/ALG/ALG/Práctica 1/latex code/prueba/prueba.tex" "prueba.pdf" "prueba" 1742458284.83329 0
   "/etc/texmf/web2c/texmf.cnf" 1741887142.88517 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/pablo-delgado-galera/uni/segundo/segundo_cuatri/ALG/ALG/Práctica 1/latex code/prueba/prueba.tex" 1742300520.72494 60931 d2ffba61773b6324f41e722517c1b881 ""
+  "/home/pablo-delgado-galera/uni/segundo/segundo_cuatri/ALG/ALG/Práctica 1/latex code/prueba/prueba.tex" 1742458281.29737 55131 70a02ee9b78a86bbe2273faec2fbdb44 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -160,10 +160,11 @@
   "Graficas/Mergesort.png" 1742285665.52443 6949 1d8a0a03273da030b2e5670adbe9f867 ""
   "Graficas/Quicksort.png" 1742285665.52443 29168 6b33ab64928f20f1fb5ae4ae54e7bd0f ""
   "logo_ugr.png" 1741861328.45253 16933 0bef2086e7c9c3a1fbb3b92561620b6f ""
-  "prueba.aux" 1742300523.16097 12334 1cb26c31dd0f71a0c0162b7a7926fdc3 "pdflatex"
-  "prueba.out" 1742300523.16597 3363 6c2865cd59d31c0176ddc379f3860911 "pdflatex"
-  "prueba.tex" 1742300520.72494 60931 d2ffba61773b6324f41e722517c1b881 ""
-  "prueba.toc" 1742300523.16597 3250 d6eef34d4dfa9f558756fdbc2a479ae1 "pdflatex"
+  "lstopo.png" 1742456708.1166 97981 b707f327ac9b5abcb14f7b457650052b ""
+  "prueba.aux" 1742458284.62941 11795 bf6b2deb0a1d73fbe038651057cc3ba4 "pdflatex"
+  "prueba.out" 1742458284.63141 3363 6c2865cd59d31c0176ddc379f3860911 "pdflatex"
+  "prueba.tex" 1742458281.29737 55131 70a02ee9b78a86bbe2273faec2fbdb44 ""
+  "prueba.toc" 1742458284.63141 2968 76de1d5e0f2f70ad74a1b0f71ba08153 "pdflatex"
   (generated)
   "prueba.aux"
   "prueba.log"

@@ -97,34 +97,19 @@
 
 % Sections
 \section{Introducción}
-Comenzemos estableciendo las características de cada uno de nuetros
-ordenadores, ya que tienen prestaciones diferentes
+Comenzemos estableciendo las características del ordenador que hemos usado para la 
+ejecución de los progrmas y la medición de tiempos de ejecución.
 
-\begin{table}[h!]
-	\centering
-	\makebox[\textwidth]{%
-		\scalebox{0.6}{%
-			\begin{tabular}{|c|c|c|c|c|c|c|c|}
-				\hline
-				\textbf{}       & \textbf{CPU}                         & \textbf{RAM} & \textbf{Caché L1d}    & \textbf{Caché L1i}    & \textbf{Caché L2}    & \textbf{Caché L3}   & \textbf{SO}        \\ \hline
-				Adolfo Martínez & AMD Ryzen 7 4800HS                   & 16GB         & 256 KiB               & 256 KiB               & 4 MiB                & 8 MiB               & Ubuntu 22.04.4     \\ \hline
-				Marcos Baena    & AMD 3020e with Radeon Graphics       & 5,7Gi        & 64 KiB (2 instances)  & 128 KiB (2 instances) & 1 MiB (2 instances)  & 4 MiB (1 instance)  & Ubuntu 24.04.1 LTS \\ \hline
-				Pablo Delgado   & 11th Gen Intel(R) Core(TM) i7-11800H & 15 Gi        & 384 KiB (8 instances) & 256 KiB (8 instances) & 10 MiB (8 instances) & 24 MiB (1 instance) & Ubuntu 24.04.1     \\ \hline
-			\end{tabular}
-		}
-	}
-	\caption{Características de los ordenadores.}
-	\label{tab:caracteristicas}
-\end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{lstopo.png} 
+    \label{fig:lstopo}
+\end{figure}
+
 
 En esta práctica vamos a discutir la eficiencia de los algoritmos
 desde tres puntos de vista distintos:
 
-\begin{itemize}
-	\item \textbf{Punto 1:} Descripción del primer punto.
-	\item \textbf{Punto 2:} Descripción del segundo punto.
-	\item \textbf{Punto 3:} Descripción del tercer punto.
-\end{itemize}
 
 \subsection{Análisis de la eficiencia teórica}
 En el análisis de la eficiencia teórica estudiaremos el tiempo de ejecución del algoritmo
@@ -243,74 +228,67 @@ a:
 
 De donde se deduce que QuickSort tiene una eficiencia de $O(n\cdot \log(n))$
 \\
-\paragraph{Eficiencia práctica (caso promedio)}
-
-A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort}
-sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
-
-\paragraph{Eficiencia teórica (peor caso)}
-
 
 \paragraph{Eficiencia práctica (peor caso)}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{QuickSort}
 sobre tamaños empezando desde 1.000 hasta 1.000.000 con saltos de 25.000:
-
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|c|c|c|c|}
 			\hline
-			\textbf{Tam.caso}                                  & \textbf{Tiempo (us)} & \textbf{$K=$ Tiempo/$f(n)$} & \textbf{Tiempo teórico estimado = $K\cdot f(n)$} \\
+			\textbf{Tam.caso} & \textbf{Tiempo (us)} & \textbf{$K$ (nuevo)} & \textbf{Tiempo teórico estimado (nuevo)} \\
 			\hline
-			1000                                               & 135                  & 0,000135                    & 4,081703271                                      \\
-			26000                                              & 3923                 & 5,80325E-06                 & 2759,231411                                      \\
-			51000                                              & 7972                 & 3,06498E-06                 & 10616,51021                                      \\
-			76000                                              & 12281                & 2,12621E-06                 & 23575,9181                                       \\
-			101000                                             & 16285                & 1,59641E-06                 & 41637,45507                                      \\
-			126000                                             & 21136                & 1,33132E-06                 & 64801,12114                                      \\
-			151000                                             & 25810                & 1,13197E-06                 & 93066,91629                                      \\
-			176000                                             & 30765                & 9,93188E-07                 & 126434,8405                                      \\
-			201000                                             & 34579                & 8,55895E-07                 & 164904,8939                                      \\
-			226000                                             & 39644                & 7,76177E-07                 & 208477,0763                                      \\
-			251000                                             & 44586                & 7,07703E-07                 & 257151,3878                                      \\
-			276000                                             & 48868                & 6,41514E-07                 & 310927,8284                                      \\
-			301000                                             & 53481                & 5,90291E-07                 & 369806,3981                                      \\
-			326000                                             & 58561                & 5,51028E-07                 & 433787,0969                                      \\
-			351000                                             & 63962                & 5,19168E-07                 & 502869,9247                                      \\
-			376000                                             & 69415                & 4,90996E-07                 & 577054,8817                                      \\
-			401000                                             & 73753                & 4,5866E-07                  & 656341,9677                                      \\
-			426000                                             & 78161                & 4,30696E-07                 & 740731,1829                                      \\
-			451000                                             & 83203                & 4,09059E-07                 & 830222,5271                                      \\
-			476000                                             & 89583                & 3,95377E-07                 & 924816,0004                                      \\
-			501000                                             & 93698                & 3,73297E-07                 & 1024511,603                                      \\
-			526000                                             & 98931                & 3,5757E-07                  & 1129309,334                                      \\
-			551000                                             & 104380               & 3,43807E-07                 & 1239209,195                                      \\
-			576000                                             & 109009               & 3,28562E-07                 & 1354211,185                                      \\
-			601000                                             & 113194               & 3,13382E-07                 & 1474315,303                                      \\
-			626000                                             & 118932               & 3,03494E-07                 & 1599521,551                                      \\
-			651000                                             & 123600               & 2,91646E-07                 & 1729829,928                                      \\
-			676000                                             & 127280               & 2,78527E-07                 & 1865240,434                                      \\
-			701000                                             & 134006               & 2,72702E-07                 & 2005753,069                                      \\
-			726000                                             & 138300               & 2,62391E-07                 & 2151367,833                                      \\
-			751000                                             & 146089               & 2,59023E-07                 & 2302084,727                                      \\
-			776000                                             & 147986               & 2,45752E-07                 & 2457903,749                                      \\
-			801000                                             & 156995               & 2,44693E-07                 & 2618824,901                                      \\
-			826000                                             & 158179               & 2,3184E-07                  & 2784848,181                                      \\
-			851000                                             & 165306               & 2,2826E-07                  & 2955973,591                                      \\
-			876000                                             & 173671               & 2,26318E-07                 & 3132201,13                                       \\
-			901000                                             & 176034               & 2,16844E-07                 & 3313530,797                                      \\
-			926000                                             & 180388               & 2,10371E-07                 & 3499962,594                                      \\
-			951000                                             & 186721               & 2,06458E-07                 & 3691496,52                                       \\
-			976000                                             & 189852               & 1,99304E-07                 & 3888132,575                                      \\
+			1000   & 135   & 0,01354635   & 99,35709574  \\
+			26000  & 3923  & 0,010287898  & 3801,710723  \\
+			51000  & 7972  & 0,009995628  & 7951,418511  \\
+			76000  & 12281 & 0,009966386  & 12285,23441  \\
+			101000 & 16285 & 0,00969909   & 16739,56621  \\
+			126000 & 21136 & 0,009900572  & 21283,83619  \\
+			151000 & 25810 & 0,009935205  & 25899,92812  \\
+			176000 & 30765 & 0,010031505  & 30575,82905  \\
+			201000 & 34579 & 0,009765365  & 35302,98061  \\
+			226000 & 39644 & 0,009862605  & 40074,97275  \\
+			251000 & 44586 & 0,009903006  & 44886,82354  \\
+			276000 & 48868 & 0,009796113  & 49734,54906  \\
+			301000 & 53481 & 0,009762833  & 54614,8904   \\
+			326000 & 58561 & 0,00980834   & 59525,13206  \\
+			351000 & 63962 & 0,009892341  & 64462,97638  \\
+			376000 & 69415 & 0,009968177  & 69426,45388  \\
+			401000 & 73753 & 0,009881282  & 74413,85763  \\
+			426000 & 78161 & 0,00981132   & 79423,69396  \\
+			451000 & 83203 & 0,009822066  & 84454,64485  \\
+			476000 & 89583 & 0,00997845   & 89505,53863  \\
+			501000 & 93698 & 0,009877337  & 94575,32688  \\
+			526000 & 98931 & 0,00989659   & 99663,06596  \\
+			551000 & 104380& 0,009932909  & 104767,902   \\
+			576000 & 109009& 0,009889978  & 109889,0588  \\
+			601000 & 113194& 0,009811049  & 115025,8276  \\
+			626000 & 118932& 0,009866492  & 120177,5584  \\
+			651000 & 123600& 0,009831132  & 125343,6535  \\
+			676000 & 127280& 0,009722068  & 130523,5609  \\
+			701000 & 134006& 0,009844148  & 135716,7696  \\
+			726000 & 138300& 0,009784267  & 140922,8051  \\
+			751000 & 146089& 0,009966259  & 146141,2254  \\
+			776000 & 147986& 0,009746834  & 151371,6182  \\
+			801000 & 156995& 0,009994102  & 156613,5976  \\
+			826000 & 158179& 0,00974268   & 161866,8017  \\
+			851000 & 165306& 0,009860962  & 167130,8909  \\
+			876000 & 173671& 0,010043     & 172405,5452  \\
+			901000 & 176034& 0,009876882  & 177690,4631  \\
+			926000 & 180388& 0,009828307  & 182985,3596  \\
+			951000 & 186721& 0,009886746  & 188289,9653  \\
+			976000 & 189852& 0,009776608  & 193604,0249  \\
 			\hline
-			\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{4.0817E-06}                                                                                   \\
+			\multicolumn{2}{l}{\textbf{Media aritmética de K}} & \textbf{0,009969822}                                                                                     \\
 			\hline
 		\end{tabular}%
 	}
-	\caption{Resultados de tiempos y estimaciones de QuickSort.}
-	\label{tab:resultados}
+	\caption{Resultados de tiempos y estimaciones de QuickSort (nuevos datos).}
+	\label{tab:resultados_nuevos}
 \end{table}
+
 
 Los resultados de graficar los resultados haciendo la curva de ajuste con \textit{f(x) = $x^{2}$} son:
 \begin{figure}[H]
@@ -320,7 +298,6 @@ Los resultados de graficar los resultados haciendo la curva de ajuste con \texti
 \end{figure}
 
 \subsubsection{BubbleSort}
-\paragraph{Eficencia teórica}
 \paragraph{Eficiencia práctica}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{BubbleSort}
@@ -360,7 +337,6 @@ sobre tamaños empezando desde 1.000 hasta 10.000 con saltos de 1.000:
 
 
 \subsubsection{MergeSort}
-\paragraph{Eficiencia teórica}
 \paragraph{Eficiencia práctica}
 
 A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{MergeSort}
@@ -630,7 +606,7 @@ sobre tamaños empezando desde 20 hasta 10.000 con saltos de 350:
 
 A continuación se presenta el código que hemos usado para hacer el análisis:
 
-\begin{lstlisting}[language=C, caption={Código de Catalan con coeficiente binomial}]
+\begin{lstlisting}[language=C, caption={Código de Catalan iterativo binomial}]
 
 unsigned long int binomialCoeff(unsigned int n,
 							unsigned int k)
@@ -754,7 +730,7 @@ También la comparativa en escala logarítmica:
 
 A continuación se presenta el código que hemos usado para hacer el análisis:
 
-\begin{lstlisting}[language=C, caption={Código de Hanoi}]
+\begin{lstlisting}[language=C, caption={Código de Hanoi recursivo}]
 void Hanoi(int n, char from_rod, char to_rod,
             char aux_rod)
 {
@@ -902,7 +878,7 @@ Por tanto, por la regla del máximo, al no estar los bucles anidados obtenemos q
 
 \paragraph{Eficiencia práctica}
 
-A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{Hanoi Con Pila}
+A continuación mostramos las gráficas resultantes de ejecutar el algoritmo \textit{Hanoi Iterativo Con Pila}
 sobre tamaños empezando con 5 elementos hasta 27 con saltos de 1:
 
 \begin{table}[H]
@@ -948,7 +924,7 @@ La gráfica resultante es:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{Graficas/HanoiIterativo.png}
-	\caption{Ajuste por regresión de \textit{Hanoi Iterativo}.}
+	\caption{Ajuste por regresión de \textit{Hanoi Iterativo Con Pila}.}
 \end{figure}
 
 
@@ -1041,7 +1017,7 @@ sobre tamaños empezando con 5 elementos hasta 27 con saltos de 1:
 			\hline
 		\end{tabular}
 	}
-	\caption{Resultados de tiempos y estimaciones teóricas de Hanoi Iterativo con Pila.}
+	\caption{Resultados de tiempos y estimaciones teóricas de Hanoi Iterativo sin Pila.}
 	\label{tab:tiempos}
 \end{table}
 La gráfica resultante es:

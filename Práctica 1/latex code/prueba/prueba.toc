@@ -7,36 +7,32 @@
 \contentsline {subsection}{\numberline {2.1}Ordenación de vectores}{3}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}QuickSort}{3}{subsubsection.2.1.1}%
 \contentsline {paragraph}{Eficiencia teórica (caso promedio)}{3}{section*.3}%
-\contentsline {paragraph}{Eficiencia práctica (caso promedio)}{4}{section*.4}%
-\contentsline {paragraph}{Eficiencia teórica (peor caso)}{4}{section*.5}%
-\contentsline {paragraph}{Eficiencia práctica (peor caso)}{4}{section*.6}%
+\contentsline {paragraph}{Eficiencia práctica (peor caso)}{4}{section*.4}%
 \contentsline {subsubsection}{\numberline {2.1.2}BubbleSort}{6}{subsubsection.2.1.2}%
-\contentsline {paragraph}{Eficencia teórica}{6}{section*.9}%
-\contentsline {paragraph}{Eficiencia práctica}{6}{section*.10}%
+\contentsline {paragraph}{Eficiencia práctica}{6}{section*.7}%
 \contentsline {subsubsection}{\numberline {2.1.3}MergeSort}{7}{subsubsection.2.1.3}%
-\contentsline {paragraph}{Eficiencia teórica}{7}{section*.13}%
-\contentsline {paragraph}{Eficiencia práctica}{8}{section*.14}%
-\contentsline {paragraph}{Comparación}{9}{section*.17}%
+\contentsline {paragraph}{Eficiencia práctica}{7}{section*.10}%
+\contentsline {paragraph}{Comparación}{8}{section*.13}%
 \contentsline {subsection}{\numberline {2.2}Los números de Catalan}{10}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Versión recursiva}{10}{subsubsection.2.2.1}%
-\contentsline {paragraph}{Eficiencia teórica}{10}{section*.20}%
-\contentsline {paragraph}{Eficiencia práctica}{11}{section*.21}%
+\contentsline {paragraph}{Eficiencia teórica}{10}{section*.16}%
+\contentsline {paragraph}{Eficiencia práctica}{11}{section*.17}%
 \contentsline {subsubsection}{\numberline {2.2.2}Versión iterativa (programación dinámica)}{13}{subsubsection.2.2.2}%
-\contentsline {paragraph}{Eficiencia teórica}{13}{section*.24}%
-\contentsline {paragraph}{Eficiencia práctica}{14}{section*.25}%
+\contentsline {paragraph}{Eficiencia teórica}{13}{section*.20}%
+\contentsline {paragraph}{Eficiencia práctica}{14}{section*.21}%
 \contentsline {subsubsection}{\numberline {2.2.3}Versión iterativa directa usado el coeficiente binomial}{16}{subsubsection.2.2.3}%
-\contentsline {paragraph}{Eficiencia teórica}{16}{section*.28}%
-\contentsline {paragraph}{Eficiencia práctica}{17}{section*.29}%
-\contentsline {paragraph}{Comparación}{19}{section*.32}%
+\contentsline {paragraph}{Eficiencia teórica}{16}{section*.24}%
+\contentsline {paragraph}{Eficiencia práctica}{17}{section*.25}%
+\contentsline {paragraph}{Comparación}{19}{section*.28}%
 \contentsline {subsection}{\numberline {2.3}Las Torres de Hanoi}{21}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Versión recursiva}{21}{subsubsection.2.3.1}%
-\contentsline {paragraph}{Eficiencia teórica}{21}{section*.35}%
-\contentsline {paragraph}{Eficiencia práctica}{22}{section*.36}%
+\contentsline {paragraph}{Eficiencia teórica}{21}{section*.31}%
+\contentsline {paragraph}{Eficiencia práctica}{22}{section*.32}%
 \contentsline {subsubsection}{\numberline {2.3.2}Versión iterativa usando una pila}{24}{subsubsection.2.3.2}%
-\contentsline {paragraph}{Eficiencia teórica}{24}{section*.39}%
-\contentsline {paragraph}{Eficiencia práctica}{25}{section*.40}%
+\contentsline {paragraph}{Eficiencia teórica}{24}{section*.35}%
+\contentsline {paragraph}{Eficiencia práctica}{25}{section*.36}%
 \contentsline {subsubsection}{\numberline {2.3.3}Versión iterativa sin usar la pila}{27}{subsubsection.2.3.3}%
-\contentsline {paragraph}{Eficiencia teórica}{27}{section*.43}%
-\contentsline {paragraph}{Eficiencia práctica}{28}{section*.44}%
-\contentsline {paragraph}{Comparación}{30}{section*.47}%
+\contentsline {paragraph}{Eficiencia teórica}{27}{section*.39}%
+\contentsline {paragraph}{Eficiencia práctica}{28}{section*.40}%
+\contentsline {paragraph}{Comparación}{30}{section*.43}%
 \contentsline {section}{\numberline {3}Conclusión}{32}{section.3}%
