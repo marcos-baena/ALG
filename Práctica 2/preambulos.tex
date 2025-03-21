@@ -1,0 +1,68 @@
+\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry} %Para poner los márgenes
+
+
+\usepackage{float} %Para hacer que la megatabla no se vaya volando a la última página y forzar que se quede usando [H]
+
+% Idioma español y codificación
+\usepackage[spanish]{babel} % Traduce palabras como "Contenido", "Capítulo", etc.
+\usepackage[utf8]{inputenc} % Permite escribir caracteres en español (á, é, ñ, etc.)
+\usepackage[T1]{fontenc}    % Mejora la salida de caracteres acentuados en PDF
+
+% Paquetes matemáticos
+\usepackage{amsmath}  % Permite usar comandos avanzados de matemáticas
+\usepackage{amssymb}  % Agrega símbolos matemáticos adicionales
+\usepackage{amsthm}   % Permite definir teoremas, lemas, etc.
+\usepackage{mathrsfs} % Fuente adicional para letras matemáticas
+
+% Para mejor tipografía en matemáticas
+\usepackage{mathtools}
+
+% Si necesitas gráficos
+\usepackage{graphicx} 
+
+% Si usas referencias cruzadas en el documento
+\usepackage[hidelinks]{hyperref}  % Enlaces clicables en PDF
+
+%Para poner el color de los enlaces azul
+\hypersetup{
+    colorlinks=true,       % Habilita los enlaces de colores
+    linkcolor=black,        % Color de los enlaces internos (por ejemplo, referencias a secciones)
+    urlcolor=magenta,      % Color de los enlaces a direcciones web
+    citecolor=red,         % Color de las referencias bibliográficas
+    filecolor=cyan,        % Color de los enlaces a archivos
+}
+
+\renewcommand{\contentsname}{Índice} % Cambia "Contenido" por "Índice"
+
+\usepackage{listings}
+\usepackage{xcolor} % Para definir colores, opcional
+
+% Configuración básica de listings:
+\lstset{
+    language=C,                    % Especifica el lenguaje (puede ser Python, Java, etc.)
+    basicstyle=\ttfamily\small,     % Fuente de tipo monoespaciada
+    numbers=left,                  % Números de línea a la izquierda
+    numberstyle=\tiny,             % Estilo de los números de línea
+    stepnumber=1,                  % Mostrar número en cada línea
+    numbersep=10pt,                % Espacio entre número y código
+    backgroundcolor=\color{lightgray}, % Color de fondo
+    showspaces=false,              % No resaltar espacios
+    showstringspaces=false,        % No resaltar espacios en cadenas
+    showtabs=false,                % No resaltar tabulaciones
+    frame=single,                  % Agregar un marco alrededor del código
+    rulecolor=\color{black},       % Color del marco
+    captionpos=b,                  % Posición de la leyenda (b de bottom)
+    breaklines=true,               % Saltos automáticos de línea
+    breakatwhitespace=false,
+    title=\lstname,                % Muestra el nombre del archivo, si se especifica
+    keywordstyle=\color{blue},     % Color de las palabras clave
+    commentstyle=\color{green},    % Color de los comentarios
+    stringstyle=\color{red}        % Color de las cadenas
+}
+
+\usepackage{caption}
+\captionsetup[table]{labelformat=empty} %Para que no salgan numeradas las tablas
+\captionsetup[lstlisting]{labelformat=empty} %Para que no salgan numeradas los fragmentos de código
+\captionsetup[table]{labelformat=empty} %Para que no salgan numeradas las tablas
+\captionsetup[figure]{labelformat=empty} %Para que no salgan numeradas las gráficas
+\setlength{\parindent}{0,75cm} %Para que la sangría no sea tan grande

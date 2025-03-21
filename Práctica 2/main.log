@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.12)  21 MAR 2025 12:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.12.12)  21 MAR 2025 13:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/marcosbslinux/ALG/Práctica 1/latex code/prueba/prueba.tex"
-(/home/marcosbslinux/ALG/Práctica 1/latex code/prueba/prueba.tex
+**"/home/marcosbslinux/ALG/Práctica 2/main.tex"
+(/home/marcosbslinux/ALG/Práctica 2/main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -23,7 +23,7 @@ File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+) (./preambulos.tex (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -314,7 +314,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip60
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 35.
+Package hyperref Info: Option `colorlinks' set `true' on input line 33.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count296
 \lst@gtempboxa=\box56
@@ -376,53 +376,34 @@ Package caption Info: Standard document class detected.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
-) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box58
-) (./prueba.aux
+) (./main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
-
-
-LaTeX Warning: Label `tab:resultados' multiply defined.
-
-
-LaTeX Warning: Label `tab:tiempos' multiply defined.
-
-
-LaTeX Warning: Label `tab:tiempos' multiply defined.
-
-
-LaTeX Warning: Label `tab:resultados' multiply defined.
-
-
-LaTeX Warning: Label `tab:tiempos' multiply defined.
-
-
-LaTeX Warning: Label `tab:tiempos' multiply defined.
-
 )
-\openout1 = `prueba.aux'.
+\openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 73.
-LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -458,8 +439,8 @@ LaTeX Font Info:    ... okay on input line 73.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 73.
-LaTeX Info: Redefining \% on input line 73.
+LaTeX Info: Redefining \. on input line 4.
+LaTeX Info: Redefining \% on input line 4.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count307
@@ -479,185 +460,36 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 73.
- (./prueba.out) (./prueba.out)
+Package hyperref Info: Link coloring ON on input line 4.
+ (./main.out) (./main.out)
 \@outlinefile=\write3
-\openout3 = `prueba.out'.
+\openout3 = `main.out'.
 
 \c@lstlisting=\count313
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-<logo_ugr.png, id=76, 225.84375pt x 225.84375pt>
-File: logo_ugr.png Graphic file (type png)
-<use logo_ugr.png>
-Package pdftex.def Info: logo_ugr.png  used on input line 77.
+ (./portada.tex
+<Imagenes/logo_ugr.png, id=4, 225.84375pt x 225.84375pt>
+File: Imagenes/logo_ugr.png Graphic file (type png)
+<use Imagenes/logo_ugr.png>
+Package pdftex.def Info: Imagenes/logo_ugr.png  used on input line 4.
 (pdftex.def)             Requested size: 145.11053pt x 145.11844pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./logo_ugr.png>] (./prueba.toc
-LaTeX Info: Redefining \. on input line 1.
-LaTeX Info: Redefining \% on input line 1.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 3.
- (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-))
-\tf@toc=\write4
-\openout4 = `prueba.toc'.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc} <./Imagenes/logo_ugr.png>])
+
+Package caption Warning: Unused \captionsetup[table] on input line 64.
+See the caption package documentation for explanation.
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.95 \newpage
-              [1]
-<lstopo.png, id=112, 1221.56375pt x 847.165pt>
-File: lstopo.png Graphic file (type png)
-<use lstopo.png>
-Package pdftex.def Info: lstopo.png  used on input line 105.
-(pdftex.def)             Requested size: 386.95897pt x 268.35788pt.
- [2 <./lstopo.png>]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 131.
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 131.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-) [3]
-Underfull \hbox (badness 10000) in paragraph at lines 229--231
-
- []
-
-[4]
-Overfull \vbox (17.18346pt too high) has occurred while \output is active []
-
- [5]
-<Graficas/Quicksort.png, id=175, 602.25pt x 451.6875pt>
-File: Graficas/Quicksort.png Graphic file (type png)
-<use Graficas/Quicksort.png>
-Package pdftex.def Info: Graficas/Quicksort.png  used on input line 296.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [6 <./Graficas/Quicksort.png (PNG copy)>]
-<Graficas/Bubble.png, id=183, 602.25pt x 451.6875pt>
-File: Graficas/Bubble.png Graphic file (type png)
-<use Graficas/Bubble.png>
-Package pdftex.def Info: Graficas/Bubble.png  used on input line 334.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [7 <./Graficas/Bubble.png>]
-<Graficas/Mergesort.png, id=192, 602.25pt x 451.6875pt>
-File: Graficas/Mergesort.png Graphic file (type png)
-<use Graficas/Mergesort.png>
-Package pdftex.def Info: Graficas/Mergesort.png  used on input line 373.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
-<Graficas/ComparativaBubbleQuicksort.png, id=193, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaBubbleQuicksort.png Graphic file (type png)
-<use Graficas/ComparativaBubbleQuicksort.png>
-Package pdftex.def Info: Graficas/ComparativaBubbleQuicksort.png  used on input line 384.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [8 <./Graficas/Mergesort.png>]
-<Graficas/ComparativaMergeyQuick.png, id=202, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaMergeyQuick.png Graphic file (type png)
-<use Graficas/ComparativaMergeyQuick.png>
-Package pdftex.def Info: Graficas/ComparativaMergeyQuick.png  used on input line 397.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [9 <./Graficas/ComparativaBubbleQuicksort.png>] [10 <./Graficas/ComparativaMergeyQuick.png>] [11]
-<Graficas/CatalanRecursivo.png, id=238, 602.25pt x 451.6875pt>
-File: Graficas/CatalanRecursivo.png Graphic file (type png)
-<use Graficas/CatalanRecursivo.png>
-Package pdftex.def Info: Graficas/CatalanRecursivo.png  used on input line 507.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [12] [13 <./Graficas/CatalanRecursivo.png (PNG copy)>] [14]
-<Graficas/CatalanPD_BIG_NUMBERS.png, id=277, 602.25pt x 451.6875pt>
-File: Graficas/CatalanPD_BIG_NUMBERS.png Graphic file (type png)
-<use Graficas/CatalanPD_BIG_NUMBERS.png>
-Package pdftex.def Info: Graficas/CatalanPD_BIG_NUMBERS.png  used on input line 599.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [15] [16 <./Graficas/CatalanPD_BIG_NUMBERS.png (PNG copy)>] [17]
-<Graficas/CatalanBinomial_BIG_NUMBERS.png, id=326, 602.25pt x 451.6875pt>
-File: Graficas/CatalanBinomial_BIG_NUMBERS.png Graphic file (type png)
-<use Graficas/CatalanBinomial_BIG_NUMBERS.png>
-Package pdftex.def Info: Graficas/CatalanBinomial_BIG_NUMBERS.png  used on input line 704.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [18]
-<Graficas/ComparativaCatalan.png, id=333, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaCatalan.png Graphic file (type png)
-<use Graficas/ComparativaCatalan.png>
-Package pdftex.def Info: Graficas/ComparativaCatalan.png  used on input line 720.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [19 <./Graficas/CatalanBinomial_BIG_NUMBERS.png (PNG copy)>]
-<Graficas/ComparativaCatalan_LOGSCALE.png, id=340, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaCatalan_LOGSCALE.png Graphic file (type png)
-<use Graficas/ComparativaCatalan_LOGSCALE.png>
-Package pdftex.def Info: Graficas/ComparativaCatalan_LOGSCALE.png  used on input line 728.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [20 <./Graficas/ComparativaCatalan.png (PNG copy)>] [21 <./Graficas/ComparativaCatalan_LOGSCALE.png (PNG copy)>] [22]
-<Graficas/HanoiRecursivo.png, id=369, 602.25pt x 451.6875pt>
-File: Graficas/HanoiRecursivo.png Graphic file (type png)
-<use Graficas/HanoiRecursivo.png>
-Package pdftex.def Info: Graficas/HanoiRecursivo.png  used on input line 831.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [23] [24 <./Graficas/HanoiRecursivo.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 877--879
-
- []
+Package caption Warning: Unused \captionsetup[lstlisting] on input line 65.
+See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 880--882
+Package caption Warning: Unused \captionsetup[figure] on input line 67.
+See the caption package documentation for explanation.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 883--884
-
- []
-
-[25]
-<Graficas/HanoiIterativo.png, id=419, 602.25pt x 451.6875pt>
-File: Graficas/HanoiIterativo.png Graphic file (type png)
-<use Graficas/HanoiIterativo.png>
-Package pdftex.def Info: Graficas/HanoiIterativo.png  used on input line 932.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [26] [27 <./Graficas/HanoiIterativo.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 978--980
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 981--983
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 984--985
-
- []
-
-[28]
-<Graficas/HanoiIterativoSP.png, id=467, 602.25pt x 451.6875pt>
-File: Graficas/HanoiIterativoSP.png Graphic file (type png)
-<use Graficas/HanoiIterativoSP.png>
-Package pdftex.def Info: Graficas/HanoiIterativoSP.png  used on input line 1032.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [29]
-<Graficas/ComparativaHanoi.png, id=473, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaHanoi.png Graphic file (type png)
-<use Graficas/ComparativaHanoi.png>
-Package pdftex.def Info: Graficas/ComparativaHanoi.png  used on input line 1042.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [30 <./Graficas/HanoiIterativoSP.png (PNG copy)>]
-<Graficas/ComparativaHanoi_LOGSCALE.png, id=481, 602.25pt x 451.6875pt>
-File: Graficas/ComparativaHanoi_LOGSCALE.png Graphic file (type png)
-<use Graficas/ComparativaHanoi_LOGSCALE.png>
-Package pdftex.def Info: Graficas/ComparativaHanoi_LOGSCALE.png  used on input line 1050.
-(pdftex.def)             Requested size: 483.69687pt x 362.78406pt.
- [31 <./Graficas/ComparativaHanoi.png (PNG copy)>] [32 <./Graficas/ComparativaHanoi_LOGSCALE.png (PNG copy)>] (./prueba.aux
+(./main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -665,26 +497,22 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `prueba.out' has not changed.
-(rerunfilecheck)             Checksum: 6C2865CD59D31C0176DDC379F3860911;3363.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16613 strings out of 474222
- 258825 string characters out of 5748732
- 2092975 words of memory out of 5000000
- 38389 multiletter control sequences out of 15000+600000
- 578023 words of font info for 83 fonts, out of 8000000 for 9000
+ 15585 strings out of 474222
+ 243859 string characters out of 5748732
+ 1925975 words of memory out of 5000000
+ 37660 multiletter control sequences out of 15000+600000
+ 564850 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,599b,2103s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on prueba.pdf (33 pages, 866349 bytes).
+ 80i,5n,82p,579b,510s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1728.pfb>
+Output written on main.pdf (1 page, 84643 bytes).
 PDF statistics:
- 640 PDF objects out of 1000 (max. 8388607)
- 535 compressed objects within 6 object streams
- 265 named destinations out of 1000 (max. 500000)
- 230 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 40 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
+ 2 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
