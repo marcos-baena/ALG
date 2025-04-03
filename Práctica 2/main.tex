@@ -1,122 +1,18 @@
 \documentclass[a4paper,12pt]{article}
 
-\usepackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry} %Para poner los márgenes
-
-
-\usepackage{float} %Para hacer que la megatabla no se vaya volando a la última página y forzar que se quede usando [H]
-
-% Idioma español y codificación
-\usepackage[spanish]{babel} % Traduce palabras como "Contenido", "Capítulo", etc.
-\usepackage[utf8]{inputenc} % Permite escribir caracteres en español (á, é, ñ, etc.)
-\usepackage[T1]{fontenc}    % Mejora la salida de caracteres acentuados en PDF
-
-% Paquetes matemáticos
-\usepackage{amsmath}  % Permite usar comandos avanzados de matemáticas
-\usepackage{amssymb}  % Agrega símbolos matemáticos adicionales
-\usepackage{amsthm}   % Permite definir teoremas, lemas, etc.
-\usepackage{mathrsfs} % Fuente adicional para letras matemáticas
-
-% Para mejor tipografía en matemáticas
-\usepackage{mathtools}
-
-% Si necesitas gráficos
-\usepackage{graphicx} 
-
-% Si usas referencias cruzadas en el documento
-\usepackage[hidelinks]{hyperref}  % Enlaces clicables en PDF
-
-%Para poner el color de los enlaces azul
-\hypersetup{
-    colorlinks=true,       % Habilita los enlaces de colores
-    linkcolor=black,        % Color de los enlaces internos (por ejemplo, referencias a secciones)
-    urlcolor=magenta,      % Color de los enlaces a direcciones web
-    citecolor=red,         % Color de las referencias bibliográficas
-    filecolor=cyan,        % Color de los enlaces a archivos
-}
-
-\renewcommand{\contentsname}{Índice} % Cambia "Contenido" por "Índice"
-
-\usepackage{listings}
-\usepackage{xcolor} % Para definir colores, opcional
-
-% Configuración básica de listings:
-\lstset{
-    language=C,                    % Especifica el lenguaje (puede ser Python, Java, etc.)
-    basicstyle=\ttfamily\small,     % Fuente de tipo monoespaciada
-    numbers=left,                  % Números de línea a la izquierda
-    numberstyle=\tiny,             % Estilo de los números de línea
-    stepnumber=1,                  % Mostrar número en cada línea
-    numbersep=10pt,                % Espacio entre número y código
-    backgroundcolor=\color{lightgray}, % Color de fondo
-    showspaces=false,              % No resaltar espacios
-    showstringspaces=false,        % No resaltar espacios en cadenas
-    showtabs=false,                % No resaltar tabulaciones
-    frame=single,                  % Agregar un marco alrededor del código
-    rulecolor=\color{black},       % Color del marco
-    captionpos=b,                  % Posición de la leyenda (b de bottom)
-    breaklines=true,               % Saltos automáticos de línea
-    breakatwhitespace=false,
-    title=\lstname,                % Muestra el nombre del archivo, si se especifica
-    keywordstyle=\color{blue},     % Color de las palabras clave
-    commentstyle=\color{green},    % Color de los comentarios
-    stringstyle=\color{red}        % Color de las cadenas
-}
-
-\usepackage{caption}
-\captionsetup[table]{labelformat=empty} %Para que no salgan numeradas las tablas
-\captionsetup[lstlisting]{labelformat=empty} %Para que no salgan numeradas los fragmentos de código
-\captionsetup[table]{labelformat=empty} %Para que no salgan numeradas las tablas
-\captionsetup[figure]{labelformat=empty} %Para que no salgan numeradas las gráficas
-\setlength{\parindent}{0,75cm} %Para que la sangría no sea tan grande
-
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath, amsfonts, amssymb}  % Paquetes de matemáticas
-\usepackage{graphicx}                    % Para insertar figuras
-\usepackage{hyperref}                    % Para enlaces y referencias clicables
-\usepackage{geometry}                    % Para márgenes y diseño de página
-\usepackage{float}                       % Para forzar la posición de las figuras
-
-\geometry{
-    left=2.5cm,
-    right=2.5cm,
-    top=3cm,
-    bottom=3cm
-}
-
+\input{preambulos.tex} % Todos los preámbulos
 
 % =====================
 % Índice
 % =====================
 \begin{document}
-\begin{titlepage}
-	\centering
-
-	\includegraphics[width=0.3\textwidth]{./Imagenes/logo_ugr.png} % Ajusta el tamaño según necesites (0.3\textwidth es solo un ejemplo)
-	\vspace{1cm} % Ajusta el espacio según lo necesites
-
-	{\bfseries\LARGE Universidad de Granada \par}
-	\vspace{1cm}
-	{\scshape\Large Facultad de Ingeniería Informática y telecomunicaciones \par}
-	\vspace{3cm}
-	{\scshape\Huge Práctica 2: Divide y Vencerás \par}
-	\vspace{3cm}
-	{\itshape\Large Doble Grado Ingeniería Informática y Matemáticas \par}
-	\vfill
-	{\Large Autores: \par}
-	{\Large Adolfo Martínez Olmedo, Pablo Delgado Galera, Marcos Baena Solar \par}
-	\vfill
-	{\Large Marzo 2025 \par}
-\end{titlepage}
-
-\tableofcontents
-\newpage
-
+\input{portada.tex}
 
 % =====================
 \section{Introducción}
 % =====================
-En esta sección, se incluye una breve descripción del tema de estudio: 
-por qué son importantes los algoritmos Divide y Vencerás, 
+En esta sección, se incluye una breve descripción del tema de estudio:
+por qué son importantes los algoritmos Divide y Vencerás,
 dónde se aplican y qué se espera conseguir con la práctica.
 
 % =====================
@@ -124,103 +20,100 @@ dónde se aplican y qué se espera conseguir con la práctica.
 % =====================
 Detallar brevemente cuáles son los objetivos que se persiguen con la realización de la práctica:
 \begin{itemize}
-    \item Comprender la técnica de Divide y Vencerás y sus ventajas.
-    \item Comparar con la estrategia de fuerza bruta y analizar la complejidad.
-    \item Implementar ambos enfoques (fuerza bruta y Divide y Vencerás) para cada problema.
-    \item Experimentar con el umbral de la técnica de Divide y Vencerás.
+	\item Comprender la técnica de Divide y Vencerás y sus ventajas.
+	\item Comparar con la estrategia de fuerza bruta y analizar la complejidad.
+	\item Implementar ambos enfoques (fuerza bruta y Divide y Vencerás) para cada problema.
+	\item Experimentar con el umbral de la técnica de Divide y Vencerás.
 \end{itemize}
 
 % =====================
-\section{Problemas a Resolver}
+\section{El número más pequeño}
 % =====================
-En esta sección se describen los diferentes problemas que se abordarán.
-
-\subsection{El número más pequeño}
-Describir el problema de obtener el entero más pequeño de $k$ cifras 
-a partir de un vector de dígitos. Mencionar requisitos, entrada y salida.
-
-\subsection{El par de puntos más cercano}
-Describir el problema de encontrar dos puntos con la mínima distancia 
-Euclídea dentro de un conjunto. Explicar la versión de fuerza bruta 
-y la necesidad de mejorar su eficiencia.
-
-\subsection{La envolvente convexa}
-Explicar en qué consiste la envolvente convexa de un conjunto de puntos, 
-así como la forma de resolverla mediante algoritmos de fuerza bruta y 
-Divide y Vencerás.
-
-% =====================
-\section{Metodología y Diseño de los Algoritmos}
-% =====================
-Explicar detalladamente cómo abordar cada problema tanto con fuerza bruta 
-como con Divide y Vencerás.
-
 \subsection{Análisis de Fuerza Bruta}
-\begin{itemize}
-    \item Descripción general de la estrategia de fuerza bruta.
-    \item Complejidad temporal para cada uno de los tres problemas.
-    \item Ventajas y desventajas.
-\end{itemize}
 
 \subsection{Análisis de Divide y Vencerás}
-\begin{itemize}
-    \item Descripción de la plantilla general de Divide y Vencerás.
-    \item Aplicación concreta para cada problema (pasos de división, recursión y combinación).
-    \item Complejidad temporal teórica y justificación.
-    \item Discusión sobre el umbral para comparar cuándo es mejor la aproximación recursiva.
-\end{itemize}
 
 \subsection{Detalles de Implementación}
-\begin{itemize}
-    \item Lenguaje de programación utilizado (por ejemplo, C++).
-    \item Estructura de los ficheros (módulos, cabeceras, etc.).
-    \item Consideraciones sobre la lectura de datos, tratamiento de casos límite, etc.
-\end{itemize}
-
-% =====================
-\section{Resultados Experimentales}
-% =====================
-En esta sección se incluyen los experimentos realizados para comparar 
-las implementaciones de fuerza bruta y Divide y Vencerás.
 
 \subsection{Configuración de las Pruebas}
 \begin{itemize}
-    \item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
-    \item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
+	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
+	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
 \end{itemize}
 
 \subsection{Tablas y Gráficos de Rendimiento}
-Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución, 
+Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
 uso de memoria, etc.
 
 \subsection{Análisis de los Resultados}
 \begin{itemize}
-    \item Comparación cualitativa (efectividad, facilidad de implementación).
-    \item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
-    \item Conclusiones sobre el umbral experimental.
+	\item Comparación cualitativa (efectividad, facilidad de implementación).
+	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
+	\item Conclusiones sobre el umbral experimental.
 \end{itemize}
+
+
+
+% =====================
+\section{El par de puntos más cercano}
+% =====================
+\subsection{Análisis de Fuerza Bruta}
+
+\subsection{Análisis de Divide y Vencerás}
+
+\subsection{Detalles de Implementación}
+
+\subsection{Configuración de las Pruebas}
+\begin{itemize}
+	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
+	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
+\end{itemize}
+
+\subsection{Tablas y Gráficos de Rendimiento}
+Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
+uso de memoria, etc.
+
+\subsection{Análisis de los Resultados}
+\begin{itemize}
+	\item Comparación cualitativa (efectividad, facilidad de implementación).
+	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
+	\item Conclusiones sobre el umbral experimental.
+\end{itemize}
+
+
+% =====================
+\section{La envolvente convexa}
+% =====================
+\subsection{Análisis de Fuerza Bruta}
+
+\subsection{Análisis de Divide y Vencerás}
+
+\subsection{Detalles de Implementación}
+
+\subsection{Configuración de las Pruebas}
+\begin{itemize}
+	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
+	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
+\end{itemize}
+
+\subsection{Tablas y Gráficos de Rendimiento}
+Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
+uso de memoria, etc.
+
+\subsection{Análisis de los Resultados}
+\begin{itemize}
+	\item Comparación cualitativa (efectividad, facilidad de implementación).
+	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
+	\item Conclusiones sobre el umbral experimental.
+\end{itemize}
+
+En esta sección se describen los diferentes problemas que se abordarán.
 
 % =====================
 \section{Conclusiones}
 % =====================
-Resumen de los hallazgos principales. Mencionar qué se aprendió 
+Resumen de los hallazgos principales. Mencionar qué se aprendió
 y qué aspectos se pueden mejorar o extender.
 
-% Me imagino que esto no va a hacer falta
-% =====================
-\section{Bibliografía}
-% =====================
-Citar las referencias utilizadas para la elaboración de la práctica, 
-por ejemplo, libros, apuntes de clase o fuentes externas:
-
-\begin{thebibliography}{9}
-    \bibitem{cormen}
-    Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, 
-    \textit{Introduction to Algorithms}. MIT Press, 3rd Edition, 2009.
-    
-    \bibitem{otros}
-    Apuntes de la asignatura de Algorítmica, Departamento de Ciencias de la Computación e I.A., 
-    Universidad de Granada.
-\end{thebibliography}
-
 \end{document}
+
