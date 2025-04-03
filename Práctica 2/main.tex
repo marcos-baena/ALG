@@ -164,7 +164,17 @@ double bruteForce(const vector<Point>& P, int l, int r) {
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^2)$.
 
 \subsection{Análisis de Divide y Vencerás}
-Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en (Pablo Indio complétalo).
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en ir haciendo divisiones
+de un array de puntos previamente ordenados por la coordenada x de los puntos (de derecha a izquierda).
+Tras esto, vamos haciendo divisiones partiendo el vector por la mitad recursivamente hasta quedarnos con 3 
+puntos o menos en una franja, donde se resolverá el problema usando fuerza bruta. Así obtenemos la mínima distancia 
+en una franja, tras esto nos quedamos con la mínima distancia entre la franja de la izquierda y la derecha, y la 
+usaremos para estudiar la mínima distancia entre una franja intermedia de tamaño la mínima distancia, creamos esta franja 
+con los puntos que estan a una distancia menor de la menor distancia previamente calculada respecto del punto central.
+Una vez construido el strip comparamos los puntos con respecto a su coordenada y (esta comparación se hace con un 
+número comnstante de puntos al reducirlos con la distancia mínima), buscando que sea menor que la menor distancia previa,
+obtenemos así la mínima distancia entre la franja izquierda, derecha y central. Resolviendo recursivamente obtenemos 
+la mínima distancia en un conjunto de puntos.
 
 El código es el siguiente:
 
@@ -259,7 +269,15 @@ El código es el siguiente:
 	}
 \end{lstlisting}
 
-Tras el análisis teórico comprobamos que este código tiene una eficiencia de (PABLO INDIO HAZLO)
+Para el análisis teórico de este algoritmo debemos estudiar la ecuación de recurrencia: $T(n) = 2T(\frac{n}{2}) + O(n)$.
+Esta ecuación se obtiene de que una llamada a la función de tamaño n hará dos llamadas recursivas con cada mitad de los puntos (izquierda y derecha),
+O(n) se obtiene de calcular los puntos en el strip central, que auqnue pueda parecer $O(n²)$, cada punto del strip solo 
+se compara con un número constante de puntos, al habernos quedado previamnete con una cantidad de puntos pequeñas dentro de un rango.
+Cuando el tamaño es menor o igual que 3 (caso base), donde aplicamos 
+fuerza bruta, al ser un tamaño tan pequeño, no afectará a la eficiencia.
+
+
+Tras resolver la recurrencia comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$.
 
 \subsection{Detalles de Implementación}
 
@@ -274,6 +292,10 @@ Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
 uso de memoria, etc.
 
 \subsection{Análisis de los Resultados}
+Como se esperaba tras el análisis teórico, en las gráficas podemos observar que el algoritmo Divide y Vencerás 
+tiene una mayor eficiencia que el de Fuerza Bruta, también podemos observar la clara forma parábolica del algoritmo
+Fuerza Bruta como habiamos previsto. También se puede observar la región a partir del cual el primer algortimo, comienza 
+a tener tiempos de ejecución más bajos que el segundo.
 \begin{itemize}
 	\item Comparación cualitativa (efectividad, facilidad de implementación).
 	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
@@ -286,7 +308,10 @@ uso de memoria, etc.
 % =====================
 \subsection{Análisis de Fuerza Bruta}
 
-Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en empezar seleccionando el punto más a la izquierda, el cual sabes que siempre va a estar en la envolvente convexa, seguidamente seleccionas otro punto y compruebas si la recta que une los dos puntos deja el resto de puntos a la izquierda, una vez encuentras ese punto, es nuevo punto actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa.
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en empezar seleccionando el punto más a la izquierda, 
+el cual sabemos que siempre va a estar en la envolvente convexa, seguidamente seleccionas otro punto y compruebas si 
+la recta que une los dos puntos deja el resto de puntos a la izquierda, una vez encuentras ese punto, es nuevo punto 
+actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa.
 
 El código es el siguiente:
 
@@ -337,7 +362,25 @@ El código es el siguiente:
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^3)$
 
 \subsection{Análisis de Divide y Vencerás}
-Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en (pablo भारतीय इसे पूरा करें)
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en ir diviendo los puntos del plano, previamente ordenados 
+de derecha a izquierda, en dos partes (izquierda y derecha) hasta llegar a un tamaño pequeño donde se calculen las envolventes convexas,
+tanto de izquierda como de derecha que se juntarán usando la función merge. Esta función comienza buscando de entre los puntos de la envolvente de la derecha 
+el punto más a la izquierda, actuando analogamente con los de la izquierda, tras esto buscamos la tangente superior que cuyos puntos 
+formarán parte de la envolvente. Para ello, vamos buscando con el punto más a la derecha de la izquierda fijo, y rotando el punto más a la 
+izquierda de los derecha, ahcia la derecha hasta encontrar uno que deje el resto de puntos a la derecha, una vez lo encontramos fijamos 
+ese punto y rotamos hacia la izquierda los puntos de la izquierda hasta encontrar uno que deje todos los puntos de la izquierda a la izquierda.
+Repetimos para la tangente inferior rotando en sentido contrario, finalizamos guardando todoos los puntos resultantes en el vector a devolver.s
+
+código
+
+Para el análisis teórico de este algoritmo debemos estudiar la ecuación de recurrencia: $T(n) = 2T(\frac{n}{2}) + O(n)$.
+Esta ecuación se obtiene de que una llamada a la función de tamaño n hará dos llamadas recursivas con cada mitad de los puntos (izquierda y derecha),
+O(n) se obtiene de la llamada a la función merger que junta las dos envolventes con una eficiencia de O(n), ya que
+hay se recorren varios bucles de la mitad del tamaño en cada iteración ($\frac{n}{2}$) obviando la constante obtenemos O(n).
+El caso base usa la fuerza bruta en un conjunto de 5 puntos, su eficiencia es presecindible.
+
+Tras resolver la recurrencia comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$.
+
 \subsection{Detalles de Implementación}
 
 \subsection{Configuración de las Pruebas}
@@ -351,6 +394,10 @@ Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
 uso de memoria, etc.
 
 \subsection{Análisis de los Resultados}
+Como se esperaba tras el análisis teórico, en las gráficas podemos observar que el algoritmo Divide y Vencerás 
+tiene una mayor eficiencia que el de Fuerza Bruta, también podemos observar la clara forma cúbica del algoritmo
+Fuerza Bruta como habiamos previsto. También se puede observar la región a partir del cual el primer algortimo, comienza 
+a tener tiempos de ejecución más bajos que el segundo.
 \begin{itemize}
 	\item Comparación cualitativa (efectividad, facilidad de implementación).
 	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
@@ -362,7 +409,9 @@ En esta sección se describen los diferentes problemas que se abordarán.
 % =====================
 \section{Conclusiones}
 % =====================
-Tras esta práctica hemos descubierto que la estrategia de desarrollo de algoritmos Divide y Vencerás es útil en un amplio repertorio de casos pero esto no quiere decir que siempre sea mejor que un algoritmo fuerza bruta, esto lo podemos comprobar en \ref{sec:El número más pequeño}. Aún así en la gran mayoría de casos aplicar Divide y Vencerás 
+Tras esta práctica hemos descubierto que la estrategia de desarrollo de algoritmos Divide y Vencerás 
+es útil en un amplio repertorio de casos pero esto no quiere decir que siempre sea mejor que un algoritmo 
+fuerza bruta, esto lo podemos comprobar en \ref{sec:El número más pequeño}. Aún así en la gran mayoría de casos aplicar Divide y Vencerás 
 supone una mejoría en la eficiencia del código.
 
 \end{document}
