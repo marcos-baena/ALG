@@ -1,9 +1,11 @@
 #include <iostream>
-#include <vector>
 #include <set>
 #include <float.h>
 #include <cstdlib> // Para atoi
 #include <chrono>
+#include <fstream> // Para usar ficheros
+#include <vector>
+#include <limits>
 using namespace std;
 using namespace chrono;
 
@@ -12,12 +14,10 @@ struct Point {
     float x, y;
 };
 
-typedef pair<int, int> ParPuntos;
-
 // Funcion que calcula el convex hull por fuerza bruta
-set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
+vector<Point> convexHullBruteForce(const vector<Point>& points) {
     int n = points.size();
-    set<ParPuntos> hull;
+    vector<Point> hull;
     
     // Recorremos cada par de puntos
     for (int i = 0; i < n; i++) {
@@ -40,8 +40,8 @@ set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
             
             // Si todos los puntos se encuentran de un mismo lado (o son colineales), se añaden los puntos de la arista
             if (left == 0 || right == 0) {
-                hull.insert({points[i].x, points[i].y});
-                hull.insert({points[j].x, points[j].y});
+                hull.push_back({points[i].x, points[i].y});
+                hull.push_back({points[j].x, points[j].y});
             }
         }
     }
@@ -50,35 +50,53 @@ set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        cout << "Uso: " << argv[0] << " <numero_de_puntos>" << endl;
-        return 1;
-    }
-    
-    int n = atoi(argv[1]);
-    if (n <= 0) {
-        cout << "El número de puntos debe ser un entero positivo." << endl;
-        return 1;
-    }
+    vector<Point> points;
+    int n, argumento;
+    chrono::time_point<std::chrono::high_resolution_clock> t0, tf; // Para medir el tiempo de ejecución
+    unsigned long int semilla;
+    ofstream fsalida;
 
-    srand(time(0)); // Semilla para números aleatorios
-
-    // Generamos los puntos aleatorios en un rango [0,100]
-    vector<Point> points(n);
-    for (int i = 0; i < n; i++) {
-        points[i].x = rand() % 101;
-        points[i].y = rand() % 101;
+    if (argc <= 3) {
+        cerr << "\nError: El programa se debe ejecutar de la siguiente forma.\n\n";
+        cerr << argv[0] << " NombreFicheroSalida Semilla tamCaso1 tamCaso2 ... tamCasoN\n\n";
+        return 0;
     }
 
-    // Medimos el tiempo de ejecución de convexHullBruteForce
-    auto start = high_resolution_clock::now();
-    set<pair<int, int>> hull = convexHullBruteForce(points);
-    auto end = high_resolution_clock::now();
+    // Abrimos fichero de salida
+    fsalida.open(argv[1]);
+    if (!fsalida.is_open()) {
+        cerr << "Error: No se pudo abrir fichero para escritura " << argv[1] << "\n\n";
+        return 0;
+    }
 
-    // Calculamos la duración en milisegundos
-    auto duration = duration_cast<milliseconds>(end - start);
-    
-    cout<<n<<" "<<duration.count()<< endl;
+    // Inicializamos generador de no. aleatorios
+    semilla = atoi(argv[2]);
+    srand(semilla);
 
+    // Pasamos por cada tamaño de caso
+    for (argumento = 3; argumento < argc; argumento++) {
+        n = atoi(argv[argumento]);
+        points.resize(n);
+
+        for (int i = 0; i < n; i++) {
+            points[i].x = rand() % 101;
+            points[i].y = rand() % 101;
+        }
+
+        cerr << "Ejecutando fuerza bruta CONVEX HULL para tam. caso: " << n << endl;
+
+        t0 = chrono::high_resolution_clock::now();
+        vector<Point> hull = convexHullBruteForce(points);
+        tf = chrono::high_resolution_clock::now();
+
+        unsigned long tejecucion = chrono::duration_cast<chrono::microseconds>(tf - t0).count();
+        cerr << "\tTiempo de ejec. (us): " << tejecucion << " para tam. caso " << n << endl;
+        for (int i = 0; i < hull.size(); i++){
+            cout << hull[i].x << "," << hull[i].y << endl;
+        }
+
+        // Guardamos tamaño de caso y t_ejecucion a fichero de salida
+        fsalida << n << " " << tejecucion << "\n";
+    }
     return 0;
 }

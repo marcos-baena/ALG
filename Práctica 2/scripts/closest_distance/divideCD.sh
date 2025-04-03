@@ -5,17 +5,17 @@
 # ===============================
 
 # Nombre del programa
-PROGRAM="./divide"
+PROGRAM="./ClosestPointPairDivideAndConquer"
 
 # Nombre de la carpeta de resultados
-FOLDER="divideDATA"
+FOLDER="divideAndConquerCDDATA"
 
 # Semilla pseudo-aleatoria cada vez
 BASE_SEED=$(( $(date +%s) )) 
 
 # Tamaños de casos desde 1000 hasta 100000 en pasos de 25000
 sizes=()
-for (( i=1000; i<=50000; i+=2500 )); do
+for (( i=1; i<=100; i+=1 )); do
     sizes+=($i)
 done
 
@@ -45,7 +45,7 @@ fi
 
 echo ">>> Ejecutando $PROGRAM 10 veces con tamaños desde ${sizes[0]} hasta ${sizes[-1]}"
 
-for run in {1..10}; do
+for run in {1..30}; do
     # Archivo de salida para esta corrida
     OUTPUT="$FOLDER/salida${run}.dat"
 
@@ -72,7 +72,7 @@ echo ">>> Calculando la media de los tiempos en $FOLDER/medias.dat"
 OUTPUT_MEAN="$FOLDER/medias_divide_y_venceras.dat"
 > "$OUTPUT_MEAN" # Vaciamos el archivo si existe
 
-NUM_FILES=10
+NUM_FILES=30
 
 # Usamos el primer archivo para obtener los tamaños de caso
 while read -r line; do

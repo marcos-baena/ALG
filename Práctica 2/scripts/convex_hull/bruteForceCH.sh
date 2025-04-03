@@ -5,17 +5,17 @@
 # ===============================
 
 # Nombre del programa
-PROGRAM="./bruteForce"
+PROGRAM="./ConvexHullBruteForce"
 
 # Nombre de la carpeta de resultados
-FOLDER="bruteForceDATA"
+FOLDER="bruteForceCHDATA"
 
 # Semilla pseudo-aleatoria cada vez
 BASE_SEED=$(( $(date +%s) )) 
 
 # Tamaños de casos desde 1000 hasta 100000 en pasos de 25000
 sizes=()
-for (( i=1000; i<=50000; i+=2500 )); do
+for (( i=10; i<=300; i+=5 )); do
     sizes+=($i)
 done
 

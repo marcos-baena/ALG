@@ -5,17 +5,17 @@
 # ===============================
 
 # Nombre del programa
-PROGRAM="./bruteForce"
+PROGRAM="./ConvexHullDivideAndConquer"
 
 # Nombre de la carpeta de resultados
-FOLDER="bruteForceDATA"
+FOLDER="divideAndConquerCHDATA"
 
 # Semilla pseudo-aleatoria cada vez
 BASE_SEED=$(( $(date +%s) )) 
 
 # Tamaños de casos desde 1000 hasta 100000 en pasos de 25000
 sizes=()
-for (( i=1000; i<=50000; i+=2500 )); do
+for (( i=10; i<=300; i+=5 )); do
     sizes+=($i)
 done
 
@@ -69,7 +69,7 @@ echo ">>> Todas las iteraciones han terminado."
 echo ">>> Calculando la media de los tiempos en $FOLDER/medias.dat"
 
 # Crear archivo de medias
-OUTPUT_MEAN="$FOLDER/medias_fuera_bruta.dat"
+OUTPUT_MEAN="$FOLDER/medias_divide_y_venceras.dat"
 > "$OUTPUT_MEAN" # Vaciamos el archivo si existe
 
 NUM_FILES=10

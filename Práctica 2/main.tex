@@ -6,19 +6,28 @@
 % Índice
 % =====================
 \begin{document}
-\input{portada.tex}
+\input{portada.tex} % Archivo con la portada
 
 % =====================
 \section{Introducción}
 % =====================
-En esta sección, se incluye una breve descripción del tema de estudio:
-por qué son importantes los algoritmos Divide y Vencerás,
-dónde se aplican y qué se espera conseguir con la práctica.
+En esta práctica se desarrolla la resolución de tres problemas diferentes: 
+
+\begin{itemize}
+	\item Menor número
+	\item Menor distancia
+	\item Menor envolvente convexa
+\end{itemize}
+
+Lo haremos de dos maneras distintas, primero haremos una aproximación mediante algoritmos 
+de fuerza bruta y después aplicaremos lo aprendido en clase, desarrollando soluciones basadas 
+en divide y vencerás.
+
 
 % =====================
 \section{Objetivos}
 % =====================
-Detallar brevemente cuáles son los objetivos que se persiguen con la realización de la práctica:
+Los objetivos de esta práctica son los siguientes:
 \begin{itemize}
 	\item Comprender la técnica de Divide y Vencerás y sus ventajas.
 	\item Comparar con la estrategia de fuerza bruta y analizar la complejidad.
@@ -28,12 +37,70 @@ Detallar brevemente cuáles son los objetivos que se persiguen con la realizaci�
 
 % =====================
 \section{El número más pequeño}
+\label{sec:El número más pequeño}
 % =====================
 \subsection{Análisis de Fuerza Bruta}
 
-\subsection{Análisis de Divide y Vencerás}
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en ir recorriendo el vector de puntos tantas veces como cifras tenga el número que busquemos, y en cada recorrido se busca el número más pequeño, se elimina y se procede a hacer lo mismo en la siguiente iteración.
 
-\subsection{Detalles de Implementación}
+El código es el siguiente:
+
+\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"El número más pequeño"}}]
+	int getSmallestNumber(vector<int> v, int k){
+		int smallestNumber = std::numeric_limits<int>::max();
+		for (int i = 0; i < v.size()-1; ++i){
+			string num;
+			num.append(to_string(v[i]));
+			for (int j = i+1; j-i <= k  && v.size()-1 - j >= k; ++j){
+				num.append(to_string(v[j]));
+			}
+			if(stoi(num) < smallestNumber)
+				smallestNumber = stoi(num);   
+		}
+	
+		return smallestNumber;
+	}	
+	 \end{lstlisting}
+
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(k\cdot n)$.
+\subsection{Análisis de Divide y Vencerás}
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en orderar el vector utilizando quickSort (para dividir y vencer) y una vez lo tenemos ordenado simplemente cogemos los k primeros números.
+
+El código es el siguiente:
+
+\begin{lstlisting}[language=C, caption={Divide y vencerás de \textbf{"El número más pequeño"}}]
+void quicksort(vector<int> &v, int left, int right)
+{
+	if (left >= right)
+		return;
+	int pivot = v[right];
+	int partitionIndex = left;
+	for (int i = left; i < right; ++i)
+	{
+		if (v[i] < pivot)
+		{
+			swap(v[i], v[partitionIndex]);
+			++partitionIndex;
+		}
+	}
+	swap(v[partitionIndex], v[right]);
+	quicksort(v, left, partitionIndex - 1);
+	quicksort(v, partitionIndex + 1, right);
+}
+
+int getSmallestNumber(vector<int> v, int k)
+{
+	quicksort(v, 0, v.size() - 1);
+	string result = "";
+	for (int i = 0; i < k; ++i)
+	{
+		result += to_string(v[i]);
+	}
+	return stoi(result);
+}	
+	 \end{lstlisting}
+
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$
 
 \subsection{Configuración de las Pruebas}
 \begin{itemize}
@@ -46,6 +113,14 @@ Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
 uso de memoria, etc.
 
 \subsection{Análisis de los Resultados}
+Tras el analisis teórico y visualizar la gráfica comparativa, vemos que el algoritmo de Fuerza 
+Bruta consigue resolver el problema de forma más eficiente que el algoritmo Divide y Vencerás. 
+Esto se debe a que el primer algortimo depende de una constante k que consideramos siempre menor 
+que n, y por tanto no afecta a la eficiencia. Mientras que en el segundo algoritmo podemos apreciar 
+que quicksort tiene la eficiencia del peor caso, ya que al solo usar dígitos del 1 al 9, encontramos
+en el vector una gran cantidad de números repetidos lo cual afecta gravemente a la eficiencia de este 
+algortimo de ordenación.
+
 \begin{itemize}
 	\item Comparación cualitativa (efectividad, facilidad de implementación).
 	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
@@ -58,8 +133,133 @@ uso de memoria, etc.
 \section{El par de puntos más cercano}
 % =====================
 \subsection{Análisis de Fuerza Bruta}
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en un doble bucle for el cual hace todas las distancias de todos los puntos con todos, hasta encontrar la mínima distancia. 
+
+El código es el siguiente:
+
+\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"El par de puntos más cercano"}}]
+struct Point {
+	double x, y;
+};
+
+double dist(Point p1, Point p2) {
+	return sqrt( (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y) );
+}
+
+
+double bruteForce(const vector<Point>& P, int l, int r) {
+	double minDist = DBL_MAX;
+	for (int i = l; i <= r; i++) {
+		for (int j = i+1; j <= r; j++) {
+			double d = dist(P[i], P[j]);
+			if (d < minDist) {
+				minDist = d;
+			}
+		}
+	}
+	return minDist;
+}
+\end{lstlisting}
+
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^2)$.
 
 \subsection{Análisis de Divide y Vencerás}
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en (Pablo Indio complétalo).
+
+El código es el siguiente:
+
+\begin{lstlisting}[language=C, caption={Divide y vencerás de \textbf{"El par de puntos más cercano"}}]
+	void swap(Point* a, Point* b) {
+		Point t = *a;
+		*a = *b;
+		*b = t;
+	}
+	
+	int partition(vector<Point>& arr, int low, int high) {
+		double pivot = arr[high].x;
+		int i = (low - 1);
+	
+		for (int j = low; j <= high - 1; j++) {
+			if (arr[j].x < pivot) {
+				i++;
+				swap(&arr[i], &arr[j]);
+			}
+		}
+		swap(&arr[i + 1], &arr[high]);
+		return (i + 1);
+	}
+	
+	void quickSort(vector<Point>& arr, int low, int high) {
+		if (low < high) {
+			int pi = partition(arr, low, high);
+	
+			quickSort(arr, low, pi - 1);
+			quickSort(arr, pi + 1, high);
+		}
+	}
+	
+	void sort_by_x(vector<Point>& points) {
+		quickSort(points, 0, points.size() - 1);
+	}
+	
+	double bruteForce(const vector<Point>& P, int l, int r) {
+		double minDist = DBL_MAX;
+		for (int i = l; i <= r; i++) {
+			for (int j = i+1; j <= r; j++) {
+				double d = dist(P[i], P[j]);
+				if (d < minDist) {
+					minDist = d;
+				}
+			}
+		}
+		return minDist;
+	}
+	
+	
+	double closestUtil(vector<Point> &PX, int l, int r) {
+		// Si el subrango es peque, fuerza bruta
+		if (r - l <= 3) {
+			return bruteForce(PX, l, r);
+		}
+	
+		int mid = (l + r) / 2;
+		double midX = PX[mid].x;
+	
+		// bestPair se va actualizando; 
+		// para tener la minima distancia, llamo recursivamente a izq y der
+		double dl = closestUtil(PX, l, mid);
+		double dr = closestUtil(PX, mid+1, r);
+	
+		double d = dl < dr ? dl : dr;
+		// Construir el strip (puntos que quedan en [midX - d, midX + d])
+		vector<Point> strip;
+		strip.reserve(r - l + 1);
+		for (int i = l; i <= r; i++) {
+			if (fabs(PX[i].x - midX) < d) {
+				strip.push_back(PX[i]);
+			}
+		}
+		// Ordenar la franja por Y
+		sort(strip.begin(), strip.end(), [](auto &a, auto &b){
+			return a.y < b.y;
+		});
+	
+		// Revisar cada punto del strip con sus siguientes
+		// mientras la diferencia en Y sea < d
+		for (int i = 0; i < (int)strip.size(); i++) {
+			for (int j = i+1; j < (int)strip.size() && (strip[j].y - strip[i].y) < d; j++) {
+				double distStrip = dist(strip[i], strip[j]);
+				if (distStrip < d) {
+					d = distStrip;
+				}
+			}
+		}
+	
+		return d;
+	}
+\end{lstlisting}
+
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de (PABLO INDIO HAZLO)
 
 \subsection{Detalles de Implementación}
 
@@ -86,8 +286,58 @@ uso de memoria, etc.
 % =====================
 \subsection{Análisis de Fuerza Bruta}
 
-\subsection{Análisis de Divide y Vencerás}
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en empezar seleccionando el punto más a la izquierda, el cual sabes que siempre va a estar en la envolvente convexa, seguidamente seleccionas otro punto y compruebas si la recta que une los dos puntos deja el resto de puntos a la izquierda, una vez encuentras ese punto, es nuevo punto actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa.
 
+El código es el siguiente:
+
+\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"La envolvente convexa"}}]
+	// Estructura para representar un punto
+	struct Point {
+		float x, y;
+	};
+	
+	typedef pair<int, int> ParPuntos;
+	
+	// Funcion que calcula el convex hull por fuerza bruta
+	set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
+		int n = points.size();
+		set<ParPuntos> hull;
+		
+		// Recorremos cada par de puntos
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				int left = 0, right = 0;
+				
+				// Verificamos la posicion de cada otro punto respecto a la linea formada por points[i] y points[j]
+				for (int k = 0; k < n; k++) {
+					if (k == i || k == j)
+						continue;
+						
+					float position = (points[j].x - points[i].x) * (points[k].y - points[i].y) -
+								   (points[j].y - points[i].y) * (points[k].x - points[i].x);
+					
+					if (position > 0)
+						left++;
+					else if (position < 0)
+						right++;
+				}
+				
+				// Si todos los puntos se encuentran de un mismo lado (o son colineales), se adjuntan los puntos de la arista
+				if (left == 0 || right == 0) {
+					hull.insert({points[i].x, points[i].y});
+					hull.insert({points[j].x, points[j].y});
+				}
+			}
+		}
+		
+		return hull;
+	}
+\end{lstlisting}
+
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^3)$
+
+\subsection{Análisis de Divide y Vencerás}
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en (pablo भारतीय इसे पूरा करें)
 \subsection{Detalles de Implementación}
 
 \subsection{Configuración de las Pruebas}
@@ -112,8 +362,8 @@ En esta sección se describen los diferentes problemas que se abordarán.
 % =====================
 \section{Conclusiones}
 % =====================
-Resumen de los hallazgos principales. Mencionar qué se aprendió
-y qué aspectos se pueden mejorar o extender.
+Tras esta práctica hemos descubierto que la estrategia de desarrollo de algoritmos Divide y Vencerás es útil en un amplio repertorio de casos pero esto no quiere decir que siempre sea mejor que un algoritmo fuerza bruta, esto lo podemos comprobar en \ref{sec:El número más pequeño}. Aún así en la gran mayoría de casos aplicar Divide y Vencerás 
+supone una mejoría en la eficiencia del código.
 
 \end{document}
 
