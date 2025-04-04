@@ -12,6 +12,12 @@ using namespace chrono;
 // Estructura para representar un punto
 struct Point {
     float x, y;
+
+    bool operator<(const Point &other) const {
+        if (x < other.x) return true;
+        if (x > other.x) return false;
+        return (y < other.y);
+    }
 };
 
 // Funcion que calcula el convex hull por fuerza bruta
@@ -89,10 +95,15 @@ int main(int argc, char *argv[]) {
         vector<Point> hull = convexHullBruteForce(points);
         tf = chrono::high_resolution_clock::now();
 
+        set<Point> setHull;
+        for (int i = 0; i < hull.size(); i++){
+            setHull.insert(hull[i]);
+        }
+
         unsigned long tejecucion = chrono::duration_cast<chrono::microseconds>(tf - t0).count();
         cerr << "\tTiempo de ejec. (us): " << tejecucion << " para tam. caso " << n << endl;
-        for (int i = 0; i < hull.size(); i++){
-            cout << hull[i].x << "," << hull[i].y << endl;
+        for (auto it = setHull.begin(); it != setHull.end(); ++it){
+            cout << (*it).x << "," << (*it).y << endl;
         }
 
         // Guardamos tamaño de caso y t_ejecucion a fichero de salida

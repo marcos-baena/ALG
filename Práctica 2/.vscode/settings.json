@@ -3,6 +3,8 @@
         "iostream": "cpp",
         "cstdlib": "cpp",
         "set": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp"
     }
 }
