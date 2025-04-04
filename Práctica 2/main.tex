@@ -8,6 +8,10 @@
 \begin{document}
 \input{portada.tex} % Archivo con la portada
 
+\tableofcontents
+
+\newpage
+
 % =====================
 \section{Introducción}
 % =====================
@@ -21,7 +25,17 @@ En esta práctica se desarrolla la resolución de tres problemas diferentes:
 
 Lo haremos de dos maneras distintas, primero haremos una aproximación mediante algoritmos 
 de fuerza bruta y después aplicaremos lo aprendido en clase, desarrollando soluciones basadas 
-en divide y vencerás.
+en divide y vencerás. Analizaremos la eficiencia teórica de cada solución, mediante un script
+ejecutaremos los programas con diferentes tamaños y una cantidad determinada de veces, nos 
+quedaremos con una media de todas las ejecuciones y podremos comparar la eficiencia de ambas 
+soluciones, viendo a partir de que tamaños es mejor una solución a la otra en cuanto a eficiencia.
+\\
+
+Para todas las ejecuciones de los diferentes algoritmos hemos usado el mismo portátil. Un \textit{Asus Zephyrus G14} con un procesador \textit{Ryzen 7 4800HS}, cuyas especificaciones se pueden ver en la siguiente imágen:\\
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{Imagenes/lstopo.jpeg}
+\end{center}
+
 
 
 % =====================
@@ -41,53 +55,50 @@ Los objetivos de esta práctica son los siguientes:
 % =====================
 \subsection{Análisis de Fuerza Bruta}
 
-Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en ir recorriendo el vector de puntos tantas veces como cifras tenga el número que busquemos, y en cada recorrido se busca el número más pequeño, se elimina y se procede a hacer lo mismo en la siguiente iteración.
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en ir recorriendo el vector de 
+puntos tantas veces como cifras tenga el número que busquemos, y en cada recorrido se busca el 
+número más pequeño, se elimina y se procede a hacer lo mismo en la siguiente iteración, hasta obtener 
+finalmente el número más pequeño posible, ejecutamos el programa con un valor de k entre 4 y 9, ya 
+que el mayor entero que acepta C++ tiene 10 dígitos.\\
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"El número más pequeño"}}]
-	int getSmallestNumber(vector<int> v, int k){
-		int smallestNumber = std::numeric_limits<int>::max();
-		for (int i = 0; i < v.size()-1; ++i){
-			string num;
-			num.append(to_string(v[i]));
-			for (int j = i+1; j-i <= k  && v.size()-1 - j >= k; ++j){
-				num.append(to_string(v[j]));
-			}
-			if(stoi(num) < smallestNumber)
-				smallestNumber = stoi(num);   
-		}
-	
-		return smallestNumber;
-	}	
+\begin{lstlisting}[language=C++, caption={Brute Force de \textbf{``El número más pequeño''}}]
+int getSmallestNumber(std::vector<int> &v, int k) {
+    
+    int N = v.size();
+
+    vector<int> copy(v);
+    auto pos = copy.begin();
+    string smallest_str = "";
+
+    while (smallest_str.size() < k){
+        int smallest = std::numeric_limits<int>::max();
+        for (auto i = copy.begin(); i != copy.end(); ++i){ //encontramos minimo
+            if (*i < smallest){
+                smallest = *i;
+                pos = i;
+            }
+        }
+        smallest_str.append(to_string(smallest)); //append the min
+        copy.erase(pos);
+    }
+    
+    return (stoi(smallest_str));
+}	
 	 \end{lstlisting}
 
-Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(k\cdot n)$.
+	 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(k\cdot n)$, 
+	 k al ser constante y menor que n no debería afectar a la eficiencia, tambén debido a la limitación 
+	 impuesta por nosostros de que sea menor que 9, en un caso más general conforme crece la k se acercará a $O(n²)$.\\
+	 
 \subsection{Análisis de Divide y Vencerás}
-Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en orderar el vector utilizando quickSort (para dividir y vencer) y una vez lo tenemos ordenado simplemente cogemos los k primeros números.
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en orderar el vector utilizando quickSort 
+(para dividir y vencer) y una vez lo tenemos ordenado simplemente cogemos los k primeros números. \\
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C, caption={Divide y vencerás de \textbf{"El número más pequeño"}}]
-void quicksort(vector<int> &v, int left, int right)
-{
-	if (left >= right)
-		return;
-	int pivot = v[right];
-	int partitionIndex = left;
-	for (int i = left; i < right; ++i)
-	{
-		if (v[i] < pivot)
-		{
-			swap(v[i], v[partitionIndex]);
-			++partitionIndex;
-		}
-	}
-	swap(v[partitionIndex], v[right]);
-	quicksort(v, left, partitionIndex - 1);
-	quicksort(v, partitionIndex + 1, right);
-}
-
+\begin{lstlisting}[language=C++, caption={Divide y vencerás de \textbf{``El número más pequeño''}}]
 int getSmallestNumber(vector<int> v, int k)
 {
 	quicksort(v, 0, v.size() - 1);
@@ -100,17 +111,15 @@ int getSmallestNumber(vector<int> v, int k)
 }	
 	 \end{lstlisting}
 
-Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$
-
-\subsection{Configuración de las Pruebas}
-\begin{itemize}
-	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
-	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
-\end{itemize}
+Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$, 
+que ya conociamos de la práctica anterior, aunque debido a la cantidad de dígitos repetidos su eficiencia decae hasta casi $O(n²)$.\\
 
 \subsection{Tablas y Gráficos de Rendimiento}
-Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
-uso de memoria, etc.
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{scripts/smallest_number/Graficas/comparison_smallest_number.png}	
+\end{center}
+
 
 \subsection{Análisis de los Resultados}
 Tras el analisis teórico y visualizar la gráfica comparativa, vemos que el algoritmo de Fuerza 
@@ -121,32 +130,17 @@ que quicksort tiene la eficiencia del peor caso, ya que al solo usar dígitos de
 en el vector una gran cantidad de números repetidos lo cual afecta gravemente a la eficiencia de este 
 algortimo de ordenación.
 
-\begin{itemize}
-	\item Comparación cualitativa (efectividad, facilidad de implementación).
-	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
-	\item Conclusiones sobre el umbral experimental.
-\end{itemize}
-
-
 
 % =====================
 \section{El par de puntos más cercano}
 % =====================
 \subsection{Análisis de Fuerza Bruta}
-Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en un doble bucle for el cual hace todas las distancias de todos los puntos con todos, hasta encontrar la mínima distancia. 
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en un doble bucle for el cual calcula todas 
+las distancias de todos los puntos con todos, haciendo comparaciones hasta encontrar la mínima distancia. \\
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"El par de puntos más cercano"}}]
-struct Point {
-	double x, y;
-};
-
-double dist(Point p1, Point p2) {
-	return sqrt( (p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y) );
-}
-
-
+\begin{lstlisting}[language=C++, caption={Brute Force de \textbf{``El par de puntos más cercan''}}]
 double bruteForce(const vector<Point>& P, int l, int r) {
 	double minDist = DBL_MAX;
 	for (int i = l; i <= r; i++) {
@@ -165,142 +159,86 @@ Tras el análisis teórico comprobamos que este código tiene una eficiencia de 
 
 \subsection{Análisis de Divide y Vencerás}
 Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en ir haciendo divisiones
-de un array de puntos previamente ordenados por la coordenada x de los puntos (de derecha a izquierda).
+de un array de puntos previamente ordenado por la coordenada x de los puntos (de derecha a izquierda).
 Tras esto, vamos haciendo divisiones partiendo el vector por la mitad recursivamente hasta quedarnos con 3 
 puntos o menos en una franja, donde se resolverá el problema usando fuerza bruta. Así obtenemos la mínima distancia 
 en una franja, tras esto nos quedamos con la mínima distancia entre la franja de la izquierda y la derecha, y la 
 usaremos para estudiar la mínima distancia entre una franja intermedia de tamaño la mínima distancia, creamos esta franja 
 con los puntos que estan a una distancia menor de la menor distancia previamente calculada respecto del punto central.
 Una vez construido el strip comparamos los puntos con respecto a su coordenada y (esta comparación se hace con un 
-número comnstante de puntos al reducirlos con la distancia mínima), buscando que sea menor que la menor distancia previa,
+número comnstante de puntos al reducirlos con la distancia mínima), se hace para evitar que puntos cercanos respecto a 
+la coordenada x pero alejados respecto de la y sean los únicos que se comparan, buscando que sea menor que la menor distancia previa,
 obtenemos así la mínima distancia entre la franja izquierda, derecha y central. Resolviendo recursivamente obtenemos 
-la mínima distancia en un conjunto de puntos.
+la mínima distancia en un conjunto de puntos. \\
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C, caption={Divide y vencerás de \textbf{"El par de puntos más cercano"}}]
-	void swap(Point* a, Point* b) {
-		Point t = *a;
-		*a = *b;
-		*b = t;
+\begin{lstlisting}[language=C++, caption={Divide y vencerás de \textbf{``El par de puntos más cercano''}}]
+double closestUtil(vector<Point> &PX, int l, int r) {
+	// Si el subrango es peque, fuerza bruta
+	if (r - l <= 3) {
+		return bruteForce(PX, l, r);
 	}
-	
-	int partition(vector<Point>& arr, int low, int high) {
-		double pivot = arr[high].x;
-		int i = (low - 1);
-	
-		for (int j = low; j <= high - 1; j++) {
-			if (arr[j].x < pivot) {
-				i++;
-				swap(&arr[i], &arr[j]);
+
+	int mid = (l + r) / 2;
+	double midX = PX[mid].x;
+
+	// bestPair se va actualizando; 
+	// para tener la minima distancia, llamo recursivamente a izq y der
+	double dl = closestUtil(PX, l, mid);
+	double dr = closestUtil(PX, mid+1, r);
+
+	double d = dl < dr ? dl : dr;
+	// Construir el strip (puntos que quedan en [midX - d, midX + d])
+	vector<Point> strip;
+	strip.reserve(r - l + 1);
+	for (int i = l; i <= r; i++) {
+		if (fabs(PX[i].x - midX) < d) {
+			strip.push_back(PX[i]);
+		}
+	}
+	// Ordenar la franja por Y
+	sort(strip.begin(), strip.end(), [](auto &a, auto &b){
+		return a.y < b.y;
+	});
+
+	// Revisar cada punto del strip con sus siguientes
+	// mientras la diferencia en Y sea < d
+	for (int i = 0; i < (int)strip.size(); i++) {
+		for (int j = i+1; j < (int)strip.size() && (strip[j].y - strip[i].y) < d; j++) {
+			double distStrip = dist(strip[i], strip[j]);
+			if (distStrip < d) {
+				d = distStrip;
 			}
 		}
-		swap(&arr[i + 1], &arr[high]);
-		return (i + 1);
 	}
-	
-	void quickSort(vector<Point>& arr, int low, int high) {
-		if (low < high) {
-			int pi = partition(arr, low, high);
-	
-			quickSort(arr, low, pi - 1);
-			quickSort(arr, pi + 1, high);
-		}
-	}
-	
-	void sort_by_x(vector<Point>& points) {
-		quickSort(points, 0, points.size() - 1);
-	}
-	
-	double bruteForce(const vector<Point>& P, int l, int r) {
-		double minDist = DBL_MAX;
-		for (int i = l; i <= r; i++) {
-			for (int j = i+1; j <= r; j++) {
-				double d = dist(P[i], P[j]);
-				if (d < minDist) {
-					minDist = d;
-				}
-			}
-		}
-		return minDist;
-	}
-	
-	
-	double closestUtil(vector<Point> &PX, int l, int r) {
-		// Si el subrango es peque, fuerza bruta
-		if (r - l <= 3) {
-			return bruteForce(PX, l, r);
-		}
-	
-		int mid = (l + r) / 2;
-		double midX = PX[mid].x;
-	
-		// bestPair se va actualizando; 
-		// para tener la minima distancia, llamo recursivamente a izq y der
-		double dl = closestUtil(PX, l, mid);
-		double dr = closestUtil(PX, mid+1, r);
-	
-		double d = dl < dr ? dl : dr;
-		// Construir el strip (puntos que quedan en [midX - d, midX + d])
-		vector<Point> strip;
-		strip.reserve(r - l + 1);
-		for (int i = l; i <= r; i++) {
-			if (fabs(PX[i].x - midX) < d) {
-				strip.push_back(PX[i]);
-			}
-		}
-		// Ordenar la franja por Y
-		sort(strip.begin(), strip.end(), [](auto &a, auto &b){
-			return a.y < b.y;
-		});
-	
-		// Revisar cada punto del strip con sus siguientes
-		// mientras la diferencia en Y sea < d
-		for (int i = 0; i < (int)strip.size(); i++) {
-			for (int j = i+1; j < (int)strip.size() && (strip[j].y - strip[i].y) < d; j++) {
-				double distStrip = dist(strip[i], strip[j]);
-				if (distStrip < d) {
-					d = distStrip;
-				}
-			}
-		}
-	
-		return d;
-	}
+
+	return d;
+}
 \end{lstlisting}
 
 Para el análisis teórico de este algoritmo debemos estudiar la ecuación de recurrencia: $T(n) = 2T(\frac{n}{2}) + O(n)$.
 Esta ecuación se obtiene de que una llamada a la función de tamaño n hará dos llamadas recursivas con cada mitad de los puntos (izquierda y derecha),
 O(n) se obtiene de calcular los puntos en el strip central, que auqnue pueda parecer $O(n²)$, cada punto del strip solo 
-se compara con un número constante de puntos, al habernos quedado previamnete con una cantidad de puntos pequeñas dentro de un rango.
+se compara con un número constante de puntos, al habernos quedado previamente con una cantidad de puntos pequeñas dentro de un rango.
 Cuando el tamaño es menor o igual que 3 (caso base), donde aplicamos 
-fuerza bruta, al ser un tamaño tan pequeño, no afectará a la eficiencia.
+fuerza bruta, al ser un tamaño tan pequeño, no afectará a la eficiencia.\\
 
 
-Tras resolver la recurrencia comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$.
-
-\subsection{Detalles de Implementación}
-
-\subsection{Configuración de las Pruebas}
-\begin{itemize}
-	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
-	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
-\end{itemize}
+Tras resolver la recurrencia comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$.\\
 
 \subsection{Tablas y Gráficos de Rendimiento}
-Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
-uso de memoria, etc.
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{scripts/closest_distance/Graficas/comparison_closest_distance.png}
+\end{center}
+
 
 \subsection{Análisis de los Resultados}
 Como se esperaba tras el análisis teórico, en las gráficas podemos observar que el algoritmo Divide y Vencerás 
 tiene una mayor eficiencia que el de Fuerza Bruta, también podemos observar la clara forma parábolica del algoritmo
 Fuerza Bruta como habiamos previsto. También se puede observar la región a partir del cual el primer algortimo, comienza 
 a tener tiempos de ejecución más bajos que el segundo.
-\begin{itemize}
-	\item Comparación cualitativa (efectividad, facilidad de implementación).
-	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
-	\item Conclusiones sobre el umbral experimental.
-\end{itemize}
 
 
 % =====================
@@ -311,52 +249,52 @@ a tener tiempos de ejecución más bajos que el segundo.
 Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en empezar seleccionando el punto más a la izquierda, 
 el cual sabemos que siempre va a estar en la envolvente convexa, seguidamente seleccionas otro punto y compruebas si 
 la recta que une los dos puntos deja el resto de puntos a la izquierda, una vez encuentras ese punto, es nuevo punto 
-actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa.
+actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa. \\
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C, caption={Brute Force de \textbf{"La envolvente convexa"}}]
-	// Estructura para representar un punto
-	struct Point {
-		float x, y;
-	};
+\begin{lstlisting}[language=C++, caption={Brute Force de \textbf{``La envolvente convexa''}}]
+// Estructura para representar un punto
+struct Point {
+float x, y;
+};
+
+typedef pair<int, int> ParPuntos;
+
+// Funcion que calcula el convex hull por fuerza bruta
+set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
+int n = points.size();
+set<ParPuntos> hull;
+
+// Recorremos cada par de puntos
+for (int i = 0; i < n; i++) {
+	for (int j = i + 1; j < n; j++) {
+	int left = 0, right = 0;
 	
-	typedef pair<int, int> ParPuntos;
-	
-	// Funcion que calcula el convex hull por fuerza bruta
-	set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
-		int n = points.size();
-		set<ParPuntos> hull;
+	// Verificamos la posicion de cada otro punto respecto a la linea formada por points[i] y points[j]
+	for (int k = 0; k < n; k++) {
+		if (k == i || k == j)
+			continue;
+			
+		float position = (points[j].x - points[i].x) * (points[k].y - points[i].y) -
+		(points[j].y - points[i].y) * (points[k].x - points[i].x);
 		
-		// Recorremos cada par de puntos
-		for (int i = 0; i < n; i++) {
-			for (int j = i + 1; j < n; j++) {
-				int left = 0, right = 0;
-				
-				// Verificamos la posicion de cada otro punto respecto a la linea formada por points[i] y points[j]
-				for (int k = 0; k < n; k++) {
-					if (k == i || k == j)
-						continue;
-						
-					float position = (points[j].x - points[i].x) * (points[k].y - points[i].y) -
-								   (points[j].y - points[i].y) * (points[k].x - points[i].x);
-					
-					if (position > 0)
-						left++;
-					else if (position < 0)
-						right++;
-				}
-				
-				// Si todos los puntos se encuentran de un mismo lado (o son colineales), se adjuntan los puntos de la arista
-				if (left == 0 || right == 0) {
-					hull.insert({points[i].x, points[i].y});
-					hull.insert({points[j].x, points[j].y});
-				}
-			}
-		}
-		
-		return hull;
+		if (position > 0)
+			left++;
+		else if (position < 0)
+			right++;
 	}
+	
+	// Si todos los puntos se encuentran de un mismo lado (o son colineales), se adjuntan los puntos de la arista
+	if (left == 0 || right == 0) {
+		hull.insert({points[i].x, points[i].y});
+		hull.insert({points[j].x, points[j].y});
+	}
+	}
+}
+
+return hull;
+}
 \end{lstlisting}
 
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^3)$
@@ -369,9 +307,29 @@ el punto más a la izquierda, actuando analogamente con los de la izquierda, tra
 formarán parte de la envolvente. Para ello, vamos buscando con el punto más a la derecha de la izquierda fijo, y rotando el punto más a la 
 izquierda de los derecha, ahcia la derecha hasta encontrar uno que deje el resto de puntos a la derecha, una vez lo encontramos fijamos 
 ese punto y rotamos hacia la izquierda los puntos de la izquierda hasta encontrar uno que deje todos los puntos de la izquierda a la izquierda.
-Repetimos para la tangente inferior rotando en sentido contrario, finalizamos guardando todoos los puntos resultantes en el vector a devolver.s
+Repetimos para la tangente inferior rotando en sentido contrario, finalizamos guardando todoos los puntos resultantes en el vector a devolver. \\
 
-código
+El código es el siguiente:
+
+\begin{lstlisting}[language=C++, caption={Divide y vencerás de \textbf{``La envolvente convexa''}}]
+vector<Point> convexHullDC(vector<Point> &points, int l, int r) {
+	// Base case: one point
+	if (l == r) {
+		return {points[l]};
+	}
+	// Base case: two points
+	if (r - l == 1) {
+		if (points[l].x == points[r].x && points[l].y == points[r].y)
+			return {points[l]};
+		return {points[l], points[r]};
+	}
+	int mid = (l + r) / 2;
+	vector<Point> leftHull = convexHullDC(points, l, mid);
+	vector<Point> rightHull = convexHullDC(points, mid + 1, r);
+	return mergeHulls(leftHull, rightHull);
+}
+	
+\end{lstlisting}
 
 Para el análisis teórico de este algoritmo debemos estudiar la ecuación de recurrencia: $T(n) = 2T(\frac{n}{2}) + O(n)$.
 Esta ecuación se obtiene de que una llamada a la función de tamaño n hará dos llamadas recursivas con cada mitad de los puntos (izquierda y derecha),
@@ -381,28 +339,18 @@ El caso base usa la fuerza bruta en un conjunto de 5 puntos, su eficiencia es pr
 
 Tras resolver la recurrencia comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$.
 
-\subsection{Detalles de Implementación}
-
-\subsection{Configuración de las Pruebas}
-\begin{itemize}
-	\item Descripción del entorno de ejecución (CPU, memoria, compilador, etc.).
-	\item Conjunto de datos utilizados para las pruebas (tamaño, forma de generarlos).
-\end{itemize}
-
 \subsection{Tablas y Gráficos de Rendimiento}
-Insertar aquí las tablas y/o gráficos que muestren los tiempos de ejecución,
-uso de memoria, etc.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{scripts/convex_hull/Graficas/comparison_convex_hull.png}
+\end{center}
 
 \subsection{Análisis de los Resultados}
 Como se esperaba tras el análisis teórico, en las gráficas podemos observar que el algoritmo Divide y Vencerás 
 tiene una mayor eficiencia que el de Fuerza Bruta, también podemos observar la clara forma cúbica del algoritmo
 Fuerza Bruta como habiamos previsto. También se puede observar la región a partir del cual el primer algortimo, comienza 
 a tener tiempos de ejecución más bajos que el segundo.
-\begin{itemize}
-	\item Comparación cualitativa (efectividad, facilidad de implementación).
-	\item Comparación cuantitativa (tiempos de ejecución, consumo de memoria).
-	\item Conclusiones sobre el umbral experimental.
-\end{itemize}
+
 
 En esta sección se describen los diferentes problemas que se abordarán.
 
