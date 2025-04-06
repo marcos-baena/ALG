@@ -1,36 +1,41 @@
-#include <vector>
-#include <algorithm>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> // Para usar srand y rand
 #include <chrono>
+#include <iostream>
+#include <fstream> // Para usar ficheros
+#include <vector>
+#include <random>
 
 using namespace std;
 /**************************************/
 
-void quicksort(vector<int> &v, int left, int right)
-{
-    if (left >= right)
-        return;
-    int pivot = v[right];
-    int partitionIndex = left;
-    for (int i = left; i < right; ++i)
-    {
-        if (v[i] < pivot)
-        {
-            swap(v[i], v[partitionIndex]);
-            ++partitionIndex;
+int partition(vector<int> &vec, int low, int high) {
+    int mid = low + (high - low) / 2;
+    swap(vec[mid], vec[high]); // Mueve el pivote al final
+    int pivot = vec[high];  
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (vec[j] <= pivot) {
+            i++;
+            swap(vec[i], vec[j]);
         }
     }
-    swap(v[partitionIndex], v[right]);
-    quicksort(v, left, partitionIndex - 1);
-    quicksort(v, partitionIndex + 1, right);
+    swap(vec[i + 1], vec[high]);
+    return i + 1;
 }
 
-int getSmallestNumber(vector<int> v, int k)
+void QuickSort(vector<int> &vec, int low, int high) {
+    if (low < high) {
+        int pi = partition(vec, low, high);
+        QuickSort(vec, low, pi - 1);
+        QuickSort(vec, pi + 1, high);
+    }
+}
+
+
+int getSmallestNumber(vector<int> &v, int k)
 {
-    quicksort(v, 0, v.size() - 1);
+    QuickSort(v, 0, v.size() - 1);
     string result = "";
     for (int i = 0; i < k; ++i)
     {
@@ -42,37 +47,50 @@ int getSmallestNumber(vector<int> v, int k)
 
 int main(int argc, char *argv[])
 {
-    auto start = std::chrono::high_resolution_clock::now();
+    vector<int> v;
+    int n, argumento;
+    chrono::time_point<std::chrono::high_resolution_clock> t0, tf; // Para medir el tiempo de ejecución
+    unsigned long int semilla;
+    ofstream fsalida;
 
-    if (argc != 2)
-    {
-        cerr << "Usage: " << argv[0] << " <size_of_vector>" << endl;
-        return 1;
+    if (argc <= 3) {
+        cerr << "\nError: El programa se debe ejecutar de la siguiente forma.\n\n";
+        cerr << argv[0] << " NombreFicheroSalida Semilla tamCaso1 tamCaso2 ... tamCasoN\n\n";
+        return 0;
     }
 
-    int size = stoi(argv[1]);
-    if (size <= 0)
-    {
-        cerr << "Size of vector must be a positive integer." << endl;
-        return 1;
+    // Abrimos fichero de salida
+    fsalida.open(argv[1]);
+    if (!fsalida.is_open()) {
+        cerr << "Error: No se pudo abrir fichero para escritura " << argv[1] << "\n\n";
+        return 0;
     }
 
-    srand(time(0));
-    vector<int> v(size);
-    for (int i = 0; i < size; ++i)
-    {
-        v[i] = rand() % 9 + 1; // Random values from 1 to 9
+    // Inicializamos generador de no. aleatorios
+    semilla = atoi(argv[2]);
+    srand(semilla);
+
+    // Pasamos por cada tamaño de caso
+    for (argumento = 3; argumento < argc; argumento++) {
+        n = atoi(argv[argumento]);
+        v.resize(n);
+
+        // Generamos vector aleatorio de prueba, con componentes entre 0 y n-1
+        for (int i = 0; i < n; i++)
+            v[i] = rand()%9 + 1;
+
+        cerr << "Ejecutando divide y venceras para tam. caso: " << n << endl;
+
+        t0 = chrono::high_resolution_clock::now();
+        int k = rand() % 5 + 5;
+    	int SmallestNumber = getSmallestNumber(v, k);
+        tf = chrono::high_resolution_clock::now();
+
+        unsigned long tejecucion = chrono::duration_cast<chrono::microseconds>(tf - t0).count();
+        cerr << "\tTiempo de ejec. (us): " << tejecucion << " para tam. caso " << n << endl;
+
+        // Guardamos tamaño de caso y t_ejecucion a fichero de salida
+        fsalida << n << " " << tejecucion << "\n";
     }
-
-    int SmallestNumber = getSmallestNumber(v, min(4, size));
-
-    auto end = std::chrono::high_resolution_clock::now();
-
-    // Calculate the elapsed time in milliseconds
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    
-    // Print out the elapsed time
-    std::cout << duration.count() << std::endl;
-
     return 0;
 }

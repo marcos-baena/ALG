@@ -42,44 +42,44 @@ int main(int argc, char *argv[]) {
     unsigned long int semilla;
     ofstream fsalida;
 
-    if (argc < 2) {
+    if (argc <= 3) {
         cerr << "\nError: El programa se debe ejecutar de la siguiente forma.\n\n";
         cerr << argv[0] << " NombreFicheroSalida Semilla tamCaso1 tamCaso2 ... tamCasoN\n\n";
         return 0;
     }
 
-    /*
+    
     // Abrimos fichero de salida
     fsalida.open(argv[1]);
     if (!fsalida.is_open()) {
         cerr << "Error: No se pudo abrir fichero para escritura " << argv[1] << "\n\n";
         return 0;
-    }*/
+    }
 
     // Inicializamos generador de no. aleatorios
-    semilla = atoi(argv[1]);
+    semilla = atoi(argv[2]);
     srand(semilla);
 
     // Pasamos por cada tamaño de caso
-    for (argumento = 2; argumento < argc; argumento++) {
+    for (argumento = 3; argumento < argc; argumento++) {
         n = atoi(argv[argumento]);
         v.resize(n);
 
-        double minDist = 10.0;
         for (int i = 0; i < n; i++){
             double x, y;
+            
             bool validPoint = false;
             while (!validPoint) {
-            x = rand() % (2 * n); // Aumentamos el rango para mayor dispersión
-            y = rand() % (2 * n);
-
-            validPoint = true;
-            for (int j = 0; j < i; j++) {
-                if (dist(v[j], {x, y}) < minDist) {
-                validPoint = false;
-                break;
+                x = rand() % (2 * n); // Aumentamos el rango para mayor dispersión
+                y = rand() % (2 * n);
+                
+                validPoint = true;
+                for (int j = 0; j < i; j++) {
+                    if (v[j].x == x && v[j].y == y) {
+                        validPoint = false;
+                        break;
+                    }
                 }
-            }
             }
             v[i].x = x;
             v[i].y = y;

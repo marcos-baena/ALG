@@ -18,17 +18,17 @@
 En esta práctica se desarrolla la resolución de tres problemas diferentes: 
 
 \begin{itemize}
-	\item Menor número
-	\item Menor distancia
-	\item Menor envolvente convexa
+	\item Menor número de k cifras
+	\item Menor distancia entre puntos
+	\item Envolvente convexa de puntos  
 \end{itemize}
 
 Lo haremos de dos maneras distintas, primero haremos una aproximación mediante algoritmos 
 de fuerza bruta y después aplicaremos lo aprendido en clase, desarrollando soluciones basadas 
 en divide y vencerás. Analizaremos la eficiencia teórica de cada solución, mediante un script
-ejecutaremos los programas con diferentes tamaños y una cantidad determinada de veces, nos 
+ejecutaremos los programas con diferentes tamaños 10 veces, nos 
 quedaremos con una media de todas las ejecuciones y podremos comparar la eficiencia de ambas 
-soluciones, viendo a partir de que tamaños es mejor una solución a la otra en cuanto a eficiencia.
+soluciones, viendo a partir de qué tamaños es mejor una solución a la otra en cuanto a eficiencia.
 \\
 
 Para todas las ejecuciones de los diferentes algoritmos hemos usado el mismo portátil. Un \textit{Asus Zephyrus G14} con un procesador \textit{Ryzen 7 4800HS}, cuyas especificaciones se pueden ver en la siguiente imágen:\\
@@ -50,6 +50,21 @@ Los objetivos de esta práctica son los siguientes:
 \end{itemize}
 
 % =====================
+\section{Cómo ejecutar}
+% =====================
+Para compilar todos los programas, basta con abrir una terminal en el directorio \texttt{ficheros\_cpp} y ejecutar el siguiente comando:
+
+\begin{center}
+\texttt{\$ make}
+\end{center}
+
+El archivo \texttt{Makefile} se encargará automáticamente de compilar todos los ficheros fuente y generar los ejecutables correspondientes. Una vez compilados, los programas podrán ejecutarse directamente desde la terminal.
+Se ejecutan fácilmente proporcionando un archivo de salida, un número que actúe como semilla para los generadores de números aleatorios, y un entero n que indique el tamaño de la prueba (número de puntos):
+\begin{center}
+	\verb|$ ./programa [archivo_salida] [semilla] [tamaño problema]|
+	\end{center}
+	
+% =====================
 \section{El número más pequeño}
 \label{sec:El número más pequeño}
 % =====================
@@ -58,7 +73,7 @@ Los objetivos de esta práctica son los siguientes:
 Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en ir recorriendo el vector de 
 puntos tantas veces como cifras tenga el número que busquemos, y en cada recorrido se busca el 
 número más pequeño, se elimina y se procede a hacer lo mismo en la siguiente iteración, hasta obtener 
-finalmente el número más pequeño posible, ejecutamos el programa con un valor de k entre 4 y 9, ya 
+finalmente el número más pequeño posible. Ejecutamos el programa con un valor de k entre 4 y 9, ya 
 que el mayor entero que acepta C++ tiene 10 dígitos.\\
 
 El código es el siguiente:
@@ -74,13 +89,13 @@ int getSmallestNumber(std::vector<int> &v, int k) {
 
     while (smallest_str.size() < k){
         int smallest = std::numeric_limits<int>::max();
-        for (auto i = copy.begin(); i != copy.end(); ++i){ //encontramos minimo
+        for (auto i = copy.begin(); i != copy.end(); ++i){ // encontramos minimo
             if (*i < smallest){
                 smallest = *i;
                 pos = i;
             }
         }
-        smallest_str.append(to_string(smallest)); //append the min
+        smallest_str.append(to_string(smallest)); // metemos el minimo
         copy.erase(pos);
     }
     
@@ -88,9 +103,10 @@ int getSmallestNumber(std::vector<int> &v, int k) {
 }	
 	 \end{lstlisting}
 
-	 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(k\cdot n)$, 
+	 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(k\cdot n)$. 
 	 k al ser constante y menor que n no debería afectar a la eficiencia, tambén debido a la limitación 
-	 impuesta por nosostros de que sea menor que 9, en un caso más general conforme crece la k se acercará a $O(n²)$.\\
+	 impuesta por nosostros de que sea menor que 9. Sin embargo, en un caso más general, si pudieramos escoger un número de más y
+	 más cifras, la k crecería y la eficiencia se acercaría a $O(n^2)$.\\
 	 
 \subsection{Análisis de Divide y Vencerás}
 Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en orderar el vector utilizando quickSort 
@@ -112,7 +128,7 @@ int getSmallestNumber(vector<int> v, int k)
 	 \end{lstlisting}
 
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n\cdot \log (n))$, 
-que ya conociamos de la práctica anterior, aunque debido a la cantidad de dígitos repetidos su eficiencia decae hasta casi $O(n²)$.\\
+que ya conociamos de la práctica anterior, aunque debido a la cantidad de dígitos repetidos su eficiencia decae hasta casi $O(n^2)$.\\
 
 \subsection{Tablas y Gráficos de Rendimiento}
 
@@ -120,12 +136,11 @@ que ya conociamos de la práctica anterior, aunque debido a la cantidad de dígi
 	\includegraphics[width=0.8\textwidth]{scripts/smallest_number/Graficas/comparison_smallest_number.png}	
 \end{center}
 
-
 \subsection{Análisis de los Resultados}
 Tras el analisis teórico y visualizar la gráfica comparativa, vemos que el algoritmo de Fuerza 
 Bruta consigue resolver el problema de forma más eficiente que el algoritmo Divide y Vencerás. 
 Esto se debe a que el primer algortimo depende de una constante k que consideramos siempre menor 
-que n, y por tanto no afecta a la eficiencia. Mientras que en el segundo algoritmo podemos apreciar 
+que n, acotada entre 4 y 9, y por tanto no afecta a la eficiencia. Mientras que en el segundo algoritmo podemos apreciar 
 que quicksort tiene la eficiencia del peor caso, ya que al solo usar dígitos del 1 al 9, encontramos
 en el vector una gran cantidad de números repetidos lo cual afecta gravemente a la eficiencia de este 
 algortimo de ordenación.
@@ -140,7 +155,7 @@ las distancias de todos los puntos con todos, haciendo comparaciones hasta encon
 
 El código es el siguiente:
 
-\begin{lstlisting}[language=C++, caption={Brute Force de \textbf{``El par de puntos más cercan''}}]
+\begin{lstlisting}[language=C++, caption={Brute Force de \textbf{``El par de puntos más cercano''}}]
 double bruteForce(const vector<Point>& P, int l, int r) {
 	double minDist = DBL_MAX;
 	for (int i = l; i <= r; i++) {
@@ -158,18 +173,28 @@ double bruteForce(const vector<Point>& P, int l, int r) {
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^2)$.
 
 \subsection{Análisis de Divide y Vencerás}
-Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en ir haciendo divisiones
-de un array de puntos previamente ordenado por la coordenada x de los puntos (de derecha a izquierda).
-Tras esto, vamos haciendo divisiones partiendo el vector por la mitad recursivamente hasta quedarnos con 3 
-puntos o menos en una franja, donde se resolverá el problema usando fuerza bruta. Así obtenemos la mínima distancia 
-en una franja, tras esto nos quedamos con la mínima distancia entre la franja de la izquierda y la derecha, y la 
-usaremos para estudiar la mínima distancia entre una franja intermedia de tamaño la mínima distancia, creamos esta franja 
-con los puntos que estan a una distancia menor de la menor distancia previamente calculada respecto del punto central.
-Una vez construido el strip comparamos los puntos con respecto a su coordenada y (esta comparación se hace con un 
-número comnstante de puntos al reducirlos con la distancia mínima), se hace para evitar que puntos cercanos respecto a 
-la coordenada x pero alejados respecto de la y sean los únicos que se comparan, buscando que sea menor que la menor distancia previa,
-obtenemos así la mínima distancia entre la franja izquierda, derecha y central. Resolviendo recursivamente obtenemos 
-la mínima distancia en un conjunto de puntos. \\
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en hacer divisiones 
+de un array de puntos previamente ordenado por la coordenada $x$ (de derecha a izquierda). 
+
+A partir de ahí, se divide el vector por la mitad de forma recursiva hasta que se obtienen subconjuntos 
+de tres puntos o menos, en los cuales se resuelve el problema mediante fuerza bruta. 
+
+De esta forma, se calcula la mínima distancia en cada franja. Luego, se toma la mínima distancia entre 
+la franja izquierda y la derecha, y se utiliza para estudiar una franja intermedia de ancho igual 
+a esa distancia mínima.
+
+Esta franja intermedia se construye con los puntos que se encuentran a una distancia menor que la mínima 
+previamente calculada con respecto al punto central. 
+
+Una vez construido el \textit{strip}, se comparan los puntos según su coordenada $y$. 
+Esta comparación se limita a un número constante de puntos, ya que se filtran usando la distancia mínima. 
+
+Esto se hace para evitar comparar únicamente puntos cercanos en la coordenada $x$ pero alejados en $y$, 
+lo cual no sería eficiente. Se busca siempre encontrar una distancia menor que la previamente conocida.\\
+
+Así se obtiene la mínima distancia considerando la franja izquierda, la derecha y la central. 
+Finalmente, resolviendo de manera recursiva, se obtiene la mínima distancia entre todos los puntos del conjunto.\\
+
 
 El código es el siguiente:
 
@@ -246,10 +271,14 @@ a tener tiempos de ejecución más bajos que el segundo.
 % =====================
 \subsection{Análisis de Fuerza Bruta}
 
-Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en empezar seleccionando el punto más a la izquierda, 
-el cual sabemos que siempre va a estar en la envolvente convexa, seguidamente seleccionas otro punto y compruebas si 
-la recta que une los dos puntos deja el resto de puntos a la izquierda, una vez encuentras ese punto, es nuevo punto 
-actúa como el primero que seleccionaste, y haces esto hasta que encuentres todos los puntos pertenecientes a la envolvente convexa. \\
+Nuestra idea para desarrollar el algoritmo de fuerza bruta se basa en comenzar seleccionando 
+el punto más a la izquierda, ya que sabemos que este siempre formará parte de la envolvente convexa. 
+
+A continuación, se selecciona otro punto y se comprueba si la recta que une ambos deja al resto de los puntos 
+a su izquierda. 
+
+Una vez encontrado ese punto, pasa a desempeñar el mismo papel que el primero, y repetimos el proceso 
+hasta identificar todos los puntos que pertenecen a la envolvente convexa.\\
 
 El código es el siguiente:
 
@@ -300,14 +329,25 @@ return hull;
 Tras el análisis teórico comprobamos que este código tiene una eficiencia de $O(n^3)$
 
 \subsection{Análisis de Divide y Vencerás}
-Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en ir diviendo los puntos del plano, previamente ordenados 
-de derecha a izquierda, en dos partes (izquierda y derecha) hasta llegar a un tamaño pequeño donde se calculen las envolventes convexas,
-tanto de izquierda como de derecha que se juntarán usando la función merge. Esta función comienza buscando de entre los puntos de la envolvente de la derecha 
-el punto más a la izquierda, actuando analogamente con los de la izquierda, tras esto buscamos la tangente superior que cuyos puntos 
-formarán parte de la envolvente. Para ello, vamos buscando con el punto más a la derecha de la izquierda fijo, y rotando el punto más a la 
-izquierda de los derecha, ahcia la derecha hasta encontrar uno que deje el resto de puntos a la derecha, una vez lo encontramos fijamos 
-ese punto y rotamos hacia la izquierda los puntos de la izquierda hasta encontrar uno que deje todos los puntos de la izquierda a la izquierda.
-Repetimos para la tangente inferior rotando en sentido contrario, finalizamos guardando todoos los puntos resultantes en el vector a devolver. \\
+Nuestra idea para desarrollar el algoritmo de Divide y Vencerás se basa en dividir progresivamente los puntos del plano 
+(previamente ordenados de derecha a izquierda) en dos partes: izquierda y derecha. 
+
+Esta división continúa hasta que se alcanza un tamaño pequeño, donde se calculan las envolventes convexas de cada parte por separado. 
+Posteriormente, ambas envolventes se combinan utilizando la función \textit{merge}. 
+
+Esta función comienza buscando, entre los puntos de la envolvente derecha, el que esté más a la izquierda, 
+y de manera análoga en la envolvente izquierda. 
+
+A continuación, se determina la tangente superior, cuyos puntos formarán parte de la envolvente final. 
+Para ello, se fija el punto más a la derecha de la envolvente izquierda y se rota el punto más a la izquierda 
+de la envolvente derecha hacia la derecha hasta encontrar uno que deje al resto de puntos a su derecha. 
+
+Una vez hallado, se fija dicho punto y se rota hacia la izquierda la envolvente izquierda hasta encontrar un punto 
+que deje a todos sus compañeros a la izquierda. 
+
+Este mismo proceso se repite para hallar la tangente inferior, rotando en sentido contrario. 
+
+Finalmente, todos los puntos resultantes se almacenan en el vector que se devolverá.\\
 
 El código es el siguiente:
 
@@ -347,12 +387,9 @@ Tras resolver la recurrencia comprobamos que este código tiene una eficiencia d
 
 \subsection{Análisis de los Resultados}
 Como se esperaba tras el análisis teórico, en las gráficas podemos observar que el algoritmo Divide y Vencerás 
-tiene una mayor eficiencia que el de Fuerza Bruta, también podemos observar la clara forma cúbica del algoritmo
+tiene una eficiencia enormemente mayor que el de Fuerza Bruta, también podemos observar la clara forma cúbica del algoritmo
 Fuerza Bruta como habiamos previsto. También se puede observar la región a partir del cual el primer algortimo, comienza 
 a tener tiempos de ejecución más bajos que el segundo.
-
-
-En esta sección se describen los diferentes problemas que se abordarán.
 
 % =====================
 \section{Conclusiones}

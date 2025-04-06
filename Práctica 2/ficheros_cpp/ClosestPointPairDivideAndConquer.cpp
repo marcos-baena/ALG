@@ -126,60 +126,56 @@ int main(int argc, char *argv[]) {
     unsigned long int semilla;
     ofstream fsalida;
 
-    if (argc < 2) {
+    if (argc <= 3) {
         cerr << "\nError: El programa se debe ejecutar de la siguiente forma.\n\n";
         cerr << argv[0] << " NombreFicheroSalida Semilla tamCaso1 tamCaso2 ... tamCasoN\n\n";
         return 0;
     }
 
-    /*
+    
     // Abrimos fichero de salida
     fsalida.open(argv[1]);
     if (!fsalida.is_open()) {
         cerr << "Error: No se pudo abrir fichero para escritura " << argv[1] << "\n\n";
         return 0;
-    }*/
+    }
 
     // Inicializamos generador de no. aleatorios
-    semilla = atoi(argv[1]);
+    semilla = atoi(argv[2]);
     srand(semilla);
+    
 
     // Pasamos por cada tamaño de caso
-    for (argumento = 2; argumento < argc; argumento++) {
+    for (argumento = 3; argumento < argc; argumento++) {
         n = atoi(argv[argumento]);
         v.resize(n);
 
-        // Generamos vector aleatorio de prueba, con componentes entre 0 y n-1
-        // Aseguramos que la distancia mínima sea mayor a 10
-        double min = 10.0;
         for (int i = 0; i < n; i++){
             double x, y;
+            
             bool validPoint = false;
             while (!validPoint) {
-            x = rand() % (2 * n); // Aumentamos el rango para mayor dispersión
-            y = rand() % (2 * n);
-
-            validPoint = true;
-            for (int j = 0; j < i; j++) {
-                if (dist(v[j], {x, y}) < min) {
-                validPoint = false;
-                break;
+                x = rand() % (2 * n); // Aumentamos el rango para mayor dispersión
+                y = rand() % (2 * n);
+                
+                validPoint = true;
+                for (int j = 0; j < i; j++) {
+                    if (v[j].x == x && v[j].y == y) {
+                        validPoint = false;
+                        break;
+                    }
                 }
-            }
             }
             v[i].x = x;
             v[i].y = y;
         }
-
-        sort_by_x(v);
         double minDist;
         t0 = chrono::high_resolution_clock::now();
-    
-        minDist = closestUtil(v, 0, n -1);
+        minDist = closestUtil(v, 0, n - 1);
         tf = chrono::high_resolution_clock::now();
 
         unsigned long tejecucion = chrono::duration_cast<chrono::microseconds>(tf - t0).count();
-        cerr << "Mínima distancia D&C " << minDist << endl;
+        cerr << "Mínima distancia " << minDist << endl;
         cerr << n << " " << tejecucion << endl;
 
         // Guardamos tamaño de caso y t_ejecucion a fichero de salida

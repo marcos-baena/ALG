@@ -1,147 +1,176 @@
 #include <iostream>
 #include <vector>
-#include <set>
-#include <float.h>
-#include <cstdlib>   // Para atoi y rand
-#include <chrono>
 #include <algorithm>
-
+#include <chrono>
+#include <fstream>
+#include <cstdlib>
+#include <set>
 using namespace std;
-using namespace chrono;
 
-// Estructura para representar un punto
 struct Point {
-    float x, y;
+    double x, y;
 };
 
-typedef pair<int, int> ParPuntos;
-
-// Función auxiliar para intercambiar dos puntos
-void swap(Point &a, Point &b) {
-    Point temp = a;
-    a = b;
-    b = temp;
+// Overload operator< to use Point in std::set (sort by x, then y)
+bool operator<(const Point &a, const Point &b) {
+    return (a.x < b.x) || (a.x == b.x && a.y < b.y);
 }
 
-// Función auxiliar partition para QuickSort (ordena según la coordenada x)
-int partition(vector<Point>& arr, int low, int high) {
-    float pivot = arr[high].x; // Elegimos el último elemento como pivote
-    int i = low - 1;
-    for (int j = low; j < high; j++) {
-        if (arr[j].x < pivot) {
-            i++;
-            swap(arr[i], arr[j]);
+// Comparator for sorting points
+bool cmpPoint(const Point &a, const Point &b) {
+    if (a.x == b.x)
+        return a.y < b.y;
+    return a.x < b.x;
+}
+
+// Utility function: cross product of OA and OB vectors
+double cross(const Point &O, const Point &A, const Point &B) {
+    return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
+}
+
+// Merge two convex hulls into one convex hull
+vector<Point> mergeHulls(const vector<Point> &leftHull, const vector<Point> &rightHull) {
+    int n1 = leftHull.size(), n2 = rightHull.size();
+    // Find the rightmost point of left hull and leftmost point of right hull
+    int i = 0, j = 0;
+    for (int k = 0; k < n1; k++) {
+        if (leftHull[k].x > leftHull[i].x)
+            i = k;
+    }
+    for (int k = 0; k < n2; k++) {
+        if (rightHull[k].x < rightHull[j].x)
+            j = k;
+    }
+
+    // Find upper tangent
+    int upperI = i, upperJ = j;
+    bool done = false;
+    while (!done) {
+        done = true;
+        // Move rightHull index clockwise as long as the line is not an upper tangent
+        while (cross(leftHull[upperI], rightHull[upperJ], rightHull[(upperJ + 1) % n2]) > 0)
+            upperJ = (upperJ + 1) % n2;
+        // Move leftHull index counterclockwise as long as the line is not an upper tangent
+        while (cross(rightHull[upperJ], leftHull[upperI], leftHull[(n1 + upperI - 1) % n1]) < 0) {
+            upperI = (n1 + upperI - 1) % n1;
+            done = false;
         }
     }
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
-}
 
-// Implementación de QuickSort para ordenar los puntos según su coordenada x
-void quickSort(vector<Point>& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-// Función que calcula el convex hull por fuerza bruta
-set<ParPuntos> convexHullBruteForce(const vector<Point>& points) {
-    int n = points.size();
-    set<ParPuntos> hull;
-    
-    // Recorremos cada par de puntos
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            int left = 0, right = 0;
-            
-            // Verificamos la posición de cada otro punto respecto a la línea formada por points[i] y points[j]
-            for (int k = 0; k < n; k++) {
-                if (k == i || k == j)
-                    continue;
-                    
-                float position = (points[j].x - points[i].x) * (points[k].y - points[i].y) -
-                                 (points[j].y - points[i].y) * (points[k].x - points[i].x);
-                
-                if (position > 0)
-                    left++;
-                else if (position < 0)
-                    right++;
-            }
-            
-            // Si todos los puntos se encuentran de un mismo lado (o son colineales), se añaden los puntos de la arista
-            if (left == 0 || right == 0) {
-                hull.insert({static_cast<int>(points[i].x), static_cast<int>(points[i].y)});
-                hull.insert({static_cast<int>(points[j].x), static_cast<int>(points[j].y)});
-            }
+    // Find lower tangent
+    int lowerI = i, lowerJ = j;
+    done = false;
+    while (!done) {
+        done = true;
+        // Move rightHull index counterclockwise as long as the line is not a lower tangent
+        while (cross(leftHull[lowerI], rightHull[lowerJ], rightHull[(n2 + lowerJ - 1) % n2]) < 0)
+            lowerJ = (n2 + lowerJ - 1) % n2;
+        // Move leftHull index clockwise as long as the line is not a lower tangent
+        while (cross(rightHull[lowerJ], leftHull[lowerI], leftHull[(lowerI + 1) % n1]) > 0) {
+            lowerI = (lowerI + 1) % n1;
+            done = false;
         }
     }
-    
-    return hull;
+
+    // Construct the merged hull by traversing from upper tangent to lower tangent
+    vector<Point> merged;
+    // Traverse left hull from upperI to lowerI (inclusive)
+    int idx = upperI;
+    merged.push_back(leftHull[idx]);
+    while (idx != lowerI) {
+        idx = (idx + 1) % n1;
+        merged.push_back(leftHull[idx]);
+    }
+    // Traverse right hull from lowerJ to upperJ (inclusive)
+    idx = lowerJ;
+    merged.push_back(rightHull[idx]);
+    while (idx != upperJ) {
+        idx = (idx + 1) % n2;
+        merged.push_back(rightHull[idx]);
+    }
+    return merged;
 }
 
-// Función convexHullDivideAndConquer usando recursión y QuickSort para ordenar
-set<ParPuntos> convexHullDivideAndConquer(const vector<Point>& points) {
-    // Caso base: para pocos puntos, se usa fuerza bruta
-    if (points.size() <= 5)
-        return convexHullBruteForce(points);
-    
-    // Copia de los puntos para poder ordenarlos con QuickSort
-    vector<Point> sortedPoints = points;
-    quickSort(sortedPoints, 0, sortedPoints.size() - 1); // Usando QuickSort
-    
-    int mid = sortedPoints.size() / 2;
-    vector<Point> leftPoints(sortedPoints.begin(), sortedPoints.begin() + mid);
-    vector<Point> rightPoints(sortedPoints.begin() + mid, sortedPoints.end());
-    
-    // Calculamos recursivamente el convex hull para cada mitad
-    set<ParPuntos> leftHull = convexHullDivideAndConquer(leftPoints);
-    set<ParPuntos> rightHull = convexHullDivideAndConquer(rightPoints);
-    
-    // Fusionamos los puntos de ambos convex hulls
-    vector<Point> mergedPoints;
-    for (const auto &p : leftHull) {
-        mergedPoints.push_back({static_cast<float>(p.first), static_cast<float>(p.second)});
+// Divide and Conquer convex hull routine
+vector<Point> convexHullDC(vector<Point> &points, int l, int r) {
+    // Base case: one point
+    if (l == r) {
+        return {points[l]};
     }
-    for (const auto &p : rightHull) {
-        mergedPoints.push_back({static_cast<float>(p.first), static_cast<float>(p.second)});
+    // Base case: two points
+    if (r - l == 1) {
+        if (points[l].x == points[r].x && points[l].y == points[r].y)
+            return {points[l]};
+        return {points[l], points[r]};
     }
-    
-    // Se aplica fuerza bruta a la unión de los puntos para obtener la envolvente final
-    return convexHullBruteForce(mergedPoints);
+    int mid = (l + r) / 2;
+    vector<Point> leftHull = convexHullDC(points, l, mid);
+    vector<Point> rightHull = convexHullDC(points, mid + 1, r);
+    return mergeHulls(leftHull, rightHull);
 }
 
-// Ejemplo de uso en main
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        cout << "Uso: " << argv[0] << " <numero_de_puntos>" << endl;
-        return 1;
-    }
-    
-    int n = atoi(argv[1]);
-    if (n <= 0) {
-        cout << "El número de puntos debe ser un entero positivo." << endl;
-        return 1;
-    }
-    
-    srand(time(0));
-    vector<Point> points(n);
-    // Generamos puntos aleatorios en el rango [0, 100]
-    for (int i = 0; i < n; i++) {
-        points[i].x = rand() % 101;
-        points[i].y = rand() % 101;
-    }
-    
-    // Medimos el tiempo de ejecución de convexHullDivideAndConquer
-    auto start = high_resolution_clock::now();
-    set<ParPuntos> hull = convexHullDivideAndConquer(points);
-    auto end = high_resolution_clock::now();
-    
-    // Calculamos la duración en milisegundos
-    auto duration = duration_cast<milliseconds>(end - start);
-    
-    cout<<n<<" "<<duration.count()<< endl;
+    vector<Point> points;
+    int n, argumento;
+    chrono::time_point<std::chrono::high_resolution_clock> t0, tf; // To measure execution time
+    unsigned long int semilla;
+    ofstream fsalida;
 
+    if (argc <= 3) {
+        cerr << "\nError: El programa se debe ejecutar de la siguiente forma.\n\n";
+        cerr << argv[0] << " NombreFicheroSalida Semilla tamCaso1 tamCaso2 ... tamCasoN\n\n";
+        return 0;
+    }
+
+    // Open output file
+    fsalida.open(argv[1]);
+    if (!fsalida.is_open()) {
+        cerr << "Error: No se pudo abrir fichero para escritura " << argv[1] << "\n\n";
+        return 0;
+    }
+
+    // Initialize random number generator with seed
+    semilla = atoi(argv[2]);
+    srand(semilla);
+
+    // Process each test case size
+    for (argumento = 3; argumento < argc; argumento++) {
+        n = atoi(argv[argumento]);
+        points.resize(n);
+
+        // Generate random points in range [0, 100]
+        for (int i = 0; i < n; i++) {
+            points[i].x = rand() % 101;
+            points[i].y = rand() % 101;
+        }
+
+        // Remove duplicate points using a set
+        set<Point> setHull(points.begin(), points.end());
+        points.assign(setHull.begin(), setHull.end());
+
+        cerr << "Ejecutando divide and conquer para tam. caso: " << n << endl;
+        t0 = chrono::high_resolution_clock::now();
+
+        // Sort the points using the comparator
+        sort(points.begin(), points.end(), cmpPoint);
+
+        // Compute the convex hull using the Divide and Conquer algorithm
+        vector<Point> hull = convexHullDC(points, 0, points.size()-1);
+        tf = chrono::high_resolution_clock::now();
+
+        // Remove potential duplicates from the resulting hull (if any) by using a set
+        set<Point> setHull_final(hull.begin(), hull.end());
+
+        unsigned long tejecucion = chrono::duration_cast<chrono::microseconds>(tf - t0).count();
+        cerr << "\tTiempo de ejec. (us): " << tejecucion << " para tam. caso " << n << endl;
+        
+        // Output the convex hull points
+        for (auto it = setHull_final.begin(); it != setHull_final.end(); ++it){
+            cout << it->x << "," << it->y << endl;
+        }
+
+        // Save test case size and execution time to the output file
+        fsalida << n << " " << tejecucion << "\n";
+    }
     return 0;
 }
