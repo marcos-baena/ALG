@@ -1,0 +1,16 @@
+# Fdb version 4
+["pdflatex"] 1744368614.94276 "/home/marcosbslinux/ALG/Práctica 3/latex_code/preambulos.tex" "preambulos.pdf" "preambulos" 1744368615.42384 2
+  "/etc/texmf/web2c/texmf.cnf" 1734028341.32591 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/home/marcosbslinux/ALG/Práctica 3/latex_code/preambulos.tex" 1744368613.44089 3322 413db09fcea7e70385e8a935daa331fc ""
+  "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1734028496 8215039 2a68fbf359c90dc894d6854e7ea92d80 ""
+  "preambulos.aux" 1744368614.93944 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "preambulos.tex" 1744368613.44089 3322 413db09fcea7e70385e8a935daa331fc ""
+  (generated)
+  "preambulos.aux"
+  "preambulos.log"
+  "preambulos.pdf"
+  (rewritten before read)
